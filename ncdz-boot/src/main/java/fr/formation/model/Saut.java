@@ -36,7 +36,7 @@ public class Saut {
 			name = "saut_sauteurs",
 			uniqueConstraints = @UniqueConstraint (columnNames = {"id_saut", "id_sauteur"}),
 			joinColumns = @JoinColumn(name = "id_saut", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "id_sauteur", referencedColumnName = "id")
+			inverseJoinColumns = @JoinColumn(name = "id_sauteur", referencedColumnName = "numero_licence")
 			)
 	private List<Membre> sauteurs;
 	
@@ -49,7 +49,7 @@ public class Saut {
 			name = "saut_beerLine",
 			uniqueConstraints = @UniqueConstraint (columnNames = {"id_saut", "id_beerLine"}),
 			joinColumns = @JoinColumn(name = "id_saut", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "id_beerLine", referencedColumnName = "id")
+			inverseJoinColumns = @JoinColumn(name = "id_beerLine", referencedColumnName = "numero_licence")
 			)
 	private List<Membre> beerLine;
 

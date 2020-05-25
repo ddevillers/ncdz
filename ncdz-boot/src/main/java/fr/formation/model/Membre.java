@@ -3,15 +3,10 @@ package fr.formation.model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,14 +17,11 @@ import fr.formation.enumerator.Niveau;
 
 @Entity
 @Table(name = "membre")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "pilote")
 public class Membre {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "numero_licence")
+	private int numeroLicence;
 	
 	@Column(name = "nom", length = 50, nullable = false)
 	private String nom;
@@ -42,26 +34,11 @@ public class Membre {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateLicence;
 	
-	@Column(name = "numero_licence", nullable = false)
-	private int numeroLicence;
-	
 	@Column(name = "niveau", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Niveau niveau;
 	
-	@Column(name = "pilote", nullable = false)
-	private boolean pilote = false;
-	
 	public Membre() {}
-	
-	public Membre(int id, String nom, String prenom, LocalDate dateLicence, int numeroLicence, Niveau niveau) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateLicence = dateLicence;
-		this.numeroLicence = numeroLicence;
-		this.niveau = niveau;
-	}
 	
 	public Membre(String nom, String prenom, LocalDate dateLicence, int numeroLicence, Niveau niveau) {
 		this.nom = nom;
@@ -69,14 +46,6 @@ public class Membre {
 		this.dateLicence = dateLicence;
 		this.numeroLicence = numeroLicence;
 		this.niveau = niveau;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNom() {
@@ -118,18 +87,10 @@ public class Membre {
 	public void setNiveau(Niveau niveau) {
 		this.niveau = niveau;
 	}
-	
-	public boolean isPilote() {
-		return pilote;
-	}
-
-	public void setPilote(boolean pilote) {
-		this.pilote = pilote;
-	}
 
 	@Override
 	public String toString() {
-		return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateLicence=" + dateLicence
-				+ ", numeroLicence=" + numeroLicence + ", niveau=" + niveau + "]";
+		return "Membre [nom=" + nom + ", prenom=" + prenom + ", dateLicence=" + dateLicence + ", numeroLicence="
+				+ numeroLicence + ", niveau=" + niveau + "]";
 	}
 }

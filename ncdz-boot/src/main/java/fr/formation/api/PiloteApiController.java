@@ -12,43 +12,43 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.formation.dao.IDAOMembre;
-import fr.formation.model.Membre;
+import fr.formation.dao.IDAOPilote;
+import fr.formation.model.Pilote;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/membre")
-public class MembreApiController {
+@RequestMapping("/api/pilote")
+public class PiloteApiController {
 
 	@Autowired
-	private IDAOMembre daoMembre;
+	private IDAOPilote daoPilote;
 	
 	@GetMapping
-	public List<Membre> findAll(){
-		return this.daoMembre.findAll();
+	public List<Pilote> findAll(){
+		return this.daoPilote.findAll();
 	}
 	
 	@GetMapping("/{numeroLicence}")
-	public Membre findById(@PathVariable int numeroLicence) {
-		return this.daoMembre.findById(numeroLicence).orElse(new Membre());
+	public Pilote findById(@PathVariable int numeroLicence) {
+		return this.daoPilote.findById(numeroLicence).orElse(new Pilote());
 	}
 	
 	@PostMapping
-	public Membre add(Membre membre) {
-		this.daoMembre.save(membre);
-		return membre;
+	public Pilote add(Pilote pilote) {
+		this.daoPilote.save(pilote);
+		return pilote;
 	}
 	
 	@PutMapping("/{numeroLicence}")
-	public Membre update(@PathVariable int numeroLicence, Membre membre) {
-		membre.setNumeroLicence(numeroLicence);
-		return this.daoMembre.save(membre);
+	public Pilote update(@PathVariable int numeroLicence, Pilote pilote) {
+		pilote.setNumeroLicence(numeroLicence);
+		return this.daoPilote.save(pilote);
 	}
 	
 	@DeleteMapping("/{numeroLicence}")
 	public Boolean delete(@PathVariable int numeroLicence) {
 		try {
-			this.daoMembre.deleteById(numeroLicence);
+			this.daoPilote.deleteById(numeroLicence);
 		} catch (Exception e) {
 			return false;
 		}

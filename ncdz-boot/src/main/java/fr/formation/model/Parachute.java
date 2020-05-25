@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -56,12 +57,12 @@ public class Parachute {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate datePliageVoileSec;
 	
-	@Column(name = "plieurVoileSec", nullable = false)
 	@ManyToOne
+	@JoinColumn(name = "id_membre_voile_sec")
 	private Membre plieurVoileSec;
 	
-	@Column(name = "plieurVoilePrin", nullable = false)
 	@ManyToOne
+	@JoinColumn(name = "id_membre_voile_prin")
 	private Membre plieurVoilePrin;
 	
 	@Column(name = "centre", nullable = false)
