@@ -1,0 +1,23 @@
+<td class="new" colspan="5" *ngIf="isNew && !isEditing">Double-cliquez pour ajouter une personne</td>
+
+<td *ngIf="isNew && isEditing">
+    <select [(ngModel)]="saut.membre">
+        <option *ngFor="let memebre of srvMembre"
+                [value]="memebre">
+                {{ membre.prenom }} {{ membre.nom }}
+        </option>
+    </select>
+</td>
+
+<td *ngIf="isNew && isEditing">
+    <input type="number" [(ngModel)]="saut.?" />
+</td>
+
+<td *ngIf="isNew && isEditing">
+    <select  [(ngModel)]="visite.prix">
+</td>
+
+<td *ngIf="isNew && isEditing">
+    <button *ngIf="isEditing" (click)="edit()" class="btn btn-success m-1">Ajouter</button>
+    <button *ngIf="isEditing" (click)="cancel()" class="btn btn-danger m-1">Annuler</button>
+</td>
