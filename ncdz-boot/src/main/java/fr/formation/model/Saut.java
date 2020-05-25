@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import fr.formation.enumerator.HauteurSaut;
+import fr.formation.enumerator.TypeSaut;
 
 @Entity
 @Table(name = "saut")
