@@ -17,19 +17,19 @@ public class Avion {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "nom")
+	@Column(name = "nom", nullable = false)
 	private String nom;
 	
 	@Column(name = "capacite", nullable = false)
 	private int capacite;
 	
-	@Column(name = "etat")
+	@Column(name = "etat", nullable = false)
 	private boolean etat;
 	
 	@Column(name = "nbreRota", nullable = false)
 	private int nbreRota;
 	
-	//Constructeurs
+	// Constructors
 
 	public Avion(int id, String nom, int capacite, boolean etat, int nbreRota) {
 		super();

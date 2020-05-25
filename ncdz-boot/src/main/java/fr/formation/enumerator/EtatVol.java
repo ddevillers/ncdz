@@ -2,6 +2,6 @@ package fr.formation.enumerator;
 
 public enum EtatVol {
 	
-	Attente,Preparation, Embarquement, Vol, Termine,Incident; 
+	ATTENTE, PREPARATION, EMBARQUEMENT, VOL, TERMINE, INCIDENT; 
 
 }

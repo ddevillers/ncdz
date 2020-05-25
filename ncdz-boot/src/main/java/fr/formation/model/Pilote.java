@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.UniqueConstraint;
 
 import fr.formation.enumerator.Niveau;
 
@@ -15,7 +17,12 @@ import fr.formation.enumerator.Niveau;
 public class Pilote extends Membre {
 	
 	@ManyToMany
-	@JoinTable(name = "avion")
+	@JoinTable(
+			name = "pilote_avions",
+			uniqueConstraints = @UniqueConstraint (columnNames = {"id_pilote", "id_avion"}),
+			joinColumns = @JoinColumn(name = "id_pilote", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "id_avion", referencedColumnName = "id")
+			)
 	private List<Avion> avions;
 
 	public Pilote() {

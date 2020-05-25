@@ -2,6 +2,6 @@ package fr.formation.enumerator;
 
 public enum TypeSaut {
 	
-	Solo,Groupe,Tandem;
+	SOLO, GROUPE, TANDEM;
 
 }

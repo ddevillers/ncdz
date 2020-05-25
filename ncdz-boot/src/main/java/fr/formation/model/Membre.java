@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,8 +46,10 @@ public class Membre {
 	private int numeroLicence;
 	
 	@Column(name = "niveau", nullable = false)
+	@Enumerated(EnumType.STRING)
 	private Niveau niveau;
 	
+	@Column(name = "pilote", nullable = false)
 	private boolean pilote = false;
 	
 	public Membre() {}

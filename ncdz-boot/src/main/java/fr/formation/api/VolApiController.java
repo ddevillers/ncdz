@@ -20,7 +20,7 @@ import fr.formation.model.Vol;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/Vol")
+@RequestMapping("/api/vol")
 public class VolApiController {
 	@Autowired IDAOVol daoVol;
 	
@@ -48,8 +48,7 @@ public class VolApiController {
 	@PutMapping("/{id}")
 	public Vol update(@PathVariable int id, @RequestBody Vol vol) {
 		vol.setId(id);
-		this.daoVol.save(vol);
-		return new Vol();
+		return this.daoVol.save(vol);
 	}
 	
 	@DeleteMapping("/{id}")
