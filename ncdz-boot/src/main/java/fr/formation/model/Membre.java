@@ -13,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import fr.formation.enumerator.HauteurSaut;
 import fr.formation.enumerator.Niveau;
 
 @Entity
@@ -37,6 +38,13 @@ public class Membre {
 	@Column(name = "niveau", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Niveau niveau;
+	
+	@Column(name = "hauteur_souhaitee", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private HauteurSaut hauteurSouhaitee;
+	
+	@Column(name = "numero_parachute", nullable = false)
+	private int numeroParachute;
 	
 	public Membre() {}
 	
