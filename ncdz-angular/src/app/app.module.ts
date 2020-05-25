@@ -8,6 +8,7 @@ import { MembreComponent } from './membre/membre.component';
 import { MaterielComponent } from './materiel/materiel.component';
 import { VolComponent } from './vol/vol.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { PortailCrudRowComponent } from './portail-crud-row/portail-crud-row.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
     MembreComponent,
     MaterielComponent,
     VolComponent,
-    AccueilComponent
+    AccueilComponent,
+    PortailCrudRowComponent
   ],
   imports: [
     BrowserModule, 

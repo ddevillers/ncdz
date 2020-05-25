@@ -1,1 +1,41 @@
-<p>portail works!</p>
+<h1>Inscription saut</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Numero de parachute</th>
+			<th>Hauteur souhaitée</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr portail-crud-row></tr>
+	</tbody>
+</table>
+
+<h1>Liste des vols</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Nom avion</th>
+			<th>Capacité</th>
+			<th>Pilote</th>
+			<th>Responsable en vol</th>
+			<th>Responsable au sol</th>
+			<th>Hauteur maximal</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let vol of vols">
+			<td>{{ vol.avion.nom }}</td>
+			<td>{{ vol.avion.capacite }}</td>
+			<td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
+			<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
+			<td>{{ vol.respoSol.prenom }} {{ vol.respoSol.nom }}</td>
+			<td>{{ vol.hauteurSautMax }}</td>
+		</tr>
+	</tbody>
+</table>
