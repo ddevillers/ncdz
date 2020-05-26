@@ -1,0 +1,19 @@
+.tableMembre tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  
+.tableMembre thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+.tableMembre thead,
+  tfoot tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }

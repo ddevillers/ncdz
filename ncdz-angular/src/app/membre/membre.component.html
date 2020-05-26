@@ -2,7 +2,7 @@
 
 <h3>Liste des parachutistes</h3>
 
-<table class="table table-striped">
+<table class="tableMembre table table-striped">
     <thead>
         <tr>
             <td>Nom</td>
@@ -22,11 +22,12 @@
             <td>{{ membre.dateLicence }}</td>
             <td>{{ membre.niveau }}</td>
             <td>
-                <button (click)="editerMembre(membre)" class="btn btn-warning m-1">Editer</button>
-				<button (click)="supprimerMembre(membre)" class="btn btn-danger m-1">Supprimer</button>
+                <button (click)="editerMembre(membre)" class="btn btn-secondary m-1">Editer</button>
+				<button (click)="supprimerMembre(membre)" class="btn btn-secondary m-1">Supprimer</button>
             </td>
         </tr>
-
+    </tbody>
+    <tfoot>
         <tr>
             <td>
                 <input type="text" [(ngModel)]="membre.nom" placeholder="Nom" />
@@ -48,19 +49,19 @@
                 </select>
             </td>
             <td>
-                <button *ngIf="!isEditingMembre" (click)="ajouterMembre()" class="btn btn-success btn-block">Ajouter</button>
-                <button *ngIf="isEditingMembre" (click)="modifierMembre()" class="btn btn-warning btn-block">Modifier</button>
-            	<button *ngIf="isEditingMembre" (click)="annulerMembre()" class="btn btn-danger btn-block">Annuler</button>
+                <button *ngIf="!isEditingMembre" (click)="ajouterMembre()" class="btn btn-secondary">Ajouter</button>
+                <button *ngIf="isEditingMembre" (click)="modifierMembre()" class="btn btn-secondary">Modifier</button>
+            	<button *ngIf="isEditingMembre" (click)="annulerMembre()" class="btn btn-secondary">Annuler</button>
             </td>
         </tr>
-    </tbody>
+    </tfoot>
 </table>
 
 <!--------------PILOTE-------------->
 
 <h3>Liste des pilotes</h3>
 
-<table class="table table-striped">
+<table class="tableMembre table table-striped">
     <thead>
         <tr>
             <td>Nom</td>
@@ -80,11 +81,12 @@
                 <div *ngFor="let avion of pilote.avions">{{ avion.nom }} </div>
             </td>
             <td>
-                <button (click)="editerPilote(pilote)" class="btn btn-warning m-1">Editer</button>
-				<button (click)="supprimerPilote(pilote)" class="btn btn-danger m-1">Supprimer</button>
+                <button (click)="editerPilote(pilote)" class="btn btn-secondary m-1">Editer</button>
+				<button (click)="supprimerPilote(pilote)" class="btn btn-secondary m-1">Supprimer</button>
             </td>
         </tr>
-
+    </tbody>
+    <tfoot>
         <tr>
             <td>
                 <input type="text" [(ngModel)]="pilote.nom" />
@@ -95,15 +97,23 @@
             <td>
                 <input type="number" [(ngModel)]="pilote.numeroLicence" />
             </td>
-            <td>
-                <select>   <!--Comment gérer ça... ajout de un ou plusieurs avions-->
-                </select>
+            <td>        <!--Comment gérer ça... ajout de un ou plusieurs avions-->
+                <div *ngFor="let avion of pilote.avions">{{ avion.nom }} <a (click)="supprimerAvion(avion)">(-)</a></div>
+                <div>
+                    <span *ngIf="isSelectingAvion">
+                        <select [(ngModel)]="avion">
+                            <option *ngFor="let avion of srvAvion.avions" [ngValue]="avion">{{avion.nom}}</option>
+                        </select>
+                    </span>
+                    <a *ngIf="!isSelectingAvion && isEditingPilote" (click)="selectionnerAvion()">(+)</a>
+                    <button *ngIf="isSelectingAvion" (click)="ajouterAvion()">(+)</button>
+                </div>
             </td>
             <td>
-                <button *ngIf="!isEditingPilote" (click)="ajouterPilote()" class="btn btn-success btn-block">Ajouter</button>
-                <button *ngIf="isEditingPilote" (click)="modifierPilote()" class="btn btn-warning btn-block">Modifier</button>
-            	<button *ngIf="isEditingPilote" (click)="annulerPilote()" class="btn btn-danger btn-block">Annuler</button>
+                <button *ngIf="!isEditingPilote" (click)="ajouterPilote()" class="btn btn-secondary">Ajouter</button>
+                <button *ngIf="isEditingPilote" (click)="modifierPilote()" class="btn btn-secondary">Modifier</button>
+            	<button *ngIf="isEditingPilote" (click)="annulerPilote()" class="btn btn-secondary">Annuler</button>
             </td>
         </tr>
-    </tbody>
+    </tfoot>
 </table>

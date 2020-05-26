@@ -3,6 +3,8 @@ import { MembreService } from '../services/membre.service';
 import { Membre } from '../model/membre';
 import { Pilote } from '../model/pilote';
 import { PiloteService } from '../services/pilote.service';
+import { Avion } from '../model/avion';
+import { AvionService } from '../services/avion.service';
 
 @Component({
   selector: 'app-membre',
@@ -13,17 +15,24 @@ export class MembreComponent implements OnInit {
 
   isEditingMembre = false;
   isEditingPilote = false;
+  isSelectingAvion = false;
   oldMembre = null;
-  oldPilote = null
+  oldPilote = null;
 
   public membre: Membre = new Membre();
   public pilote: Pilote = new Pilote();
+  public avion: Avion = new Avion();
 
-  constructor(public srvMembre: MembreService, public srvPilote: PiloteService) { }
+  constructor(
+    public srvMembre: MembreService, 
+    public srvPilote: PiloteService,
+    public srvAvion: AvionService
+    ) { }
 
   ngOnInit() {
   this.srvMembre.reload();
   this.srvPilote.reload();
+  this.srvAvion.reload();
   }
 
   //////Membre//////
@@ -81,5 +90,18 @@ export class MembreComponent implements OnInit {
 
   public supprimerPilote(pilote: Pilote) {
     this.srvPilote.delete(pilote);
+  }
+
+  public selectionnerAvion() {
+    this.isSelectingAvion = true;
+  }
+
+  public ajouterAvion() {
+    this.pilote.avions.push(this.avion);
+    this.isSelectingAvion = false;
+  }
+
+  public supprimerAvion(avion: Avion) {
+    this.pilote.avions.splice(this.pilote.avions.indexOf(avion), 1);
   }
 }
