@@ -15,7 +15,9 @@ export class PortailCrudRowComponent implements OnInit {
   private isNew: boolean = false;
   private isEditing: boolean = false;
 
-  constructor() { }
+
+
+  constructor(private portail: PortailComponent) {portail.testsauts = [new Saut()]; }
 
   ngOnInit(): void {
   }

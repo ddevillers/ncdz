@@ -10,7 +10,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr portail-crud-row></tr>
+        <!-- <tr portail-crud-row></tr> -->
+        <!-- <tr *ngFor="let membre of saut.membres" [portail-crud-row]="saut"></tr> -->
 	</tbody>
 </table>
 
@@ -39,3 +40,9 @@
 		</tr>
 	</tbody>
 </table>
+
+<h1>test</h1>
+
+<tr *ngFor="let saut of testsauts">
+	<td>{{saut.hauteur}}</td>
+</tr>
