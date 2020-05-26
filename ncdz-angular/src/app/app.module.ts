@@ -10,7 +10,6 @@ import { MembreComponent } from './membre/membre.component';
 import { MaterielComponent } from './materiel/materiel.component';
 import { VolComponent } from './vol/vol.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { PortailCrudRowComponent } from './portail-crud-row/portail-crud-row.component';
 import { HistoriqueComponent } from './historique/historique.component';
 import { AvionCrudRowComponent } from './materiel/avion-crud-row/avion-crud-row.component';
 import { NavComponent } from './nav/nav.component';
@@ -40,7 +39,8 @@ const routes: Routes = [
     NavComponent
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, 
+    FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule
   ],

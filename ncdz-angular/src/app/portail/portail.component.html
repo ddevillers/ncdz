@@ -1,19 +1,93 @@
-<h1>Inscription saut</h1>
+<div class="card m-3">
+	<div class="card-header">
+		<h1>Inscription saut</h1>
+	</div>
+	<div class="card-body">
+		<div class="form-group row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nombre de personnes dans le groupe</th>
+						<th>Hauteur souhaitée (m)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="number" class="form-control" id="nbP"  [(ngModel)]="nbPers"/>
+						</td>
+						<td>
+							<select class="form-control" id="hauteur">
+								<option value="H1200">1200</option>
+								<option value="H1600">1600</option>
+								<option value="H2000">2000</option>
+								<option value="H4000">4000</option>
+								<option value="H6000">6000</option>
+							</select>
+						</td>
+						<!-- <td>
+							<button class="btn btn-primary" (clic)="validNbPers()">Valider</button>
+						</td> -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="form-group row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Numero de parachute</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div class="form-row">
+								<div class="col">
+									<input type="text" class="form-control" placeholder="recherche membre" [(ngModel)]="filterMembre"/>
+								</div>
+								<div class="col">
+									<select class="form-control" [(ngModel)]="membre">
+										<option *ngFor="let membre of membresFiltered()" [ngValue]="membre">{{membre.prenom}} {{membre.nom}}</option>
+									</select>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="form-row">
+								<div class="col">
+									<input type="number" class="form-control" placeholder="recherche parachute"/>
+								</div>
+								<div class="col">
+									<select  class="form-control">
+										<option value="0">Parachute personnel</option>
+										<option *ngFor="let parachute of parachutes">
+											{{parachute.id}}
+										</option>
+									</select>
+								</div>
+							</div>
+						</td>
+						<td>
+							<button class="btn btn-primary" (clic)="ajouterMembre()">Ajouter</button>
+						</td>
+					</tr>
+					<tr *ngFor="membre of reservation">
+						<td>{{membre.nom}}</td>
+						<td>{{membre.numeroParachute}}</td>
+						<td>
+							<button (click)="editerMembre(membre)" class="btn btn-warning m-1">Editer</button>
+							<button (click)="supprimerMembre(membre)" class="btn btn-danger m-1">Supprimer</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Nom</th>
-			<th>Numero de parachute</th>
-			<th>Hauteur souhaitée</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-        <!-- <tr portail-crud-row></tr> -->
-        <!-- <tr *ngFor="let membre of saut.membres" [portail-crud-row]="saut"></tr> -->
-	</tbody>
-</table>
+
 
 <h1>Liste des vols</h1>
 
@@ -26,23 +100,18 @@
 			<th>Responsable en vol</th>
 			<th>Responsable au sol</th>
 			<th>Hauteur maximal</th>
-			<th></th>
+			<th>Etat</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let vol of vols">
+		<tr *ngFor="let vol of srvVol.vols">
 			<td>{{ vol.avion.nom }}</td>
 			<td>{{ vol.avion.capacite }}</td>
 			<td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
 			<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
 			<td>{{ vol.respoSol.prenom }} {{ vol.respoSol.nom }}</td>
 			<td>{{ vol.hauteurSautMax }}</td>
+			<td>{{ vol.etaVol }}</td>
 		</tr>
 	</tbody>
 </table>
-
-<h1>test</h1>
-
-<tr *ngFor="let saut of testsauts">
-	<td>{{saut.hauteur}}</td>
-</tr>
