@@ -1,1 +1,109 @@
-<p>membre works!</p>
+<!--------PARACHUTISTE (Membre)-------->
+
+<h3>Liste des parachutistes</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Nom</td>
+            <td>Prénom</td>
+            <td>Numéro de licence</td>
+            <td>Date de licence</td>
+            <td>Niveau</td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let membre of srvMembre.membres">
+            <td>{{ membre.nom }}</td>
+            <td>{{ membre.prenom }}</td>
+            <td>{{ membre.numeroLicence }}</td>
+            <td>{{ membre.dateLicence }}</td>
+            <td>{{ membre.niveau }}</td>
+            <td>
+                <button (click)="editerMembre(membre)" class="btn btn-warning m-1">Editer</button>
+				<button (click)="supprimerMembre(membre)" class="btn btn-danger m-1">Supprimer</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="text" [(ngModel)]="membre.nom" placeholder="Nom" />
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="membre.prenom" placeholder="Prénom" />
+            </td>
+            <td>
+                <input type="number" [(ngModel)]="membre.numeroLicence" placeholder="Numéro de licence" />
+            </td>
+            <td>
+                <input type="date" [(ngModel)]="membre.dateLicence" />
+            </td>
+            <td>
+                <select [(ngModel)]="membre.niveau">
+                    <option>ELEVE</option>
+                    <option>CONFIRME</option>
+                    <option>INSTRUCTEUR</option>
+                </select>
+            </td>
+            <td>
+                <button *ngIf="!isEditingMembre" (click)="ajouterMembre()" class="btn btn-success btn-block">Ajouter</button>
+                <button *ngIf="isEditingMembre" (click)="modifierMembre()" class="btn btn-warning btn-block">Modifier</button>
+            	<button *ngIf="isEditingMembre" (click)="annulerMembre()" class="btn btn-danger btn-block">Annuler</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!--------------PILOTE-------------->
+
+<h3>Liste des pilotes</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Nom</td>
+            <td>Prénom</td>
+            <td>Numéro de licence</td>
+            <td>Avions</td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let pilote of srvPilote.pilotes">
+            <td>{{ pilote.nom }}</td>
+            <td>{{ pilote.prenom }}</td>
+            <td>{{ pilote.numeroLicence }}</td>
+            <td>
+                <div *ngFor="let avion of pilote.avions">{{ avion.nom }} </div>
+            </td>
+            <td>
+                <button (click)="editerPilote(pilote)" class="btn btn-warning m-1">Editer</button>
+				<button (click)="supprimerPilote(pilote)" class="btn btn-danger m-1">Supprimer</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="text" [(ngModel)]="pilote.nom" />
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="pilote.prenom" />
+            </td>
+            <td>
+                <input type="number" [(ngModel)]="pilote.numeroLicence" />
+            </td>
+            <td>
+                <select>   <!--Comment gérer ça... ajout de un ou plusieurs avions-->
+                </select>
+            </td>
+            <td>
+                <button *ngIf="!isEditingPilote" (click)="ajouterPilote()" class="btn btn-success btn-block">Ajouter</button>
+                <button *ngIf="isEditingPilote" (click)="modifierPilote()" class="btn btn-warning btn-block">Modifier</button>
+            	<button *ngIf="isEditingPilote" (click)="annulerPilote()" class="btn btn-danger btn-block">Annuler</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

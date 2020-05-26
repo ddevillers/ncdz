@@ -19,10 +19,10 @@ public class Pilote {
 	@Column(name = "numero_licence")
 	private int numeroLicence;
 	
-	@Column(name = "nom", length = 50, nullable = false)
+	@Column(name = "nom", length = 50, nullable=false)
 	private String nom;
 	
-	@Column(name = "prenom", length = 50, nullable = false)
+	@Column(name = "prenom", length = 50, nullable=false)
 	private String prenom;
 	
 	@ManyToMany

@@ -39,11 +39,11 @@ public class Membre {
 	@Enumerated(EnumType.STRING)
 	private Niveau niveau;
 	
-	@Column(name = "hauteur_souhaitee", nullable = false)
+	@Column(name = "hauteur_souhaitee")
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSouhaitee;
 	
-	@Column(name = "numero_parachute", nullable = false)
+	@Column(name = "numero_parachute")
 	private int numeroParachute;
 	
 	public Membre() {}

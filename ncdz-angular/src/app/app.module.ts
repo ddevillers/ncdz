@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,7 +11,6 @@ import { MaterielComponent } from './materiel/materiel.component';
 import { VolComponent } from './vol/vol.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { PortailCrudRowComponent } from './portail-crud-row/portail-crud-row.component';
-import { MembreCrudRowComponent } from './membre/membre-crud-row/membre-crud-row.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -29,10 +29,11 @@ const routes: Routes = [
     MembreComponent,
     MaterielComponent,
     VolComponent,
-    AccueilComponent
+    AccueilComponent,
   ],
   imports: [
     BrowserModule, 
+    FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
