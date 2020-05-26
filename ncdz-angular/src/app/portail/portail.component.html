@@ -14,10 +14,7 @@
 				<tbody>
 					<tr>
 						<td>
-							<input type="number" class="form-control" id="nbP"  [(ngModel)]="nbPers"/>
-						</td>
-						<td>
-							<select class="form-control" id="hauteur">
+							<select class="form-control" id="hauteur" [(ngModel)]="fileAttente.hauteurSouhaitee">
 								<option value="H1200">1200</option>
 								<option value="H1600">1600</option>
 								<option value="H2000">2000</option>
@@ -25,9 +22,9 @@
 								<option value="H6000">6000</option>
 							</select>
 						</td>
-						<!-- <td>
-							<button class="btn btn-primary" (clic)="validNbPers()">Valider</button>
-						</td> -->
+						<td>
+							<button class="btn btn-primary" (clic)="ajouterFileAttent()">Valider</button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -62,7 +59,7 @@
 								<div class="col">
 									<select  class="form-control">
 										<option value="0">Parachute personnel</option>
-										<option *ngFor="let parachute of parachutes">
+										<option *ngFor="let parachute of srvParachute.parachutes">
 											{{parachute.id}}
 										</option>
 									</select>
@@ -70,15 +67,15 @@
 							</div>
 						</td>
 						<td>
-							<button class="btn btn-primary" (clic)="ajouterMembre()">Ajouter</button>
+							<button class="btn btn-primary" (clic)="ajouterSauteur()">Ajouter</button>
 						</td>
 					</tr>
-					<tr *ngFor="membre of reservation">
+					<tr *ngFor="membre of fileAttente.sauteurs">
 						<td>{{membre.nom}}</td>
 						<td>{{membre.numeroParachute}}</td>
 						<td>
-							<button (click)="editerMembre(membre)" class="btn btn-warning m-1">Editer</button>
-							<button (click)="supprimerMembre(membre)" class="btn btn-danger m-1">Supprimer</button>
+							<button (click)="editerSauteur(membre)" class="btn btn-warning m-1">Editer</button>
+							<button (click)="supprimerSauteur(membre)" class="btn btn-danger m-1">Supprimer</button>
 						</td>
 					</tr>
 				</tbody>
