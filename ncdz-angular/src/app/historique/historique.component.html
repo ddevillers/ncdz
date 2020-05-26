@@ -1,0 +1,62 @@
+<h2>Vols</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Avion</th>
+      <th>Pilote</th>
+      <th>Nombre sauts</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody *ngFor="let vol of srvVol.vols">
+      <tr>
+        <td>{{ vol.id }}</td>
+        <td>{{ vol.avion.nom }}</td>
+        <td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
+        <td>{{ vol.sauts.length }}</td>
+        <td>
+          <button (click)="affichageDetails(vol)" name="detail">Détails</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="5" *ngIf="idAffichage == vol.id && affichage == 'Y'">
+          <div>Pilote</div>
+          <div>
+            Nom : {{ vol.pilote.nom }} <br/>
+            Prenom : {{ vol.pilote.prenom }} <br/>
+            Numero de licence : {{ vol.pilote.numeroLicence }} <br/><br/>
+          </div>
+
+          <div>Responsable vol</div>
+          <div>
+            Nom : {{ vol.respoVol.nom }} <br/>
+            Prenom : {{ vol.respoVol.prenom }} <br/>
+            Numero de licence : {{ vol.respoVol.numeroLicence }} <br/><br/>
+          </div>
+
+          <div>Responsable sol</div>
+          <div>
+            Nom : {{ vol.respoSol.nom }} <br/>
+            Prenom : {{ vol.respoSol.prenom }} <br/>
+            Numero de licence : {{ vol.respoSol.numeroLicence }} <br/><br/>
+          </div>
+
+          <div>Sauts</div>
+            <div *ngFor="let saut of vol.sauts">
+              Type Saut : {{ saut.typeSaut }} <br/>
+              Hauteur Saut : {{ saut.hauteur }} <br/>
+              Parachutistes :
+              <div *ngFor="let sauteur of saut.sauteurs">
+                Nom : {{ sauteur.nom }} <br/>
+                Prenom : {{ sauteur.prenom }} <br/>
+                Numero de licence : {{ sauteur.numeroLicence }} <br/><br/>
+                </div>
+            </div>
+        </td>
+      </tr>
+
+  </tbody>
+</table>

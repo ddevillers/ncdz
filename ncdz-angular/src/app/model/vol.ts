@@ -5,13 +5,13 @@ import { Membre } from './membre';
 
 export class Vol {
     constructor(
-        public id?: number, 
-        public avion?: Avion, 
-        public pilote?: Pilote, 
-        public sauts?: Array<Saut>, 
-        public etaVol?: string,
-        public respoVol?: Membre, 
-        public respoSol?: Membre, 
+        public id?: number,
+        public avion?: Avion,
+        public pilote?: Pilote,
+        public sauts?: Array<Saut>,
+        public etatVol?: string,
+        public respoVol?: Membre,
+        public respoSol?: Membre,
         public hauteurSautMax?: number
         ) {}
 }

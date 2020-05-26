@@ -11,6 +11,7 @@ import { MaterielComponent } from './materiel/materiel.component';
 import { VolComponent } from './vol/vol.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { PortailCrudRowComponent } from './portail-crud-row/portail-crud-row.component';
+import { HistoriqueComponent } from './historique/historique.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'membre', component: MembreComponent },
   { path: 'materiel', component: MaterielComponent },
   { path: 'vol', component: VolComponent },
+  { path: 'historique', component: HistoriqueComponent},
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', component: AccueilComponent }
 ];
@@ -30,6 +32,7 @@ const routes: Routes = [
     MaterielComponent,
     VolComponent,
     AccueilComponent,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule, 
