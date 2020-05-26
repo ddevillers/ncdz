@@ -22,7 +22,7 @@ public class Membre {
 
 	@Id
 	@Column(name = "numero_licence")
-	private int numeroLicence;
+	private long numeroLicence;
 	
 	@Column(name = "nom", length = 50, nullable = false)
 	private String nom;
@@ -30,7 +30,7 @@ public class Membre {
 	@Column(name = "prenom", length = 50, nullable = false)
 	private String prenom;
 	
-	@Column(name = "date_licence", nullable = false)
+	@Column(name = "date_licence")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateLicence;
@@ -48,7 +48,7 @@ public class Membre {
 	
 	public Membre() {}
 	
-	public Membre(String nom, String prenom, LocalDate dateLicence, int numeroLicence, Niveau niveau) {
+	public Membre(String nom, String prenom, LocalDate dateLicence, long numeroLicence, Niveau niveau) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateLicence = dateLicence;
@@ -80,11 +80,11 @@ public class Membre {
 		this.dateLicence = dateLicence;
 	}
 
-	public int getNumeroLicence() {
+	public long getNumeroLicence() {
 		return numeroLicence;
 	}
 
-	public void setNumeroLicence(int numeroLicence) {
+	public void setNumeroLicence(long numeroLicence) {
 		this.numeroLicence = numeroLicence;
 	}
 
