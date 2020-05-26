@@ -14,4 +14,10 @@ export class AppConfigService {
     myHeaders = myHeaders.append('Authorization', 'Basic ' + btoa('jordan:ajc'));
     this.httpOptions = { headers: myHeaders };
   }
+
+  public setHeaders(login, password) {
+    let myHeaders: HttpHeaders = new HttpHeaders();
+    myHeaders = myHeaders.append('Authorization', 'Basic ' + btoa(login + ':' + password));
+    this.httpOptions = { headers: myHeaders};
+   }
 }

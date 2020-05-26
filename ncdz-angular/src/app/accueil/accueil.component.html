@@ -1,1 +1,50 @@
-<p>accueil works!</p>
+<div class="container-fluid" id="accueilfond">
+    
+
+    <div id="bandeauHaut" class="row">
+
+        <div class="col-4"></div>
+
+        <div id="titre" class="col-4">NC-DROPZONE</div>
+    </div>
+
+<div class="row">
+    <div class="col-8"></div>
+
+    <div class="col-3" id="connexionTitre">Connexion</div>
+    
+</div>
+<br><br>
+
+    <div class="row">
+        <div class="col-9"></div>
+        <div class="input-group col-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1" >Login</span>
+            </div>
+            <input [(ngModel)] = "utilisateur.login" class = "form-control" type ="text" placeholder = "login"/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        
+        <div class="col-9"></div>
+        <div class="input-group  col-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+            </div>
+            <input [(ngModel)] = "utilisateur.password" class = "form-control" type ="password" placeholder = "password"/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-9"></div>
+        <button class = "btn btn-primary" id="btnSeConnecter" (click)="seConnecter()"> Connexion </button>
+    </div>
+
+    <div class="row">
+        <div class="col-3"></div>
+        <button type="button" class="btn btn-primary btn-lg btn-block col-6" id="btnSauter" (click)="sauter()">JE VEUX SAUTER !!</button>
+    </div>
+
+</div>
