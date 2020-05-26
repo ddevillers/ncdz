@@ -1,1 +1,223 @@
-<p>materiel works!</p>
+<div class="row container">
+    <div class="titre">
+        <h2>Gestion de matériels</h2>
+    </div>
+    <div class="onglets center">
+        <button class="btn btn-secondary btn-lg" type="button" data-toggle="collapse" data-target="#menuAvion">Avion</button>
+        <button class="btn btn-secondary btn-lg" type="button" data-toggle="collapse" data-target="#menuParachute">Parachute</button>
+    </div>
+    <div class="collapse" id="menuAvion">
+
+        <br/>
+
+        <div class="row">
+            <div class="card center">
+                <div class="card-header">
+                    <h3 class="card-title">Ajouter un nouvel avion</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="nom" class="col-sm-4 col-form-label">Nom : </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nom" [(ngModel)]="avion.nom" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="capacite" class="col-sm-8 col-form-label">Capacité (nombre de personnes hors pilote) : </label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="capacite" [(ngModel)]="avion.capacite" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="etat" class="col-sm-4 col-form-label">Etat : </label>
+                        <div class="col-sm-8">
+                            <select [(ngModel)]="avion.etat" class="form-control" id="etat">
+                                <option [ngValue]="true">Disponible</option>
+                                <option [ngValue]="false">Non disponible</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nbreRota" class="col-sm-8 col-form-label">Autonomie (nombre de vols) : </label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="nbreRota" [(ngModel)]="avion.nbreRota" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <button *ngIf="!isEditingAvion" (click)="ajouterAvion()" class="btn btn-secondary m-1">Ajouter</button>
+                    <button *ngIf="isEditingAvion" (click)="annulerAvion()" class="btn btn-warning m-1">Annuler</button>
+                    <button *ngIf="isEditingAvion" (click)="modifierAvion()" class="btn btn-warning m-1">Modifier</button>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="card center">
+                <div class="card-header">
+                    <h2>Liste des Avions </h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Capacité</th>
+                                <th>Etat</th>
+                                <th>Autonomie (vols)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody>
+                            <tr avion-crud-row></tr>
+                            <tr *ngFor="let avion of srvAvion.avions" [avion-crud-row]="avion"></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br />
+    
+    <div class="collapse" id="menuParachute">
+
+        <br/>
+
+        <div class="row">
+            <div class="card cardNewParachute center">
+                <div class="card-header">
+                    <h3 class="card-title">Ajouter un nouveau parachute</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="nomHarnais" class="col-sm-4 col-form-label">Nom du harnais : </label>
+                        <div class="col-sm-8">
+                            <input type="text" size="20" class="form-control" id="nomHarnais" [(ngModel)]="parachute.nomHarnais" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="systemeSecu" class="col-sm-4 col-form-label">Système de sécurité : (&nbsp;VIGIL&nbsp;/&nbsp;CYPRESS&nbsp;) </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="systemeSecu" [(ngModel)]="parachute.systemeSecu" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nomVoilePrin" class="col-sm-4 col-form-label">Nom de la voile principale : </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nomVoilePrin" [(ngModel)]="parachute.nomVoilePrin" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nomVoileSec" class="col-sm-4 col-form-label">Nom de la voile de secours : </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nomVoileSec" [(ngModel)]="parachute.nomVoileSec" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tailleVoilePrin" class="col-sm-8 col-form-label">Taille de la voile principale (pieds²) : </label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="tailleVoilePrin" [(ngModel)]="parachute.tailleVoilePrin" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tailleVoileSec" class="col-sm-8 col-form-label">Taille de la voile de secours (pieds²) : </label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="tailleVoileSec" [(ngModel)]="parachute.tailleVoileSec" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="datePliageVoilePrin" class="col-sm-8 col-form-label">Date de pliage de la voile principale : </label>
+                        <div class="col-sm-4">
+                            <input type="date" size="30" class="form-control" id="datePliageVoilePrin" [(ngModel)]="parachute.datePliageVoilePrin" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="datePliageVoileSec" class="col-sm-8 col-form-label">Date de pliage de la voile de secours : </label>
+                        <div class="col-sm-4">
+                            <input type="date" size="30" class="form-control" id="datePliageVoileSec" [(ngModel)]="parachute.datePliageVoileSec" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="plieurVoilePrin" class="col-sm-8 col-form-label">Plieur de la voile principale (N° de licence) : </label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="plieurVoilePrin" [(ngModel)]="parachute.plieurVoilePrin" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="plieurVoileSec" class="col-sm-8 col-form-label">Plieur de la voile de secours (N° de licence) : </label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="plieurVoileSec" [(ngModel)]="parachute.plieurVoileSec" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="centre" class="col-sm-4 col-form-label">Le parachute appartient-il au centre ? </label>
+                        <div class="col-sm-8">
+                            <select [(ngModel)]="parachute.centre" class="form-control" id="centre">
+                                <option [ngValue]="true">Oui</option>
+                                <option [ngValue]="false">Non</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="dispo" class="col-sm-4 col-form-label">Disponible ? </label>
+                        <div class="col-sm-8">
+                            <select [(ngModel)]="parachute.dispo" class="form-control" id="dispo">
+                                <option [ngValue]="true">Oui</option>
+                                <option [ngValue]="false">Non</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <button *ngIf="!isEditingParachute" (click)="ajouterParachute()" class="btn btn-secondary m-1">Ajouter</button>
+                    <button *ngIf="isEditingParachute" (click)="annulerParachute()" class="btn btn-warning m-1">Annuler</button>
+                    <button *ngIf="isEditingParachute" (click)="modifierParachute()" class="btn btn-warning m-1">Modifier</button>
+                </div>
+            </div>
+        </div>
+    
+        <br/>
+    
+        <div class="row">
+            <div class="card cardParachute center">
+                <div class="card-header">
+                    <h2>Liste des Parachutes </h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom harnais</th>
+                                <th>Type de sécurité</th>
+                                <!--<th>Nom voile principale</th>
+                                <th>Nom voile de secours</th>-->
+                                <th>Taille voile P.</th>
+                                <th>Taille voile S.</th>
+                                <!--<th>Date pliage V. principale</th>
+                                <th>Date pliage V. secours</th>
+                                <th>Plieur voile principale</th>
+                                <th>Plieur voile de secours</th>-->
+                                <th>Appartient au centre ?</th>
+                                <th>Disponible ?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody><!--
+                            <tr parachute-crud-row></tr>
+                            <tr *ngFor="let parachute of srvParachute.parachutes" [parachute-crud-row]="parachute"></tr>
+                        --></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<br />

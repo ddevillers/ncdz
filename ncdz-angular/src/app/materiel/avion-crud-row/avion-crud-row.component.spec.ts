@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PortailCrudRowComponent } from './portail-crud-row.component';
+import { AvionCrudRowComponent } from './avion-crud-row.component';
 
-describe('PortailCrudRowComponent', () => {
-  let component: PortailCrudRowComponent;
-  let fixture: ComponentFixture<PortailCrudRowComponent>;
+describe('AvionCrudRowComponent', () => {
+  let component: AvionCrudRowComponent;
+  let fixture: ComponentFixture<AvionCrudRowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortailCrudRowComponent ]
+      declarations: [ AvionCrudRowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PortailCrudRowComponent);
+    fixture = TestBed.createComponent(AvionCrudRowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

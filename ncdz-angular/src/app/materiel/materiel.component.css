@@ -1,0 +1,36 @@
+.centerText {
+    text-align: center;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.carNewParachute {
+    width: 75%;
+}
+
+.cardParachute {
+    width: 100%;
+}
+
+.titre {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.collapse {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 400px;
+}
+
+.onglets {
+    display: inline-block;
+}

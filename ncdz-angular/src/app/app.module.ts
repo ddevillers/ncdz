@@ -12,6 +12,7 @@ import { VolComponent } from './vol/vol.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { PortailCrudRowComponent } from './portail-crud-row/portail-crud-row.component';
 import { HistoriqueComponent } from './historique/historique.component';
+import { AvionCrudRowComponent } from './materiel/avion-crud-row/avion-crud-row.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -32,11 +33,11 @@ const routes: Routes = [
     MaterielComponent,
     VolComponent,
     AccueilComponent,
+    AvionCrudRowComponent,
     HistoriqueComponent
   ],
   imports: [
-    BrowserModule, 
-    FormsModule,
+    BrowserModule, FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
