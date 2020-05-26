@@ -1,1 +1,27 @@
-<p>vol works!</p>
+<div id="history">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Avion</th>
+        <th>Pilote</th>
+        <th>Hauteur</th>
+        <th>État</th>
+        <th>Sauts</th>
+        <th>Parachutistes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let vol of volsFiltered()">
+        <td>{{vol.id}}</td>
+        <td>{{vol.id_avion}}</td>
+        <td>{{vol.id_pilote}}</td>
+        <td>{{vol.hauteur_saut_max}}</td>
+        <td>{{vol.etat_vol}}</td>
+        <td>3</td>
+        <td>12</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

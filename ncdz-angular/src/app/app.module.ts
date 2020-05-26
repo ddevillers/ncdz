@@ -13,6 +13,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { PortailCrudRowComponent } from './portail-crud-row/portail-crud-row.component';
 import { HistoriqueComponent } from './historique/historique.component';
 import { AvionCrudRowComponent } from './materiel/avion-crud-row/avion-crud-row.component';
+import { NavComponent } from './nav/nav.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'membre', component: MembreComponent },
   { path: 'materiel', component: MaterielComponent },
   { path: 'vol', component: VolComponent },
+  { path: 'nav', component: NavComponent },
   { path: 'historique', component: HistoriqueComponent},
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', component: AccueilComponent }
@@ -34,7 +36,8 @@ const routes: Routes = [
     VolComponent,
     AccueilComponent,
     AvionCrudRowComponent,
-    HistoriqueComponent
+    HistoriqueComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule, FormsModule,

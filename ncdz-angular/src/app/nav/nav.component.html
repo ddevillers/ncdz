@@ -1,0 +1,20 @@
+<nav>
+  <ul>
+    <li id="vol" class="active-nav"><p (click)="change('vol')">VOLS & SAUTS</p></li>
+    <li id="membre"><p (click)="change('membre')">MEMBRES</p></li>
+    <li id="materiel"><p (click)="change('materiel')">MATÉRIELS</p></li>
+    <li id="historique"><p (click)="change('historique')">HISTORIQUE</p></li>
+  </ul>
+  <img src="../../assets/img/logo.png" />
+  <div id="divRight">
+    <span id="user">Utilisateur</span>
+    <span id="button" (click)="deco()">Se déconnecter</span>
+  </div>
+</nav>
+
+<div class="container" style="margin-top: 6%;">
+  <app-vol *ngIf="page == 'vol'"></app-vol>
+  <app-membre *ngIf="page == 'membre'"></app-membre>
+  <app-materiel *ngIf="page == 'materiel'"></app-materiel>
+  <app-historique *ngIf="page == 'historique'"></app-historique>
+</div>
