@@ -19,8 +19,9 @@ export class VolComponent implements OnInit {
 
   ngOnInit(): void {
     this.srvVol.reload();
+    this.srvAvion.reloadAvionDispo();
   }
-  
+
   public volsFiltered() {
     // if (this.filterPrix || this.filterPrix === 0) {
     //  return this.srvVisite.visites.filter(v =>

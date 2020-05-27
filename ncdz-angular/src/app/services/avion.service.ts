@@ -10,6 +10,7 @@ export class AvionService {
 
   private apiUrl: string = "";
   public avions: Array<Avion> = [];
+  public avionsDispo: Array<Avion> = [];
 
   constructor(private appConfig: AppConfigService, private http: HttpClient) {
     this.apiUrl = `${ this.appConfig.url }/avion`;
@@ -18,6 +19,11 @@ export class AvionService {
   public reload() {
     this.http.get<Array<Avion>>(this.apiUrl, this.appConfig.httpOptions)
         .subscribe(resp => this.avions = resp );
+  }
+
+  public reloadAvionDispo() {
+    this.http.get<Array<Avion>>(`${ this.apiUrl }/dispo`, this.appConfig.httpOptions)
+        .subscribe(resp => this.avionsDispo = resp );
   }
 
   public add(avion) {

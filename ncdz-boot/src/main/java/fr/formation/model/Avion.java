@@ -29,6 +29,9 @@ public class Avion {
 	@Column(name = "nbreRota", nullable = false)
 	private int nbreRota;
 	
+	@Column(name = "enVol")
+	private boolean enVol;
+	
 	// Constructors
 
 	public Avion(int id, String nom, int capacite, boolean etat, int nbreRota) {
