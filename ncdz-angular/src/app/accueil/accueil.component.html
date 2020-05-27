@@ -6,19 +6,21 @@
 
         <div class="col-4"></div>
 
-        <div id="titre" class="col-4">NC-DROPZONE</div>
+        <div class="title">NC-DROPZONE</div>
     </div>
 
+    <div id="ligneBandeau"></div>
 
-<br><br><br>
+
+<br><br>
 
     <div class="row">
         <div class="col-9"></div>
         <div class="input-group col-2">
-            <div class="input-group-prepend">
+            <div class="input-group-prepend formulaireAccueil">
                 <span class="input-group-text" id="basic-addon1" >Login</span>
             </div>
-            <input [(ngModel)] = "utilisateur.login" class = "form-control" type ="text" placeholder = "login"/>
+            <input [(ngModel)] = "utilisateur.login" class = "form-control formulaireAccueil" type ="text"/>
         </div>
     </div>
     <br>
@@ -26,10 +28,10 @@
         
         <div class="col-9"></div>
         <div class="input-group  col-2">
-            <div class="input-group-prepend">
+            <div class="input-group-prepend formulaireAccueil">
                 <span class="input-group-text" id="basic-addon1">Password</span>
             </div>
-            <input [(ngModel)] = "utilisateur.password" class = "form-control" type ="password" placeholder = "password"/>
+            <input [(ngModel)] = "utilisateur.password" class = "form-control formulaireAccueil" type ="password"/>
         </div>
     </div>
     <br>
@@ -37,7 +39,7 @@
         <div class="col-9"></div>
         <button class = "btn btn-primary" id="btnSeConnecter" (click)="seConnecter()"> Connexion </button>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div class="wrapper">
         <a class="cta" href="/portail" (click)="sauter()">

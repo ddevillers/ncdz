@@ -1,3 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,,800,900);
+ html {
+	 width: 100%;
+	 height: 100%;
+}
+ body {
+	 background: -webkit-linear-gradient(#ebece7, #fff);
+	 background: linear-gradient(#ebece7, #fff);
+	 margin: 0;
+	 width: 100%;
+	 height: 100%;
+	 font-family: 'Raleway', sans-serif;
+}
+ .container {
+	 position: absolute;
+	 -webkit-transform: translate(-50%, -50%);
+	 -ms-transform: translate(-50%, -50%);
+	 transform: translate(-50%, -50%);
+	 left: 50%;
+	 top: 50%;
+}
+ .title {
+
+    position: relative; top : 17px; right : 88px;
+	 font-weight: 800;
+	 color: transparent;
+	 font-size: 120px;
+	 background: url("https://s2.best-wallpaper.net/wallpaper/2560x1600/1210/Beautiful-clouds-blue-sky-white-clouds_2560x1600.jpg") repeat;
+	 background-position: 40% 50%;
+	 -webkit-background-clip: text;
+	 position: relative;
+	 text-align: center;
+	 line-height: 90px;
+	 letter-spacing: -8px;
+}
+ .subtitle {
+	 display: block;
+	 text-align: center;
+	 text-transform: uppercase;
+	 padding-top: 10px;
+}
+
 #accueilfond{
 
     background-image:url("/assets/img/accueilfond.png");
@@ -11,35 +53,38 @@
 
 #logo{
 
-    position: absolute; top : 10px; left : 40px;
-    width: 300px;
-    height: 112px;
+    position: absolute; top : 20px; left : 30px;
+    width: 270px;
+    height: 100px;
 }
 
 #bandeauHaut {
 
-    background-color: #2e2e2e;
-    height: 14%;
+    background-color: #1a1a1a;
+    height: 15%;
     background-size: 100% 15%;
     margin-left: -15px;
     margin-right: -15px;
 
 }
 
-#titre {
+#ligneBandeau{
 
-    position: relative; top : 20px;
-    font-size: 50px;
-    font-weight: 900;
-    text-align: center;
-    color: #bdbdbd;
-
+    position : relative; bottom : 1px;
+    background: linear-gradient(to right, #00053b 10%, #00a9b5 50%, #00053b 90%);
+    height : 2px;
+    margin-left: -15px;
+    margin-right: -15px;
 }
 
+.formulaireAccueil {
+
+    position : relative; left : 80px; bottom : 10px;
+}
 
 #btnSeConnecter{
 
-    position : relative; left : 105px;
+    position : relative; left : 190px; bottom : 10px;
 }
 
 
@@ -100,7 +145,6 @@ body {
     width: 20px;
     margin-left: 30px;
     position: relative;
-    top: 12%;
   }
   
 /**************SVG****************/
