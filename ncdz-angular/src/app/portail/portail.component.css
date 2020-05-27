@@ -12,29 +12,65 @@
     background-size: 100% 15%;
     margin-left: -15px;
     margin-right: -15px;
-
 }
 
-#portailFond {
+#ligneBandeau{
 
-    background-color: #94dbff;
-    height : 100%;
-    background-size: 100% 100%;
+    position : relative;
+    background: linear-gradient(to right, #00053b 10%, #00a9b5 50%, #00053b 90%);
+    height : 2px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#ligneInscription {
+
+    position: relative; bottom: 10px;
+    background: linear-gradient(to right, #9ee1ff 37%, #013cff, #9ee1ff 63%);
+    height : 2px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#ligneListeVols{
+
+    position: relative; bottom: 10px;
+    background: linear-gradient(to right, #9ee1ff 37%, #013cff, #9ee1ff 63%);
+    height : 2px;
     margin-left: -15px;
     margin-right: -15px;
 
 }
 
+#portailFond {
+
+    background-color: #9ee1ff;
+    height : 100%;
+    background-size: 100% 100%;
+
+}
+
 .titresPortail {
 
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 650;
     color: black;
+    text-align: center;
 }
 
 .sousTitresPortail {
 
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 450;
     color: black;
+}
+
+.champ{
+
+    border: 1px solid;
+    border-color: #0051ff;
+}
+
+.table {
+
 }
