@@ -27,4 +27,16 @@ export class AccueilComponent implements OnInit {
     this.router.navigate(['/portail'])
   }
 
+  public function() {
+
+    let mouseX, mouseY;
+     
+
+
+    @HostListener('document:mousemove', ['$event']) 
+  onMouseMove(e) {
+    console.log(e);
+  }
+  }
+
 }
