@@ -10,6 +10,7 @@ export class VolService {
 
   private apiUrl: string = "";
   public vols: Array<Vol> = null;
+  public vol: Vol = null;
   public nbSaut: number = null;
   public nbSauts: Array<number> = [];
   public vol = new Vol();
@@ -35,4 +36,9 @@ export class VolService {
       .subscribe(respVol => this.vol = respVol);
   }
 
+
+  public getVolByAvion(id){
+    this.http.get<Vol>(`${this.apiUrl}/avion/${id}`)
+        .subscribe(vol => this.vol = vol);
+  }
 }

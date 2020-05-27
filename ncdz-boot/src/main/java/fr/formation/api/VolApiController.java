@@ -41,6 +41,11 @@ public class VolApiController {
 		return this.daoVol.countSautParVol(id);
 	}
 	
+	@GetMapping("/avion/{id}")
+	public Vol volsByAvion(@PathVariable int id) {
+		return this.daoVol.getVolByIdAvion(id);
+	}
+	
 	@PostMapping
 	public Vol add (@RequestBody Vol vol) {
 

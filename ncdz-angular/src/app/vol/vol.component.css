@@ -1,4 +1,4 @@
-#vol
+#avions
 {
   margin: auto;
   margin-top: 25%;
@@ -25,7 +25,105 @@
   transition: all 0s ease-in-out;
 }
 
-#avion
+#avionLogo
 {
   width: 20%;
+}
+
+#avionLogo:hover
+{
+  cursor: pointer;
+}
+
+#detailAvion
+{
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  width: 13%;
+  padding: 1% 1% 0 1%;
+  text-align: left;
+  border: 4px solid black;
+}
+
+#detailAvion p
+{
+  color: #1b6dc1;
+}
+
+#detailAvion span
+{
+  color: black;
+  font-weight: bold;
+}
+
+#avion
+{
+  margin-top: 5%;
+  color: black;
+}
+
+#saut
+{
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+
+#carac
+{
+  margin: 0;
+  width: fit-content;
+}
+
+#carac #imgPilote
+{
+  width: 45%;
+}
+
+#carac .imgManager1, .imgManager2
+{
+  width: 45%;
+}
+
+#carac #titre
+{
+  margin-top: 1%;
+  margin-bottom: 2%;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+#carac img:hover
+{
+  cursor: pointer;
+}
+
+#carac #pilote
+{
+  border-bottom: 1px solid black;
+}
+
+#carac #manager1
+{
+  margin-top: 1%;
+}
+
+#carac #manager2
+{
+  border-bottom: 1px solid black;
+}
+
+#carac div
+{
+  text-align: center;
+  width: 20%;
+}
+
+#carac p
+{
+  text-align: center;
+  margin: 5% auto 5% auto;
+  border: 1px solid black;
+  width: fit-content;
 }

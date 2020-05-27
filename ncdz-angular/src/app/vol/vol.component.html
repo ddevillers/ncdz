@@ -1,0 +1,76 @@
+<div>
+  <div id="history" style="display: none;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Avion</th>
+          <th>Pilote</th>
+          <th>Hauteur</th>
+          <th>État</th>
+          <th>Sauts</th>
+          <th>Parachutistes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let vol of srvVol.vols">
+          <td>{{vol.id}}</td>
+          <td>{{vol.avion.nom}}</td>
+          <td>{{vol.pilote.numeroLicence}}</td>
+          <td>{{vol.hauteurSautMax}}</td>
+          <td>{{vol.etatVol}}</td>
+          <td></td>
+          <td>12/{{vol.avion.capacite}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="avions" *ngIf="pageVol == 'avions'">
+    <span><img class="arrow" (click)="changeAvion(-1)" src="../../assets/img/arrowleft.png"/></span>
+    <span *ngIf="this.srvAvion.avions[0].etat"><img id="avionLogo" style="filter: drop-shadow(0 0 0.2rem #00b000);" (click)="changePage('saut')" src="../../assets/img/plane-logo.png"/></span>
+    <span *ngIf="!this.srvAvion.avions[0].etat"><img id="avionLogo" style="filter: drop-shadow(0 0 0.2rem #b00000);" (click)="changePage('saut')" src="../../assets/img/plane-logo.png"/></span>
+    <span><img class="arrow" (click)="changeAvion(1)" src="../../assets/img/arrowright.png"/></span>
+    <div id="nomAvion">[&nbsp;{{this.srvAvion.avions[0].nom.toUpperCase()}}&nbsp;]</div>
+    
+    <div id="detailAvion" *ngIf="first">
+      <p><span>Nom: </span>{{this.srvAvion.avions[0].nom.toUpperCase()}}</p>
+      <p><span>Capacité: </span>{{this.srvAvion.avions[0].capacite}}</p>
+      <p><span>État: </span><ng-container *ngIf="this.srvAvion.avions[0].etat">disponible</ng-container><ng-container *ngIf="!this.srvAvion.avions[0].etat">indisponible</ng-container></p>
+      <p><span>Rotation max: </span>2/{{this.srvAvion.avions[0].nbreRota}}</p>
+      <p><span>Vols en attente: </span>???</p>
+    </div>
+    <div id="detailAvion" *ngIf="!first">
+      <p><span>Nom: </span>{{this.avion.nom.toUpperCase()}}</p>
+      <p><span>Capacité: </span>{{this.avion.capacite}}</p>
+      <p><span>État: </span><ng-container *ngIf="this.avion.etat">disponible</ng-container><ng-container *ngIf="!this.avion.etat">indisponible</ng-container></p>
+      <p><span>Rotation max: </span>2/{{this.avion.nbreRota}}</p>
+      <p><span>Vols en attente: </span>???</p>
+    </div>
+  </div>
+  
+  <div id="saut" *ngIf="pageVol == 'saut'">
+    <div id="carac">
+      <div id="titre"><h1>{{this.avion.nom}}</h1></div>
+      <div id="pilote">
+        <img id="imgPilote" (click)="modif('pilote')" src="../../assets/img/pilote.png"/>
+        <p>{{this.srvVol.vol.pilote.numeroLicence}}</p>
+      </div>
+      <div id="manager1">
+        <img class="imgManager1" (click)="modif('managerVol')" src="../../assets/img/managerVol.png"/>
+        <p>{{this.srvVol.vol.respoVol.numeroLicence}}</p>
+      </div>
+      <div id="manager2">
+        <img class="imgManager2" (click)="modif('managerSol')" src="../../assets/img/managerSol.png"/>
+        <p (click)="pilotesFiltered()">{{this.srvVol.vol.respoSol.numeroLicence}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup" *ngIf="popup">
+    <select [(ngModel)]="this.srvVol.vol.pilote" class="form-control">
+      <option *ngFor="let pilote of srvPilote.pilotes" [ngValue]="pilote"></option>
+    </select>
+  </div>
+</div>
