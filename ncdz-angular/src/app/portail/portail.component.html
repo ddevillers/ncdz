@@ -1,18 +1,123 @@
-<div id="bandeauHaut"></div>
-<img class="col-12" src="/assets/img/logo.png" id="logo">
+		<div id="bandeauHaut"></div>
+		<img class="col-12" src="/assets/img/logo.png" id="logo">
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-1"></div>
-		<div class="col-3" id="titreInscriptionSaut">Inscription saut</div>
-	</div>
-	<br>
+	
+		<div class="container-fluid" id="portailFond">
 
-	<form name="inscription">
+			<br><br>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-3 titresPortail" >Inscription saut</div>
+			</div>
+			<br><br>
 
-		<div class="row">
-			<div class="col-1"></div>
-			<div class="col-2">Type de saut</div>
+			<form name="inscription">
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-2 sousTitresPortail">Type de saut</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-1"></div>
+					<select class="form-control col-2" id="typeSaut" [(ngModel)]="fileAttente.typeSaut">
+						<option value="SOLO" selected>Solo</option>
+						<option value="GROUPE">Groupe</option>
+						<option value="TANDEM">Tandem</option>
+					</select>
+				</div>
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-2 sousTitresPortail">Hauteur souhaitée (m)</div>
+				</div>
+			
+				<div class="row">
+					<div class="col-1"></div>
+					<select class="form-control col-2" id="hauteur" [(ngModel)]="fileAttente.hauteurSouhaitee">
+						<option value="H1200">1200</option>
+						<option value="H1600">1600</option>
+						<option value="H2000">2000</option>
+						<option value="H4000">4000</option>
+						<option value="H6000">6000</option>
+					</select>
+				</div>
+				<br>
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-2 sousTitresPortail">Nom</div>
+					<div class="col-2"></div>
+					<div class="col-2 sousTitresPortail">Numéro de parachute</div>
+				</div>
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-2">
+						<input type="text" class="form-control" placeholder="recherche membre" [(ngModel)]="filterMembre"/>
+					</div>
+					<div class="col-2">
+						<select class="form-control" [(ngModel)]="membre">
+							<option *ngFor="let membre of membresFiltered()" [ngValue]="membre">{{membre.prenom}} {{membre.nom}}</option>
+						</select>
+					</div>
+
+					<div class="col-2">
+						<input type="number" class="form-control" placeholder="recherche parachute"/>
+					</div>
+					<div class="col-2">
+						<select  class="form-control" [(ngModel)]="membre.numeroParachute">
+							<option value="0">Parachute personnel</option>
+							<option *ngFor="let parachute of srvParachute.parachutes" [ngValue]="parachute.id">
+								{{parachute.id}}
+							</option>
+						</select>
+					</div>
+					<button *ngIf="!isEditing" class="btn btn-primary col-1" (click)="ajouterSauteur()">Ajouter</button>
+					<button *ngIf="isEditing" (click)="modifierSauteur()" class="btn btn-primary col-1">Valider</button>
+					<br>
+					<tr *ngFor="let sauteur of fileAttente.sauteurs">
+						<td>{{sauteur.prenom}} {{sauteur.nom}}</td>
+						<td>{{sauteur.numeroParachute}}</td>
+						<td>
+							<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-warning m-1">Editer</button>
+							<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-danger m-1">Supprimer</button>
+						</td>
+					</tr>
+				
+				<button *ngIf="valider && fileAttente.hauteurSouhaitee && !isEditing" (click)="ajouterFileAttente()" class="btn btn-primary">Sauter</button>
+			
+				</div>
+				<br>
+
+			</form>
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-3 titresPortail" >Liste des vols</div>
+				</div>
+				<br>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Capacité</th>
+							<th>Responsable en vol</th>
+							<th>Responsable au sol</th>
+							<th>Hauteur maximal</th>
+							<th>Etat</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let vol of srvVol.vols">
+							<td>{{ vol.avion.capacite }}</td>
+							<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
+							<td>{{ vol.respoSol.prenom }} {{ vol.respoSol.nom }}</td>
+							<td>{{ vol.hauteurSautMax }}</td>
+							<td>{{ vol.etatVol }}</td>
+						</tr>
+					</tbody>
+				</table>
+
 		</div>
 		<br>
 		<div class="row">
@@ -24,29 +129,7 @@
 			</select>
 		</div>
 
-		<div class="row">
-			<div class="col-1"></div>
-			<div class="col-2">Hauteur souhaitée (m)</div>
-		</div>
-	
-		<div class="row">
-			<div class="col-1"></div>
-			<select class="form-control col-2" id="hauteur" [(ngModel)]="fileAttente.hauteurSouhaitee"  name="hauteurSouhaitee">
-				<option value="H1200">1200</option>
-				<option value="H1600">1600</option>
-				<option value="H2000">2000</option>
-				<option value="H4000">4000</option>
-				<option value="H6000">6000</option>
-			</select>
-		</div>
-		<br>
 
-		<div class="row">
-			<div class="col-1"></div>
-			<div class="col-2">Nom</div>
-			<div class="col-2"></div>
-			<div class="col-2">Numéro de parachute</div>
-		</div>
 
 		<div class="row">
 			<div class="col-1"></div>
@@ -87,32 +170,4 @@
 		</div>
 		<br>
 
-		<div class="row">
-			<div class="col-1"></div>
-			<div class="col-3" id="titreListeVols">Liste des vols</div>
-		</div>
-		<br>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Capacité</th>
-					<th>Responsable en vol</th>
-					<th>Responsable au sol</th>
-					<th>Hauteur maximal</th>
-					<th>Etat</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let vol of srvVol.vols">
-					<td>{{ vol.avion.capacite }}</td>
-					<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
-					<td>{{ vol.respoSol.prenom }} {{ vol.respoSol.nom }}</td>
-					<td>{{ vol.hauteurSautMax }}</td>
-					<td>{{ vol.etatVol }}</td>
-				</tr>
-			</tbody>
-		</table>
 
-	</form>
-
-</div>

@@ -13,7 +13,6 @@ export class VolService {
   public vol: Vol = null;
   public nbSaut: number = null;
   public nbSauts: Array<number> = [];
-  public vol = new Vol();
 
   constructor(private appConfig: AppConfigService,
               private http: HttpClient) {
