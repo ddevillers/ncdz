@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AvionService } from '../services/avion.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,9 +11,10 @@ export class NavComponent implements OnInit {
 
   public page: string = "vol";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public srvAvion: AvionService) { }
 
   ngOnInit(): void {
+    this.srvAvion.reload();
   }
 
   change(page){

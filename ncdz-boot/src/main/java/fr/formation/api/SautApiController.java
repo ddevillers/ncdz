@@ -33,6 +33,11 @@ public class SautApiController {
 	public Saut findById(@PathVariable int id) {
 		return this.daoSaut.findById(id).orElse(new Saut());
 	}
+	
+	@GetMapping("/count/{id}")
+	public Long countById(@PathVariable int id) {
+		return this.daoSaut.countSautParVol(id);
+	}
 
 	@PostMapping
 	public Saut add(@RequestBody Saut saut) {

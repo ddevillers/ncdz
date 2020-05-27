@@ -36,6 +36,11 @@ public class VolApiController {
 				.orElse(new Vol());
 	}
 	
+	@GetMapping("/count/{id}")
+	public Long countById(@PathVariable int id) {
+		return this.daoVol.countSautParVol(id);
+	}
+	
 	@PostMapping
 	public Vol add (@RequestBody Vol vol) {
 
