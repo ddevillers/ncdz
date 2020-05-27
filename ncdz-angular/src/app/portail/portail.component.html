@@ -20,7 +20,7 @@
 				<br>
 				<div class="row">
 					<div class="col-1"></div>
-					<select class="form-control col-2" id="typeSaut" [(ngModel)]="fileAttente.typeSaut">
+					<select class="form-control col-2" id="typeSaut" [(ngModel)]="fileAttente.typeSaut" name="ts">
 						<option value="SOLO" selected>Solo</option>
 						<option value="GROUPE">Groupe</option>
 						<option value="TANDEM">Tandem</option>
@@ -34,7 +34,7 @@
 			
 				<div class="row">
 					<div class="col-1"></div>
-					<select class="form-control col-2" id="hauteur" [(ngModel)]="fileAttente.hauteurSouhaitee">
+					<select class="form-control col-2" id="hauteur" [(ngModel)]="fileAttente.hauteurSouhaitee" name="hs">
 						<option value="H1200">1200</option>
 						<option value="H1600">1600</option>
 						<option value="H2000">2000</option>
@@ -54,10 +54,10 @@
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-2">
-						<input type="text" class="form-control" placeholder="recherche membre" [(ngModel)]="filterMembre"/>
+						<input type="text" class="form-control" placeholder="recherche membre" [(ngModel)]="filterMembre" name="fm"/>
 					</div>
 					<div class="col-2">
-						<select class="form-control" [(ngModel)]="membre">
+						<select class="form-control" [(ngModel)]="membre" name="m">
 							<option *ngFor="let membre of membresFiltered()" [ngValue]="membre">{{membre.prenom}} {{membre.nom}}</option>
 						</select>
 					</div>
@@ -66,14 +66,14 @@
 						<input type="number" class="form-control" placeholder="recherche parachute"/>
 					</div>
 					<div class="col-2">
-						<select  class="form-control" [(ngModel)]="membre.numeroParachute">
+						<select  class="form-control" [(ngModel)]="membre.parachute" name="p">
 							<option value="0">Parachute personnel</option>
-							<option *ngFor="let parachute of srvParachute.parachutes" [ngValue]="parachute.id">
+							<option *ngFor="let parachute of srvParachute.parachutes" [ngValue]="parachute">
 								{{parachute.id}}
 							</option>
 						</select>
 					</div>
-					<button *ngIf="!isEditing" class="btn btn-primary col-1" (click)="ajouterSauteur()">Ajouter</button>
+					<button *ngIf="peutAjouterSauteur()" class="btn btn-primary col-1" (click)="ajouterSauteur()">Ajouter</button>
 					<button *ngIf="isEditing" (click)="modifierSauteur()" class="btn btn-primary col-1">Valider</button>
 					<br>
 					<tr *ngFor="let sauteur of fileAttente.sauteurs">
@@ -85,7 +85,7 @@
 						</td>
 					</tr>
 				
-				<button *ngIf="valider && fileAttente.hauteurSouhaitee && !isEditing" (click)="ajouterFileAttente()" class="btn btn-primary">Sauter</button>
+				<button *ngIf="peutSauter()" (click)="ajouterFileAttente()" class="btn btn-primary">Sauter</button>
 			
 				</div>
 				<br>
