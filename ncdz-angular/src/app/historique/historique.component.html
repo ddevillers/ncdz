@@ -1,62 +1,64 @@
-<h2>Vols</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Avion</th>
-      <th>Pilote</th>
-      <th>Nombre sauts</th>
-      <th></th>
-    </tr>
-  </thead>
+<h1>Historique Vols</h1>
+<div class="row">
 
-  <tbody *ngFor="let vol of srvVol.vols">
+<div class="col-1">
+
+</div>
+  <table class="table table-bordered col-10">
+    <thead class="thead-dark">
       <tr>
-        <td>{{ vol.id }}</td>
-        <td>{{ vol.avion.nom }}</td>
-        <td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
-        <td>{{ vol.sauts.length }}</td>
-        <td>
-          <button (click)="affichageDetails(vol)" name="detail">Détails</button>
-        </td>
+        <th scope="col">Id</th>
+        <th scope="col">Avion</th>
+        <th scope="col">Pilote</th>
+        <th scope="col">Nombre sauts</th>
       </tr>
+    </thead>
 
-      <tr>
-        <td colspan="5" *ngIf="idAffichage == vol.id && affichage == 'Y'">
-          <div>Pilote</div>
-          <div>
-            Nom : {{ vol.pilote.nom }} <br/>
-            Prenom : {{ vol.pilote.prenom }} <br/>
-            Numero de licence : {{ vol.pilote.numeroLicence }} <br/><br/>
-          </div>
+    <tbody *ngFor="let vol of srvVol.vols">
+        <tr class="ligne" (click)="affichageDetails(vol)">
+          <th scope="row">{{ vol.id }}</th>
+          <td>{{ vol.avion.nom }}</td>
+          <td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
+          <td>{{ vol.sauts.length }}</td>
+        </tr>
 
-          <div>Responsable vol</div>
-          <div>
-            Nom : {{ vol.respoVol.nom }} <br/>
-            Prenom : {{ vol.respoVol.prenom }} <br/>
-            Numero de licence : {{ vol.respoVol.numeroLicence }} <br/><br/>
-          </div>
-
-          <div>Responsable sol</div>
-          <div>
-            Nom : {{ vol.respoSol.nom }} <br/>
-            Prenom : {{ vol.respoSol.prenom }} <br/>
-            Numero de licence : {{ vol.respoSol.numeroLicence }} <br/><br/>
-          </div>
-
-          <div>Sauts</div>
-            <div *ngFor="let saut of vol.sauts">
-              Type Saut : {{ saut.typeSaut }} <br/>
-              Hauteur Saut : {{ saut.hauteur }} <br/>
-              Parachutistes :
-              <div *ngFor="let sauteur of saut.sauteurs">
-                Nom : {{ sauteur.nom }} <br/>
-                Prenom : {{ sauteur.prenom }} <br/>
-                Numero de licence : {{ sauteur.numeroLicence }} <br/><br/>
-                </div>
+        <tr>
+          <td colspan="5" *ngIf="idAffichage == vol.id && affichage == 'Y'">
+            <div class="categorie">Pilote</div>
+            <div class="info">
+              Nom : <span class="italique">{{ vol.pilote.nom }}</span> <br/>
+              Prenom : <span class="italique">{{ vol.pilote.prenom }}</span> <br/>
+              Numero de licence : <span class="italique">{{ vol.pilote.numeroLicence }}</span> <br/><br/>
             </div>
-        </td>
-      </tr>
 
-  </tbody>
-</table>
+            <div class="categorie">Responsable vol</div>
+            <div class="info">
+              Nom : <span class="italique">{{ vol.respoVol.nom }}</span> <br/>
+              Prenom : <span class="italique">{{ vol.respoVol.prenom }}</span> <br/>
+              Numero de licence : <span class="italique">{{ vol.respoVol.numeroLicence }}</span> <br/><br/>
+            </div>
+
+            <div class="categorie">Responsable sol</div>
+            <div class="info">
+              Nom : <span class="italique">{{ vol.respoSol.nom }}</span> <br/>
+              Prenom : <span class="italique">{{ vol.respoSol.prenom }}</span> <br/>
+              Numero de licence : <span class="italique">{{ vol.respoSol.numeroLicence }}</span> <br/><br/>
+            </div>
+
+            <div class="categorie">Sauts</div>
+              <div class="info" *ngFor="let saut of vol.sauts">
+                Type Saut : <span class="italique">{{ saut.typeSaut }}</span> <br/>
+                Hauteur Saut : <span class="italique">{{ saut.hauteurSaut }}</span> <br/>
+                <span class="sousCategorie">Parachutistes :</span>
+                <div class="sousInfo" *ngFor="let sauteur of saut.sauteurs">
+                  Nom : <span class="italique">{{ sauteur.nom }}</span> <br/>
+                  Prenom : <span class="italique">{{ sauteur.prenom }}</span> <br/>
+                  Numero de licence : <span class="italique">{{ sauteur.numeroLicence }}</span> <br/><br/>
+                  </div>
+              </div>
+          </td>
+        </tr>
+
+    </tbody>
+  </table>
+</div>

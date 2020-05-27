@@ -1,0 +1,25 @@
+.ligne:hover {
+  background-color: #90c4d5;
+  cursor: pointer;
+}
+
+.categorie {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.sousCategorie {
+  text-decoration: underline;
+}
+
+.info {
+  margin-left: 20px;
+}
+
+.sousInfo {
+  margin-left: 40px;
+}
+
+.italique {
+  font-style: italic;
+}

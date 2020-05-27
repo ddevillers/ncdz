@@ -12,6 +12,7 @@ export class VolService {
   public vols: Array<Vol> = null;
   public nbSaut: number = null;
   public nbSauts: Array<number> = [];
+  public vol = new Vol();
 
   constructor(private appConfig: AppConfigService,
               private http: HttpClient) {
@@ -28,4 +29,10 @@ export class VolService {
     this.http.get<number>(`${this.apiUrl}/count/${id}`)
         .subscribe(nbSaut => {this.nbSaut = nbSaut; console.log(nbSaut); this.nbSauts.push(nbSaut)});
   }
+
+  public loadById() {
+    this.http.get<Vol>(`${ this.apiUrl }/1`)
+      .subscribe(respVol => this.vol = respVol);
+  }
+
 }

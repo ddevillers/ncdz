@@ -10,7 +10,7 @@ public enum HauteurSaut {
 		this.hauteur=hauteur;
 	}
 	
-	public double getHauteur() {
+	public int getHauteur() {
 		return hauteur;
 	}
 

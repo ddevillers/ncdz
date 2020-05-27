@@ -76,7 +76,7 @@ export class PortailComponent implements OnInit {
     this.isEditing = true;
     this.membre = membre;
     this.membre = this.srvMembre.membres.find(m => m.numeroLicence == this.membre.numeroLicence);
-    
+
     this.oldMembre = membre;
   }
 
