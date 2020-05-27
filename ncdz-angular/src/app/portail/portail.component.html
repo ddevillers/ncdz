@@ -146,28 +146,62 @@
 				<input type="number" class="form-control" placeholder="recherche parachute" [(ngModel)]="filterNumPara" name="filterNumPara"/>
 			</div>
 			<div class="col-2">
-				<select  class="form-control" [(ngModel)]="membre.numeroParachute" name="numPara">
+				<select  class="form-control" [(ngModel)]="membre.parachute" name="numPara">
 					<option value="0">Parachute personnel</option>
-					<option *ngFor="let parachute of srvParachute.parachutes" [ngValue]="parachute.id">
+					<option *ngFor="let parachute of numParaFiltered()" [ngValue]="parachute">
 						{{parachute.id}}
 					</option>
 				</select>
 			</div>
-			<button *ngIf="!isEditing" class="btn btn-primary col-1" (click)="ajouterSauteur()">Ajouter</button>
+			{{nbPers}}
+			<button *ngIf="peutAjouterSauteur()" class="btn btn-primary col-1" (click)="ajouterSauteur()">Ajouter</button>
 			<button *ngIf="isEditing" (click)="modifierSauteur()" class="btn btn-primary col-1">Valider</button>
 			<br>
 			<tr *ngFor="let sauteur of fileAttente.sauteurs">
 				<td>{{sauteur.prenom}} {{sauteur.nom}}</td>
-				<td>{{sauteur.numeroParachute}}</td>
+				<td>{{sauteur.parachute.id}}</td>
 				<td>
 					<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-warning m-1">Editer</button>
 					<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-danger m-1">Supprimer</button>
 				</td>
 			</tr>
 		
-		<button *ngIf="valider && fileAttente.hauteurSouhaitee && !isEditing" (click)="ajouterFileAttente()" class="btn btn-primary">Sauter</button>
+		<button *ngIf="peutSauter()" (click)="ajouterFileAttente()" class="btn btn-primary">Sauter</button>
 	
 		</div>
 		<br>
 
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-3" id="titreListeVols">Liste des vols</div>
+		</div>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Capacité</th>
+					<th>Responsable en vol</th>
+					<th>Responsable au sol</th>
+					<th>Hauteur maximal</th>
+					<th>Etat</th>
+				</tr>
+			</thead>
+			<tbody *ngFor="let vol of srvVol.vols">
+				<tr (click)="affichageDetails(vol)">
+					<td>{{ vol.avion.capacite }}</td>
+					<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
+					<td>{{ vol.respoSol.prenom }} {{ vol.respoSol.nom }}</td>
+					<td>{{ vol.hauteurSautMax }}</td>
+					<td>{{ vol.etatVol }}</td>
+				</tr>
+				<tr>
+					<td *ngIf="idAffichage == vol.id && affichage == 'Y'">
+						<p>Liste des parachutistes:</p>
+						<span *ngFor="let saut of vol.sauts">
+							<p *ngFor="let membre of saut.sauteurs">{{membre.prenom}} {{membre.nom}}</p>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 

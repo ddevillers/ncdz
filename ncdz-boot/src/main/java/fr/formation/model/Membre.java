@@ -45,7 +45,7 @@ public class Membre {
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSouhaitee;
 	
-	@JoinColumn(name = "numero_parachute")
+	@JoinColumn(name = "parachute")
 	@OneToOne
 	private Parachute parachute;
 	

@@ -58,6 +58,40 @@ export class PortailComponent implements OnInit {
     return this.srvParachute.parachutes;
   }
 
+  public peutAjouterSauteur() {
+    let can;
+    if(!this.isEditing){
+      if(this.fileAttente.typeSaut=="SOLO" && this.nbPers<1) {can = true;}
+      else if(this.fileAttente.typeSaut=="TANDEM" && this.nbPers<2) {can = true;}
+      else if(this.fileAttente.typeSaut=="GROUPE" && this.nbPers<13) {can = true;}
+      else{can=false}
+    }
+    return can;
+  }
+
+  public peutSauter() {
+    let can;
+    if(this.valider && this.fileAttente.hauteurSouhaitee && !this.isEditing){
+      if(this.fileAttente.typeSaut=="SOLO" && this.nbPers<2) {can = true;}
+      else if(this.fileAttente.typeSaut=="TANDEM" && this.nbPers==2) {can = true;}
+      else if(this.fileAttente.typeSaut=="GROUPE" && this.nbPers<14 && this.nbPers>1) {can = true;}
+      else{can=false}
+    }
+    return can;
+  }
+
+  public idAffichage: number;
+  public affichage: string ="N";
+
+  public affichageDetails(vol) {
+    if (this.idAffichage == vol.id && this.affichage == "Y"){
+      this.affichage = "N";
+    } else {
+      this.idAffichage = vol.id;
+      this.affichage = "Y";
+    }
+  }
+
   public ajouterFileAttente() {
     alert(this.fileAttente.typeSaut)
     this.srvFileAttente.add(this.fileAttente);
