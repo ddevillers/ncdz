@@ -7,22 +7,37 @@
 }
 
 .container {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
 }
 
-.carNewParachute {
-    width: 75%;
+#cardNewParachute {
+    width: 70%;
 }
 
 .cardParachute {
-    width: 100%;
+    width: 80%;
 }
 
-.titre {
-    position: absolute;
-    top: 0;
-    left: 0;
+#menuParachute input[type="number"] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;
+  }
+
+#menuParachute input[type=number]::-webkit-inner-spin-button, 
+#menuParachute input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+.noMargin {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.verticalSeparator > div {
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .collapse {
@@ -31,6 +46,6 @@
     min-width: 400px;
 }
 
-.onglets {
-    display: inline-block;
+.pointer {
+    cursor: pointer;
 }

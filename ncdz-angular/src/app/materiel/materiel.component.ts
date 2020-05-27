@@ -15,19 +15,21 @@ export class MaterielComponent implements OnInit {
   public isEditingParachute = false;
   public oldAvion = null;
   public oldParachute = null;
+
   public avion = new Avion();
   public parachute = new Parachute();
-  public filterParachute: String;
 
-  constructor(public srvAvion: AvionService, private srvParachute: ParachuteService) { }
+  public filterParachute: string;
+
+  constructor(public srvAvion: AvionService, public srvParachute: ParachuteService) { }
 
   ngOnInit() {
     this.srvAvion.reload();
     this.srvParachute.reload();
-    console.log(this.srvParachute.parachutes);
   }
 
   public ajouterAvion() {
+    console.log(this.avion);
     this.srvAvion.add(this.avion);
     this.avion = new Avion();
   }
@@ -53,8 +55,10 @@ export class MaterielComponent implements OnInit {
   }
 
   public ajouterParachute() {
+    if (this.parachute.systemeSecu != "N") {
     this.srvParachute.add(this.parachute);
     this.parachute = new Parachute();
+    }
   }
   
   public editerParachute(parachute) {
@@ -77,4 +81,38 @@ export class MaterielComponent implements OnInit {
     this.srvParachute.delete(parachute);
   }
 
+  public parachutesFiltered() {
+    if (this.filterParachute || this.filterParachute === "") {
+      if (this.filterParachute == "dispo") {
+        return this.srvParachute.parachutes.filter(p => p.dispo == true);
+      }
+      else if (this.filterParachute == "indispo") {
+        return this.srvParachute.parachutes.filter(p => p.dispo == false);
+      }
+      else if (this.filterParachute == "centre") {
+        return this.srvParachute.parachutes.filter(p => p.centre == true);
+      }
+      else if (this.filterParachute == "perso") {
+        return this.srvParachute.parachutes.filter(p => p.centre == false);
+      }
+      else {
+        return this.srvParachute.parachutes.filter(p =>
+        p.nomHarnais.includes(this.filterParachute) ||
+        p.nomVoilePrin.includes(this.filterParachute) ||
+        p.nomVoileSec.includes(this.filterParachute) ||
+        p.systemeSecu.includes(this.filterParachute) ||
+        p.id.toString().includes(this.filterParachute)
+      );}
+    }
+
+    return this.srvParachute.parachutes;
+  }
+
+  detailsPliage(parachute: Parachute) {
+    if (parachute.detailPliage){
+      parachute.detailPliage = false;
+    } else {
+      parachute.detailPliage = true;
+    }
+  }
 }

@@ -8,12 +8,11 @@ import { AppConfigService } from '../app-config.service';
 })
 export class AvionService {
 
-  private apiUrl: string = "";
+  private apiUrl: string = `${this.appConfig.url}/avion`;
   public avions: Array<Avion> = [];
   public avionsDispo: Array<Avion> = [];
 
   constructor(private appConfig: AppConfigService, private http: HttpClient) {
-    this.apiUrl = `${ this.appConfig.url }/avion`;
   }
 
   public reload() {

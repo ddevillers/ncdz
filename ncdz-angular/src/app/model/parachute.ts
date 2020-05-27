@@ -14,7 +14,8 @@ export class Parachute {
                 public plieurVoilePrin?: Membre,
                 public plieurVoileSec?: Membre,
                 public centre?: boolean,
-                public dispo?: boolean) {
+                public dispo?: boolean,
+                public detailPliage?: boolean) {
 
     }
 }

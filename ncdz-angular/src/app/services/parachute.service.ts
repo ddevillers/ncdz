@@ -18,7 +18,6 @@ export class ParachuteService {
   public reload() {
     this.http.get<Array<Parachute>>(this.apiUrl, this.appConfig.httpOptions)
         .subscribe(resp => this.parachutes = resp );
-        console.log(this.parachutes);
   }
 
   public add(parachute) {
