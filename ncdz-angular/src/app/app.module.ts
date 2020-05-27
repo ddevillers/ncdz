@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'nav', component: NavComponent },
   { path: 'cloture', component: ClotureComponent },
   { path: 'historique', component: HistoriqueComponent},
+  { path: 'cloture', component: ClotureComponent },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', component: AccueilComponent }
 ];

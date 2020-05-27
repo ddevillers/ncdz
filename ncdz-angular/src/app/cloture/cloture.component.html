@@ -1,7 +1,55 @@
-<p>cloture works!</p>
+<h1>Terminer un vol</h1>
 
-<div *ngFor="let saut of srvVol.vol.sauts">
-  <div *ngFor="let sauteur of saut.sauteurs">
-    {{ sauteur.numeroLicence }}
+<br/>
+
+
+<div class="container-fluid">
+  <h1>Informations du vol à cloturer </h1>
+  <div *ngIf="srvVol.vol.etatVol!='INCIDENT'">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Numero de Licence</th>
+            <th>Sauteur</th>
+            <th>Drop Zone</th>
+            <th>Parachute</th>
+            <th>Utilisation voile secondaire</th>
+            <th>Plieur Voile</th>
+          </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let saut of srvVol.vol.sauts"> 
+          <tr *ngFor="let sauteur of saut.sauteurs">
+            <td>{{sauteur.numeroLicence}}</td>
+            <td>{{sauteur.prenom}} {{sauteur.nom}}</td>
+            <td>  <!--Attribution de la beer Line-->
+              <input type="checkbox"/> Beer Line
+            </td>
+            <td> <!--Si personnel, disable l'input du plieur-->
+              
+            </td>
+            <td> <!--Si Oui, disable bouton plieur et mettre parachute en indisponible/révision si emprunt sinon-->
+              <input type="checkbox" /> 
+            </td>
+            <td> <!--Gerer le plieur-->
+              <select [(ngModel)]="parachute.plieurVoilePrin" required>
+                <option *ngFor="let membre of srvMembre.membres"
+                [ngValue]="membre">
+                {{membre.prenom}} {{membre.nom.toUpperCase()}}
+                </option>
+              </select>
+            </td>
+            </tr> 
+          </ng-container>    
+        </tbody>
+    </table>
+    
+
+    <button>Valider</button> <!--Enregistre les infos des parachutes, le vol passe en etat terminé-->
   </div>
 </div>
+
+  <div *ngIf="srvVol.vol.etatVol=='INCIDENT'">
+    <!--tableau-->
+    <!--rendre avion indisponible-->
+  </div>
