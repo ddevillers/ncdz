@@ -5,6 +5,7 @@ import { VolService } from '../services/vol.service';
 import { FileAttenteService } from '../services/file-attente.service';
 import { ParachuteService } from '../services/parachute.service';
 import { FileAttente } from '../model/file-attente';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-portail',
@@ -12,13 +13,15 @@ import { FileAttente } from '../model/file-attente';
   styleUrls: ['./portail.component.css']
 })
 export class PortailComponent implements OnInit {
-
+  myControl = new FormControl();
   isEditing = false;
-  oldFileAttente = null;
   oldMembre = null;
+  valider = false;
+  nbPers = 0;
+  indexMod: number;
 
   public membre: Membre = new Membre();
-  public fileAttente: FileAttente = new FileAttente();
+  public fileAttente: FileAttente = new FileAttente(0,"",[]);
 
   filterMembre: string;
 
@@ -47,47 +50,46 @@ export class PortailComponent implements OnInit {
 
   public ajouterFileAttente() {
     this.srvFileAttente.add(this.fileAttente);
-  }
-
-  public supprimerFileAttente(fileAttente) {
-    this.srvFileAttente.delete(fileAttente);
-  }
-
-  public modifierFileAttente() {
-    this.srvFileAttente.update(this.fileAttente);
+    this.fileAttente = new FileAttente(0,"",[]);
+    this.nbPers=0;
   }
 
   public ajouterSauteur() {
     this.srvMembre.update(this.membre);
     this.fileAttente.sauteurs.push(this.membre);
-    this.modifierFileAttente();
+    this.membre = new Membre();
+    this.nbPers++;
+    this.valider=true;
   }
 
   public editerSauteur(membre) {
+    this.isEditing=true;
+    this.indexMod = this.fileAttente.sauteurs.indexOf(membre);
+  }
 
+  public modifierSauteur() {
+    this.isEditing=false;
+    this.fileAttente.sauteurs.splice(this.indexMod,1,this.membre);
   }
 
   supprimerSauteur(membre) {
+    var index = this.fileAttente.sauteurs.indexOf(membre);
+    this.fileAttente.sauteurs.splice(index,1);
+    this.nbPers--;
+  }
+
+  public annulerSauteur() {
 
   }
 
+  //test
+  public codeValue: string;
 
-  public editerMembre(membre) {
-    this.isEditing = true;
-    this.membre = membre;
-    this.membre = this.srvMembre.membres.find(m => m.numeroLicence == this.membre.numeroLicence);
-
-    this.oldMembre = membre;
-  }
-
-  public modifierMembre() {
-    this.srvMembre.update(this.membre);
-    this.isEditing = false;
-    this.membre = new Membre();
-  }
-
-  public annulerMembre() {
-    this.modifierMembre();
+  public saveCode(e): void {
+    let nom = e.target.nom.value;
+    console.log(nom);
+    let list = this.membresFiltered().filter(x => x.nom === nom)[0];
+    console.log(list.nom);
   }
 
 }
