@@ -8,7 +8,7 @@
             <td>Nom</td>
             <td>Prénom</td>
             <td>Numéro de licence</td>
-            <td>Date de licence</td>
+    <!--        <td>Date de licence</td>    -->
             <td>Niveau</td>
             <td></td>
         </tr>
@@ -19,7 +19,7 @@
             <td>{{ membre.nom }}</td>
             <td>{{ membre.prenom }}</td>
             <td>{{ membre.numeroLicence }}</td>
-            <td>{{ membre.dateLicence }}</td>
+    <!--        <td>{{ membre.dateLicence }}</td>   -->
             <td>{{ membre.niveau }}</td>
             <td>
                 <button (click)="editerMembre(membre)" class="btn btn-secondary m-1">Editer</button>
@@ -38,11 +38,11 @@
             <td>
                 <input type="number" [(ngModel)]="membre.numeroLicence" placeholder="Numéro de licence" />
             </td>
-            <td>
+    <!--        <td>
                 <input type="date" [(ngModel)]="membre.dateLicence" />
-            </td>
+            </td>   -->
             <td>
-                <select [(ngModel)]="membre.niveau">
+                <select [(ngModel)]="membre.niveau" required>
                     <option>ELEVE</option>
                     <option>CONFIRME</option>
                     <option>INSTRUCTEUR</option>
@@ -97,16 +97,13 @@
             <td>
                 <input type="number" [(ngModel)]="pilote.numeroLicence" />
             </td>
-            <td>        <!--Comment gérer ça... ajout de un ou plusieurs avions-->
+            <td>
                 <div *ngFor="let avion of pilote.avions">{{ avion.nom }} <a (click)="supprimerAvion(avion)">(-)</a></div>
                 <div>
-                    <span *ngIf="isSelectingAvion">
-                        <select [(ngModel)]="avion">
-                            <option *ngFor="let avion of srvAvion.avions" [ngValue]="avion">{{avion.nom}}</option>
-                        </select>
-                    </span>
-                    <a *ngIf="!isSelectingAvion && isEditingPilote" (click)="selectionnerAvion()">(+)</a>
-                    <button *ngIf="isSelectingAvion" (click)="ajouterAvion()">(+)</button>
+                    <select [(ngModel)]="avion">
+                        <option *ngFor="let avion of srvAvion.avions" [ngValue]="avion">{{avion.nom}}</option>
+                    </select>
+                    <button (click)="ajouterAvion()">(+)</button>
                 </div>
             </td>
             <td>

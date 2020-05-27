@@ -34,7 +34,7 @@ public class MembreApiController {
 	}
 	
 	@GetMapping("/{numeroLicence}")
-	public Membre findById(@PathVariable int numeroLicence) {
+	public Membre findById(@PathVariable long numeroLicence) {
 		return this.daoMembre.findById(numeroLicence).orElse(new Membre());
 	}
 	
@@ -54,10 +54,11 @@ public class MembreApiController {
 	}
 	
 	@DeleteMapping("/{numeroLicence}")
-	public Boolean delete(@PathVariable int numeroLicence) {
+	public Boolean delete(@PathVariable long numeroLicence) {
 		try {
 			this.daoMembre.deleteById(numeroLicence);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;

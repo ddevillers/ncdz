@@ -15,7 +15,6 @@ export class MembreComponent implements OnInit {
 
   isEditingMembre = false;
   isEditingPilote = false;
-  isSelectingAvion = false;
   oldMembre = null;
   oldPilote = null;
 
@@ -45,7 +44,7 @@ export class MembreComponent implements OnInit {
   public editerMembre(membre: Membre) {
     this.isEditingMembre = true;
     this.membre = membre;
-    this.oldMembre = new Membre(membre.nom,membre.prenom,membre.numeroLicence,membre.dateLicence,membre.niveau);
+    this.oldMembre = JSON.parse(JSON.stringify(membre));
   }
 
   public modifierMembre() {
@@ -56,7 +55,8 @@ export class MembreComponent implements OnInit {
 
   public annulerMembre() {
     this.srvMembre.membres.splice(this.srvMembre.membres.indexOf(this.membre), 1, this.oldMembre);
-    this.oldMembre = new Membre();
+    this.membre = this.oldMembre;
+    this.modifierMembre();
   }
 
   public supprimerMembre(membre: Membre) {
@@ -74,7 +74,7 @@ export class MembreComponent implements OnInit {
   public editerPilote(pilote: Pilote) {
     this.isEditingPilote = true;
     this.pilote = pilote;
-    this.oldPilote = new Pilote(pilote.nom,pilote.prenom,pilote.numeroLicence,pilote.avions);
+    this.oldPilote = JSON.parse(JSON.stringify(pilote));
   }
 
   public modifierPilote() {
@@ -85,20 +85,25 @@ export class MembreComponent implements OnInit {
 
   public annulerPilote() {
     this.srvPilote.pilotes.splice(this.srvPilote.pilotes.indexOf(this.pilote), 1, this.oldPilote);
-    this.oldPilote = new Pilote();
+    this.pilote = this.oldPilote;
+    this.modifierPilote();
   }
 
   public supprimerPilote(pilote: Pilote) {
     this.srvPilote.delete(pilote);
   }
 
-  public selectionnerAvion() {
-    this.isSelectingAvion = true;
-  }
-
   public ajouterAvion() {
-    this.pilote.avions.push(this.avion);
-    this.isSelectingAvion = false;
+    let cpt: number = 0;
+    for (let avion of this.pilote.avions) {
+      if (avion.id == this.avion.id) {
+        cpt++;
+      }
+    }
+    if (cpt == 0) {
+      this.pilote.avions.push(this.avion);
+    }
+    this.avion = new Avion();
   }
 
   public supprimerAvion(avion: Avion) {
