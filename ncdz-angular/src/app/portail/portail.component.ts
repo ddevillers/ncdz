@@ -40,22 +40,30 @@ export class PortailComponent implements OnInit {
     this.srvFileAttente.reload();
   }
 
+  public membresDispo() {
+    return this.srvMembre.membres.filter(m => !this.fileAttente.sauteurs.includes(m));
+  }
+
   public membresFiltered() {
     if (this.filterMembre || this.filterMembre === null) {
-     return this.srvMembre.membres.filter(m =>
+     return this.membresDispo().filter(m =>
       m.prenom.toUpperCase().includes(this.filterMembre.toUpperCase()) || m.nom.toUpperCase().includes(this.filterMembre.toUpperCase())
       );
     }
-    return this.srvMembre.membres;
+    return this.membresDispo();
+  }
+
+  public parachutesDispo() {
+    return this.srvParachute.parachutes.filter(p => p.dispo);
   }
 
   public numParaFiltered() {
-    if (this.filterNumPara || this.filterNumPara === null || this.filterNumPara === 0) {
-     return this.srvParachute.parachutes.filter(
+    if (this.filterNumPara) {
+     return this.parachutesDispo().filter(
        p => String(p.id).includes(String(this.filterNumPara))
       );
     }
-    return this.srvParachute.parachutes;
+    return this.parachutesDispo();
   }
 
   public peutAjouterSauteur() {
@@ -128,13 +136,13 @@ export class PortailComponent implements OnInit {
   }
 
   //test
-  public codeValue: string;
+  // public codeValue: string;
 
-  public saveCode(e): void {
-    let nom = e.target.nom.value;
-    console.log(nom);
-    let list = this.membresFiltered().filter(x => x.nom === nom)[0];
-    console.log(list.nom);
-  }
+  // public saveCode(e): void {
+  //   let nom = e.target.nom.value;
+  //   console.log(nom);
+  //   let list = this.membresFiltered().filter(x => x.nom === nom)[0];
+  //   console.log(list.nom);
+  // }
 
 }

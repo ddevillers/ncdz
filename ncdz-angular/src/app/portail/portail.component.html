@@ -81,7 +81,7 @@
 					<br>
 					<tr *ngFor="let sauteur of fileAttente.sauteurs">
 						<td>{{sauteur.prenom}} {{sauteur.nom}}</td>
-						<td>{{sauteur.numeroParachute}}</td>
+						<td>{{sauteur.parachute.id}}</td>
 						<td>
 							<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-warning m-1">Editer</button>
 							<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-danger m-1">Supprimer</button>
@@ -115,13 +115,21 @@
 							<th>Etat</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr *ngFor="let vol of srvVol.vols">
+					<tbody *ngFor="let vol of srvVol.vols">
+						<tr (click)="affichageDetails(vol)">
 							<td>{{ vol.avion.capacite }}</td>
 							<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
 							<td>{{ vol.respoSol.prenom }} {{ vol.respoSol.nom }}</td>
 							<td>{{ vol.hauteurSautMax }}</td>
 							<td>{{ vol.etatVol }}</td>
+						</tr>
+						<tr>
+							<td colspan="5" *ngIf="idAffichage == vol.id && affichage == 'Y'">
+								<p>Liste des parachutistes:</p>
+								<span *ngFor="let saut of vol.sauts">
+									<p *ngFor="let membre of saut.sauteurs">{{membre.prenom}} {{membre.nom}}</p>
+								</span>
+							</td>
 						</tr>
 					</tbody>
 				</table>
