@@ -5,7 +5,7 @@ import { VolService } from '../services/vol.service';
 import { FileAttenteService } from '../services/file-attente.service';
 import { ParachuteService } from '../services/parachute.service';
 import { FileAttente } from '../model/file-attente';
-import {FormControl} from '@angular/forms';
+import { SautService } from '../services/saut.service';
 
 @Component({
   selector: 'app-portail',
@@ -13,7 +13,6 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./portail.component.css']
 })
 export class PortailComponent implements OnInit {
-  myControl = new FormControl();
   isEditing = false;
   oldMembre = null;
   valider = false;
@@ -21,14 +20,16 @@ export class PortailComponent implements OnInit {
   indexMod: number;
 
   public membre: Membre = new Membre();
-  public fileAttente: FileAttente = new FileAttente(0,"",[]);
+  public fileAttente: FileAttente = new FileAttente(0,"","SOLO",[]);
 
   filterMembre: string;
+  filterNumPara: number;
 
   constructor(
     public srvMembre: MembreService,
     public srvVol: VolService,
     public srvParachute: ParachuteService,
+    public srvSaut: SautService,
     public srvFileAttente: FileAttenteService
   ) {}
 
@@ -42,15 +43,25 @@ export class PortailComponent implements OnInit {
   public membresFiltered() {
     if (this.filterMembre || this.filterMembre === null) {
      return this.srvMembre.membres.filter(m =>
-      m.prenom.toUpperCase() == this.filterMembre.toUpperCase() || m.nom.toUpperCase() == this.filterMembre.toUpperCase()
+      m.prenom.toUpperCase().includes(this.filterMembre.toUpperCase()) || m.nom.toUpperCase().includes(this.filterMembre.toUpperCase())
       );
     }
     return this.srvMembre.membres;
   }
 
+  public numParaFiltered() {
+    if (this.filterNumPara || this.filterNumPara === null || this.filterNumPara === 0) {
+     return this.srvParachute.parachutes.filter(
+       p => String(p.id).includes(String(this.filterNumPara))
+      );
+    }
+    return this.srvParachute.parachutes;
+  }
+
   public ajouterFileAttente() {
+    alert(this.fileAttente.typeSaut)
     this.srvFileAttente.add(this.fileAttente);
-    this.fileAttente = new FileAttente(0,"",[]);
+    this.fileAttente = new FileAttente(0,"","",[]);
     this.nbPers=0;
   }
 

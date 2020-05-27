@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import fr.formation.enumerator.HauteurSaut;
+import fr.formation.enumerator.TypeSaut;
 
 @Entity
 @Table(name = "fileAttente")
@@ -29,6 +30,10 @@ public class FileAttente {
 	@Column(name = "hauteurSouhaitee", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSouhaitee;
+	
+	@Column(name = "typeSaut", nullable = true)
+	@Enumerated(EnumType.STRING)
+	private TypeSaut typeSaut;
 	
 	@OneToMany
 	@JoinTable(
