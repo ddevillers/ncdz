@@ -4,6 +4,7 @@ import { MembreService } from '../services/membre.service';
 import { Membre } from '../model/membre';
 import { ParachuteService } from '../services/parachute.service';
 import { Parachute } from '../model/parachute';
+import { Vol } from '../model/vol';
 
 @Component({
   selector: 'app-cloture',
@@ -12,8 +13,13 @@ import { Parachute } from '../model/parachute';
 })
 export class ClotureComponent implements OnInit {
 
-  membre=new Membre();
-  parachute=new Parachute();
+  public membre: Membre=new Membre();
+  public parachute: Parachute=new Parachute();
+  public vol: Vol= new Vol();
+  isOutZone=false;
+  secHaveBeenUsed= false;
+  jumped= false;
+
 
   constructor(public srvVol: VolService, public srvMembre: MembreService, public srvParachute: ParachuteService) { }
 
@@ -21,9 +27,23 @@ export class ClotureComponent implements OnInit {
     this.srvVol.loadById();
     this.srvMembre.reload();
     this.srvParachute.reload();
+  }
 
-    if(this.srvVol.vol.etatVol=='INCIDENT') {this.srvVol.vol.avion.etat=false;}
+
+  public cloturerVolSauteur() {
+    this.srvParachute.update(this.parachute);
+    this.parachute=new Parachute();
+
+
 
   }
+
+
+  public clotureIncident() {
+    this.srvVol.vol.avion.etat=false;
+
+  }
+
+
 
 }

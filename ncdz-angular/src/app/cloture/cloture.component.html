@@ -12,9 +12,10 @@
             <th>Numero de Licence</th>
             <th>Sauteur</th>
             <th>Drop Zone</th>
-            <th>Parachute</th>
+            <!--<th>Parachute</th>-->
             <th>Utilisation voile secondaire</th>
             <th>Plieur Voile</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -25,27 +26,35 @@
             <td>  <!--Attribution de la beer Line-->
               <input type="checkbox"/> Beer Line
             </td>
-            <td> <!--Si personnel, disable l'input du plieur-->
+            <!--td> Si personnel, disable l'input du plieur
               
-            </td>
+            </td-->
             <td> <!--Si Oui, disable bouton plieur et mettre parachute en indisponible/révision si emprunt sinon-->
               <input type="checkbox" /> 
             </td>
             <td> <!--Gerer le plieur-->
-              <select [(ngModel)]="parachute.plieurVoilePrin" required>
+              <span *ngIf="secHaveBeenUsed">Voile Secondaire</span><br/>
+              <select [(ngModel)]="sauteur.parachute.plieurVoilePrin" *ngIf="!secHaveBeenUsed" required>
                 <option *ngFor="let membre of srvMembre.membres"
                 [ngValue]="membre">
-                {{membre.prenom}} {{membre.nom.toUpperCase()}}
+                {{membre.prenom}} {{membre.nom}}
                 </option>
               </select>
+              <!--<select [(ngModel)]="sauteur.parachute.plieurVoileSec" *ngIf="secHaveBeenUsed" required>
+                <option *ngFor="let membre of srvMembre.membres"
+                [ngValue]="membre">
+                {{membre.prenom}} {{membre.nom}}
+                </option>
+              </select>-->
             </td>
+            <td> <button (click)="cloturerVolSauteur()">Valider</button></td>
             </tr> 
           </ng-container>    
         </tbody>
     </table>
     
 
-    <button>Valider</button> <!--Enregistre les infos des parachutes, le vol passe en etat terminé-->
+   
   </div>
 </div>
 

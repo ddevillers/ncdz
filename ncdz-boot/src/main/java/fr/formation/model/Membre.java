@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,8 +45,9 @@ public class Membre {
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSouhaitee;
 	
-	@Column(name = "numero_parachute")
-	private int numeroParachute;
+	@JoinColumn(name = "numero_parachute")
+	@OneToOne
+	private Parachute parachute;
 	
 	public Membre() {}
 	

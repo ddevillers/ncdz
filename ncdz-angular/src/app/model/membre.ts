@@ -1,3 +1,5 @@
+import { Parachute } from './parachute';
+
 export class Membre {
 
     constructor(
@@ -7,6 +9,6 @@ export class Membre {
         public dateLicence?: Date, 
         public niveau?: string,
         public hauteurSouhaitee?: number,
-        public numeroParachute?: number
+        public parachute?: Parachute
         ) { }
 }

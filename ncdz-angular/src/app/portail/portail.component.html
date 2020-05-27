@@ -201,9 +201,9 @@
 							<button *ngIf="isEditing" (click)="modifierSauteur()" class="btn btn-primary m-1">Valider</button>
 						</td>
 					</tr>
-					<tr *ngFor="let sauteur of fileAttente.sauteurs">
-						<td>{{sauteur.prenom}} {{sauteur.nom}}</td>
-						<td>{{sauteur.numeroParachute}}</td>
+					<tr *ngFor="membre of fileAttente.sauteurs">
+						<td>{{membre.nom}}</td>
+						<td>{{membre.parachute.id}}</td>
 						<td>
 							<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-warning m-1">Editer</button>
 							<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-danger m-1">Supprimer</button>
