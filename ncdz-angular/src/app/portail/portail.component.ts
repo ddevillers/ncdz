@@ -7,6 +7,7 @@ import { ParachuteService } from '../services/parachute.service';
 import { FileAttente } from '../model/file-attente';
 import { SautService } from '../services/saut.service';
 import { Router } from '@angular/router';
+import { Parachute } from '../model/parachute';
 
 @Component({
   selector: 'app-portail',
@@ -64,16 +65,27 @@ export class PortailComponent implements OnInit {
   }
 
   public membresDispo() {
-    return this.srvMembre.membres.filter(m => !this.fileAttente.sauteurs.includes(m));
+    let mDispo: Array<Membre> = this.srvMembre.membres.filter(m => !this.fileAttente.sauteurs.includes(m));
+    if(!this.isEditing) {
+    return mDispo
+    }
+    else {
+      mDispo.push(this.membre);
+      return mDispo;
+    }
   }
 
   public membresFiltered() {
+    let listM: Array<Membre>=this.membresDispo();
     if (this.filterMembre || this.filterMembre === null) {
-     return this.membresDispo().filter(m =>
+      listM = this.membresDispo().filter(m =>
       m.prenom.toUpperCase().includes(this.filterMembre.toUpperCase()) || m.nom.toUpperCase().includes(this.filterMembre.toUpperCase())
       );
     }
-    return this.membresDispo();
+    if(listM.length==1) {
+      this.membre = listM[0]
+    }
+    return listM;
   }
 
   public parachutesDispo() {
@@ -81,12 +93,16 @@ export class PortailComponent implements OnInit {
   }
 
   public parachuteFiltered() {
+    let listP: Array<Parachute>=this.parachutesDispo();
     if (this.filterNumPara) {
-     return this.parachutesDispo().filter(
+      listP = this.parachutesDispo().filter(
        p => String(p.id).includes(String(this.filterNumPara))
       );
     }
-    return this.parachutesDispo();
+    if(listP.length==1) {
+      this.membre.numeroParachute = listP[0].id;
+    }
+    return listP;
   }
 
   public peutAjouterSauteur() {
@@ -178,22 +194,32 @@ export class PortailComponent implements OnInit {
   }
 
   public ajouterFileAttente() {
-    alert(this.fileAttente.typeSaut)
+    // alert(this.fileAttente.typeSaut)
     this.srvFileAttente.add(this.fileAttente);
     this.fileAttente = new FileAttente(0,"","",[]);
     this.nbPers=0;
   }
 
+  public parach: Parachute;
   public ajouterSauteur() {
     this.srvMembre.update(this.membre);
+    this.srvParachute.loadById(this.membre.numeroParachute);
+    let parach = this.srvParachute.parachute;
+    parach.dispo = false;
+    this.srvParachute.update(parach);
     this.fileAttente.sauteurs.push(this.membre);
     this.membre = new Membre();
     this.nbPers++;
     this.valider=true;
+    this.filterMembre = "";
+    this.filterNumPara = 0;
   }
 
   public editerSauteur(membre) {
     this.isEditing=true;
+    this.filterMembre = "";
+    this.filterNumPara = null;
+    this.membre = membre;
     this.indexMod = this.fileAttente.sauteurs.indexOf(membre);
   }
 

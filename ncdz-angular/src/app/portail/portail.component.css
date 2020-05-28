@@ -1,6 +1,7 @@
 #body {
     background-color: #9ee1ff;
     height: auto;
+    scroll-behavior: smooth;
 }
 
 #logo{
