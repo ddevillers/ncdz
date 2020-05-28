@@ -21,11 +21,11 @@
 }
  .title {
 
-    position: relative; top : 17px; right : 88px;
+    position: relative; top : 17%; right : 1%;
 	 font-weight: 800;
 	 color: transparent;
-	 font-size: 120px;
-	 background: url("https://s2.best-wallpaper.net/wallpaper/2560x1600/1210/Beautiful-clouds-blue-sky-white-clouds_2560x1600.jpg") repeat;
+	 font-size: 110px;
+	 background: url(/assets/img/nuages.jpg) repeat;
 	 background-position: 40% 50%;
 	 -webkit-background-clip: text;
 	 position: relative;
@@ -53,9 +53,9 @@
 
 #logo{
 
-    position: absolute; top : 20px; left : 30px;
-    width: 270px;
-    height: 100px;
+    position: absolute; top : 1%; left : 1%;
+    width: 13%;
+    height: 13%;
 }
 
 #bandeauHaut {
@@ -79,12 +79,12 @@
 
 .formulaireAccueil {
 
-    position : relative; left : 130px; bottom : 10px;
+    position : relative; left : 45%; bottom : 35%;
 }
 
 #btnSeConnecter{
 
-    position : relative; left : 240px; bottom : 10px;
+    position : relative; left : 13%;
 }
 
 * {
