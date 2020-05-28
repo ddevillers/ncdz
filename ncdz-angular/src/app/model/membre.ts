@@ -9,6 +9,8 @@ export class Membre {
         public dateLicence?: Date,
         public niveau?: string,
         public hauteurSouhaitee?: number,
-        public numeroParachute?: number
+        public numeroParachute?: number,
+        public beerLine?:boolean,
+        public voileSecUsed?:boolean
         ) { }
 }

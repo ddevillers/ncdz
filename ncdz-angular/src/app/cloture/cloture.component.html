@@ -12,7 +12,7 @@
             <th>Numero de Licence</th>
             <th>Parachutiste</th>
             <th>Drop Zone</th>
-            <th>Utilisation voile secondaire</th>
+            <th>Incident Parachute</th>
             <th>Plieur Voile</th>
             <th></th>
           </tr>
@@ -20,7 +20,7 @@
 
         <tbody>
           <ng-container *ngFor="let saut of srvVol.volTermine.sauts">
-            Saut n°{{ saut.id }}
+            Saut n°{{ saut.id }} <br/>
             <ng-container *ngFor="let parachute of srvParachute.parachutes">
               <ng-container *ngFor="let sauteur of saut.sauteurs">
 
@@ -30,18 +30,18 @@
               <td>{{sauteur.prenom}} {{sauteur.nom}}</td>
 
               <td>  <!--Attribution de la beer Line-->
-                <input type="checkbox" (click)="beerLine(saut, sauteur)"/> Beer Line
+                <input type="checkbox" [(ngModel)]="sauteur.beerLine" (change)="attribuerBL(sauteur.beerLine?'true':'false', sauteur.nom)" /> Beer Line
               </td>
 
               <td> <!--Si Oui, disable bouton plieur et mettre parachute en indisponible/révision si emprunt sinon-->
-                <input type="checkbox" (click)="checkbox()" />
+                <input type="checkbox" [(ngModel)]="sauteur.voileSecUsed"(change)="utilisationSec(sauteur.voileSecUsed?'true':'false')" /> Utilisation voile secondaire
               </td>
 
 
-                <td *ngIf="parachute.centre == true" > <!--Gerer le plieur-->
-                  <span *ngIf="secHaveBeenUsed == false">Voile Principale</span>
-                  <span *ngIf="secHaveBeenUsed">Voile Secours</span><br/>
-                  <select required *ngIf="secHaveBeenUsed == false" [(ngModel)]="membre" required>
+                <td *ngIf="parachute.centre == true" > <!--Gestion du plieur-->
+                  <span *ngIf="sauteur.voileSecUsed == false">Voile Principale</span>
+                  <span *ngIf="sauteur.voileSecUsed">Voile Secours</span><br/>
+                  <select required *ngIf="sauteur.voileSecUsed == false" [(ngModel)]="membre" required>
                     <option *ngFor="let membre of srvMembre.membres" [ngValue]="membre">
                       {{membre.prenom}} {{membre.nom}}
                     </option>
@@ -54,7 +54,7 @@
 
 
                 <td *ngIf="parachute.id == sauteur.numeroParachute">
-                  <button (click)="cloturerVolSauteur(sauteur, parachute)">Valider</button>
+                  <button (click)="cloturerVolSauteur(sauteur, parachute, saut)">Valider</button>
                 </td>
 
             </tr>

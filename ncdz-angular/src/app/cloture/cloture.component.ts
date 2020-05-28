@@ -30,24 +30,28 @@ export class ClotureComponent implements OnInit {
       }
 
     ngOnInit(): void {
-      //this.srvVol.loadById();
+      this.srvVol.volTermine;
+      // this.srvVol.loadById();
       this.srvMembre.reload();
       this.srvParachute.reload();
     }
 
 
-    public cloturerVolSauteur(sauteur: Membre, parachute) {
+    public cloturerVolSauteur(sauteur: Membre, parachute,saut) {
       if (parachute.centre == false){
         this.membre = sauteur;
       }
       if (this.membre == null){
         this.membre = sauteur;
       }
-
-      this.srvParachute.pliage(this.membre.numeroLicence, sauteur.numeroParachute, this.secHaveBeenUsed);
+      this.srvParachute.pliage(parachute.plieurVoilePrin.numeroLicence, sauteur.numeroParachute, this.secHaveBeenUsed);
       this.srvParachute.parachute=new Parachute();
       parachute.dispo = true;
       this.secHaveBeenUsed = false;
+      if (sauteur.beerLine) {
+      this.srvSaut.addBeerLine(saut, sauteur);
+      sauteur.beerLine=false;
+    }
     }
 
 
@@ -67,17 +71,37 @@ export class ClotureComponent implements OnInit {
       } else {
         this.secHaveBeenUsed = true;
       }
-
-
     }
 
     public beerLine(saut: Saut, sauteur: Membre) {
+      
+      
       this.srvSaut.addBeerLine(saut, sauteur);
     }
 
     public clotureVol(){
       this.srvVol.clotureVol(this.srvVol.volTermine);
     }
+
+    public attribuerBL(event:any, sauteur:String ) {
+      console.log(sauteur);
+    console.log(event);
+    }
+
+    public utilisationSec(event:any) {
+      if (this.secHaveBeenUsed == true){
+        this.secHaveBeenUsed = false;
+      } else {
+        this.secHaveBeenUsed = true;
+      }
+
+    }
+    public test(sauteur) {
+      console.log(sauteur.voileSecUsed)
+    }
+
+
+
 
 
 }

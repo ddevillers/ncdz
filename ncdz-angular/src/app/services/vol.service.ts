@@ -35,7 +35,16 @@ export class VolService {
 
   public loadById() {
     this.http.get<Vol>(`${ this.apiUrl }/1`, this.appConfig.httpOptions)
-      .subscribe(respVol => this.volTermine = respVol);
+      .subscribe(resp => {
+        resp.sauts.forEach(saut => {
+          saut.sauteurs.forEach(sauteur => {sauteur.voileSecUsed=false;
+          
+        });
+          
+        });
+        this.volTermine = resp;
+
+      });
   }
 
 
@@ -47,6 +56,11 @@ export class VolService {
   public update(vol) {
     this.http.put<Vol>(`${this.apiUrl}/${vol.id}`, vol)
         .subscribe(resp => {
+          resp.sauts.forEach(saut => {
+            saut.sauteurs.forEach(sauteur => {sauteur.voileSecUsed=false;
+            });
+          });
+          
           this.volTermine = resp;
           console.log(resp);
           console.log(this.volTermine);
