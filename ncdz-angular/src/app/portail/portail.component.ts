@@ -34,6 +34,7 @@ export class PortailComponent implements OnInit {
   public affichageVol: Boolean = false;
   public idAffichageSaut: number;
   public affichageSaut: Boolean = false;
+  public lecteurVisible: Boolean = false;
 
   public srcVideo: string;
 
@@ -168,6 +169,14 @@ export class PortailComponent implements OnInit {
     }
   }
 
+  public affichageLecteur() {
+    if (this.lecteurVisible){
+      this.lecteurVisible = false;
+    } else {
+      this.lecteurVisible = true;
+    }
+  }
+
   public ajouterFileAttente() {
     alert(this.fileAttente.typeSaut)
     this.srvFileAttente.add(this.fileAttente);
@@ -202,6 +211,8 @@ export class PortailComponent implements OnInit {
   public annulerSauteur() {
 
   }
+
+  
   
 
   //test

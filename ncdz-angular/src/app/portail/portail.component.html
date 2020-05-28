@@ -69,9 +69,8 @@
 					<input type="number" class="form-control col-2 champ" placeholder="recherche parachute" [(ngModel)]="filterNumPara" name="fnp"/>
 
 					<div class="col-2">
-						<select  class="form-control champ" [(ngModel)]="membre.parachute" name="p">
-							<option>Parachute personnel</option>
-							<option *ngFor="let parachute of parachuteFiltered()" [ngValue]="parachute">
+						<select  class="form-control champ" [(ngModel)]="membre.numeroParachute" name="p">
+							<option *ngFor="let parachute of parachuteFiltered()" [ngValue]="parachute.id">
 								{{parachute.id}}
 							</option>
 						</select>
@@ -82,8 +81,8 @@
 				<div class="row"  *ngFor="let sauteur of fileAttente.sauteurs">
 					<div class="col-1"></div>
 					<div class="col-4">{{sauteur.prenom}} {{sauteur.nom}}</div>
-					<div class="col-4"><span *ngIf="!sauteur.parachute.id">Parachute personnel</span>
-						<span *ngIf="sauteur.parachute.id!">{{sauteur.parachute.id}}</span></div>
+					<div class="col-4"><span *ngIf="!sauteur.numeroParachute">Parachute personnel</span>
+						<span *ngIf="sauteur.numeroParachute">{{sauteur.numeroParachute}}</span></div>
 					<div class="col-3">
 						<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-warning m-1">Editer</button>
 						<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-danger m-1">Supprimer</button>
@@ -189,12 +188,33 @@
 		<div class="sousContainer" *ngIf="videosVisible">
 			<br>
 			<br>
-			<div class="custom-file">
-				<input type="file" class="custom-file-input" id="customFileLang" lang="fr">
-				<label class="custom-file-label" for="customFileLang">Seleccioner une vidéo</label>
+			<div class="form-row">
+				<div class="col-md-1 mb-3"></div>
+				<div class="col-md-8 mb-3">
+					<input type="text" class="form-control" placeholder="Coller le lien de la vidéo" [(ngModel)]="srcVideo">
+				</div>
+				<div class="col-md-2 mb-3">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="customFileLang" lang="fr" [(ngModel)]="srcVideo">
+						<label class="custom-file-label" for="customFileLang">Selectionner une vidéo</label>
+					</div>
+				</div>
 			</div>
-			<input type="text" class="form-control" placeholder="Coller le lien de la vidéo" [(ngModel)]="srcVideo">
-			<video src="lienVideo()" width=auto  height=auto controls poster="src/assets/img/Video.png"></video>
+			<br>
+			<br>
+			<div class="video" *ngIf="!lecteurVisible">
+				<img src="/assets/img/Video.png"  (click)="affichageLecteur()">
+			</div>
+			<div class="video" *ngIf="lecteurVisible">
+				<iframe width="896" height="504" src="https://www.youtube-nocookie.com/embed/2X_xkX_9qfA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			<div class="video" *ngIf="lecteurVisible">
+				<video *ngIf="lecteurVisible"  width=auto  height=auto controls poster="/assets/img/Video.png" (click)="affichageLecteur()">
+					<source src="{{srcVideo}}" type="video/mp4" />
+				</video>
+			</div>
+			<br>
+			<br>
 		</div>
 	</div>
 </body>
