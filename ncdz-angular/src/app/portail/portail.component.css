@@ -108,9 +108,33 @@
 }
 
 .tablMem tr:nth-child(odd) {
-    background-color: rgba(228, 228, 228, 0.7);
-  }
+    background-color: rgba(231, 231, 231, 0.7);
+}
   
 .tablMem tr:nth-child(even) {
-    background-color: rgba(197, 197, 197, 0.7);
-  }
+    background-color: rgba(211, 211, 211, 0.7);
+}
+
+.coteTabl {
+position: relative;
+top: -30%;
+width: 105%;
+height: 160%;
+background-color: #9ee1ff;
+}
+
+.tablVS tr:nth-child(odd) {
+    background-color: rgba(230, 230, 230, 0.7);
+}
+  
+.tablVS tr:nth-child(even) {
+    background-color: rgba(210, 210, 210, 0.7);
+}
+
+.tablVS tr:nth-child(odd):hover {
+    background-color: rgba(100, 200, 230, 0.7);
+}
+
+.tablVS tr:nth-child(even):hover {
+    background-color: rgba(100, 200, 210, 0.7);
+}

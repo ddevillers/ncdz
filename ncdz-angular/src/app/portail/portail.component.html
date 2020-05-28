@@ -25,9 +25,9 @@
 				<div class="row">
 					<div class="col-1"></div>
 					<select class="form-control col-2 champ" id="typeSaut" [(ngModel)]="fileAttente.typeSaut" name="ts">
-						<option value="SOLO" selected>Solo</option>
+						<option value="SOLO" *ngIf="nbPers<2" selected>Solo</option>
 						<option value="GROUPE">Groupe</option>
-						<option value="TANDEM">Tandem</option>
+						<option value="TANDEM" *ngIf="nbPers<2">Tandem</option>
 					</select>
 				</div>
 				<br>
@@ -93,13 +93,14 @@
 						</thead>
 						<tbody class="tablMem">
 							<tr *ngFor="let sauteur of fileAttente.sauteurs" class="row">
-								<td class="col-1"></td>
+								<td class="col-1"><div class="coteTabl"></div></td>
 								<td class="col-4"><span class="tablMem">{{sauteur.prenom}} {{sauteur.nom}}</span></td>
 								<td class="col-4"><span class="tablMem">{{sauteur.numeroParachute}}</span></td>
-								<td class="col-3">
-									<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-light col-4 m-1">Editer</button>
-									<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-dark col-4 m-1">Supprimer</button>
+								<td class="col-2">
+									<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-light col-5 m-1">Editer</button>
+									<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-dark col-5 m-1">Supprimer</button>
 								</td>
+								<td class="col-1"><div class="coteTabl"></div></td>
 							</tr>
 						</tbody>
 					</table>
@@ -137,7 +138,7 @@
 							<th>Etat</th>
 						</tr>
 					</thead>
-					<tbody *ngFor="let vol of volFiltered()">
+					<tbody *ngFor="let vol of volFiltered()" class="tablVS">
 						<tr  class="trAff" (click)="affichageDetailsVol(vol)">
 							<td>{{ vol.avion.capacite }}</td>
 							<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>
@@ -181,11 +182,11 @@
 							<th>Type</th>
 						</tr>
 					</thead>
-					<tbody *ngFor="let vol of srvVol.vols">
+					<tbody *ngFor="let vol of srvVol.vols" class="tablVS">
 						<tr *ngFor="let saut of vol.sauts" class="trAff" (click)="affichageDetailsSaut(saut)">
 							<td *ngIf="idAffichageSaut != saut.id || !affichageSaut">Cliquer pour dérouler</td>
 							<td *ngIf="idAffichageSaut == saut.id && affichageSaut"><p><b>Liste des parachutistes:</b></p>
-								<p  class="col-1" *ngFor="let membre of saut.sauteurs">{{membre.prenom}} {{membre.nom}}</p>
+								<p *ngFor="let membre of saut.sauteurs">{{membre.prenom}} {{membre.nom}}</p>
 							</td>
 							<td>{{ vol.dateVol }}</td>
 							<td>{{ saut.hauteurSaut }}</td>
