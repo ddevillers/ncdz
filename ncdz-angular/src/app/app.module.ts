@@ -14,6 +14,7 @@ import { HistoriqueComponent } from './historique/historique.component';
 import { AvionCrudRowComponent } from './materiel/avion-crud-row/avion-crud-row.component';
 import { NavComponent } from './nav/nav.component';
 import { ClotureComponent } from './cloture/cloture.component';
+import { ParachutisteValidePipe } from './pipe/parachutiste-valide.pipe';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -40,7 +41,8 @@ const routes: Routes = [
     AvionCrudRowComponent,
     HistoriqueComponent,
     NavComponent,
-    ClotureComponent
+    ClotureComponent,
+    ParachutisteValidePipe
   ],
   imports: [
     BrowserModule,

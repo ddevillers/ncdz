@@ -1,5 +1,6 @@
 package fr.formation.api;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.formation.dao.IDAOMembre;
 import fr.formation.dao.IDAOParachute;
+import fr.formation.model.Membre;
 import fr.formation.model.Parachute;
 
 @RestController
@@ -23,6 +27,9 @@ public class ParachuteApiController {
 
 	@Autowired
 	private IDAOParachute daoParachute;
+	
+	@Autowired
+	private IDAOMembre daoMembre;
 
 	@GetMapping
 	public List<Parachute> findAll(){
@@ -38,6 +45,24 @@ public class ParachuteApiController {
 	public Parachute add(@RequestBody Parachute parachute) {
 		this.daoParachute.save(parachute);
 		return parachute;
+	}
+	
+	@PostMapping("/pliage/{id_membre}/{id_parachute}/{secHaveBeenUsed}")
+	public Parachute pliage(@PathVariable long id_membre, 
+							@PathVariable int id_parachute,
+							@PathVariable boolean secHaveBeenUsed) {
+		
+		Parachute parachute = this.daoParachute.findById(id_parachute).orElse(new Parachute());
+		if (secHaveBeenUsed) {
+			parachute.setPlieurVoileSec(this.daoMembre.findById(id_membre).orElse(new Membre()));
+			parachute.setDispo(false);
+			parachute.setDatePliageVoileSec(LocalDate.now());
+		} else {
+			parachute.setPlieurVoilePrin(this.daoMembre.findById(id_membre).orElse(new Membre()));
+			parachute.setDatePliageVoilePrin(LocalDate.now());
+		}
+			parachute.setDispo(true);
+			return this.daoParachute.save(parachute);
 	}
 
 	@PutMapping("/{id}")

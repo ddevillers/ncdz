@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.formation.dao.IDAOMembre;
 import fr.formation.dao.IDAOSaut;
+import fr.formation.model.Membre;
 import fr.formation.model.Saut;
 
 @RestController
@@ -23,6 +25,9 @@ public class SautApiController {
 
 	@Autowired
 	private IDAOSaut daoSaut;
+	
+	@Autowired
+	private IDAOMembre daoMembre;
 
 	@GetMapping
 	public List<Saut> findAll(){
@@ -43,6 +48,16 @@ public class SautApiController {
 	public Saut add(@RequestBody Saut saut) {
 		this.daoSaut.save(saut);
 		return saut;
+	}
+	
+	@PostMapping("/add-beer-line/{id_saut}/{id_membre}")
+	public Saut addBeerLine(@PathVariable int id_saut,
+							@PathVariable long id_membre) {
+		
+		Membre parachutiste = this.daoMembre.findById(id_membre).orElse(new Membre());
+		Saut saut = this.daoSaut.findById(id_saut).orElse(new Saut());
+		saut.getBeerLine().add(parachutiste);
+		return this.daoSaut.save(saut);
 	}
 
 	@PutMapping("/{id}")

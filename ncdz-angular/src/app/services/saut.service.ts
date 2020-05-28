@@ -27,4 +27,9 @@ export class SautService {
       .subscribe(sauts => this.sauts = sauts);
   }
 
+
+  public addBeerLine(saut, sauteur) {
+    this.http.post<Saut>(`${this.apiUrl}/add-beer-line/${ saut.id }/${ sauteur.numeroLicence }`, null)
+      .subscribe();
+  }
 }

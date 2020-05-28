@@ -12,6 +12,14 @@ import javax.persistence.Table;
 @Table(name = "avion")
 public class Avion {
 
+	public boolean isEnVol() {
+		return enVol;
+	}
+
+	public void setEnVol(boolean enVol) {
+		this.enVol = enVol;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

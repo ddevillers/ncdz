@@ -5,6 +5,7 @@ import { AvionService } from '../services/avion.service';
 import { Avion } from '../model/avion';
 import { PiloteService } from '../services/pilote.service';
 import { Pilote } from '../model/pilote';
+import { Vol } from '../model/vol';
 
 @Component({
   selector: 'app-vol',
@@ -20,6 +21,7 @@ export class VolComponent implements OnInit {
   public first: boolean = true;
   public popup: boolean = false;
   public pilotes: Array<Pilote> = [];
+  public vol: Vol = new Vol();
 
   constructor(public appComp : AppComponent, public srvVol: VolService,
     public srvAvion: AvionService,
@@ -30,7 +32,7 @@ export class VolComponent implements OnInit {
     this.srvAvion.reloadAvionDispo();
     this.srvPilote.reload();
   }
-  
+
   public pilotesFiltered() {
     this.srvPilote.pilotes.forEach(p => {
       console.log(p.avions);
@@ -87,4 +89,15 @@ export class VolComponent implements OnInit {
   public modif(membre){
 
   }
+
+  public myFunction(){
+  //  let values = [1200, 1600, 2000, 4000 ];
+    //let input = document.getElementById('myRange');
+  //  let output = document.getElementById('output');
+//
+  //  output.innerHTML = values[this.value];
+
+  }
+
+
 }

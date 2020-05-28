@@ -5,60 +5,63 @@
 
 <div class="container-fluid">
   <h1>Informations du vol à cloturer </h1>
-  <div *ngIf="srvVol.vol.etatVol!='INCIDENT'">
+  <div *ngIf="srvVol.vol.etatVol == 'TERMINE'">
     <table class="table table-striped">
         <thead>
           <tr>
             <th>Numero de Licence</th>
-            <th>Sauteur</th>
+            <th>Parachutiste</th>
             <th>Drop Zone</th>
-            <!--<th>Parachute</th>-->
             <th>Utilisation voile secondaire</th>
             <th>Plieur Voile</th>
             <th></th>
           </tr>
         </thead>
+
         <tbody>
-        <ng-container *ngFor="let saut of srvVol.vol.sauts"> 
-          <tr *ngFor="let sauteur of saut.sauteurs">
-            <td>{{sauteur.numeroLicence}}</td>
-            <td>{{sauteur.prenom}} {{sauteur.nom}}</td>
-            <td>  <!--Attribution de la beer Line-->
-              <input type="checkbox"/> Beer Line
-            </td>
-            <!--td> Si personnel, disable l'input du plieur
-              
-            </td-->
-            <td> <!--Si Oui, disable bouton plieur et mettre parachute en indisponible/révision si emprunt sinon-->
-              <input type="checkbox" /> 
-            </td>
-            <td> <!--Gerer le plieur-->
-              <span *ngIf="secHaveBeenUsed">Voile Secondaire</span><br/>
-              <select [(ngModel)]="sauteur.parachute.plieurVoilePrin" *ngIf="!secHaveBeenUsed" required>
-                <option *ngFor="let membre of srvMembre.membres"
-                [ngValue]="membre">
-                {{membre.prenom}} {{membre.nom}}
-                </option>
-              </select>
-              <!--<select [(ngModel)]="sauteur.parachute.plieurVoileSec" *ngIf="secHaveBeenUsed" required>
-                <option *ngFor="let membre of srvMembre.membres"
-                [ngValue]="membre">
-                {{membre.prenom}} {{membre.nom}}
-                </option>
-              </select>-->
-            </td>
-            <td> <button (click)="cloturerVolSauteur()">Valider</button></td>
-            </tr> 
-          </ng-container>    
+          <ng-container *ngFor="let saut of srvVol.vol.sauts">
+            Saut n°{{ saut.id }}
+            <tr *ngFor="let sauteur of saut.sauteurs">
+              <td>{{sauteur.numeroLicence}}</td>
+
+              <td>{{sauteur.prenom}} {{sauteur.nom}}</td>
+
+              <td>  <!--Attribution de la beer Line-->
+                <input type="checkbox" (click)="beerLine(saut, sauteur)"/> Beer Line
+              </td>
+
+              <td> <!--Si Oui, disable bouton plieur et mettre parachute en indisponible/révision si emprunt sinon-->
+                <input type="checkbox" (click)="checkbox()" />
+              </td>
+
+              <ng-container *ngFor="let parachute of srvParachute.parachutes">
+                <td *ngIf="parachute.id == sauteur.numeroParachute && parachute.centre == true" [style.background-color]="parachute.dispo | parachutisteValide"> <!--Gerer le plieur-->
+                  <span *ngIf="secHaveBeenUsed == false">Voile Principale</span>
+                  <span *ngIf="secHaveBeenUsed">Voile Secondaire</span><br/>
+                  <select  [(ngModel)]="membre" required>
+                    <option *ngFor="let membre of srvMembre.membres" [ngValue]="membre">
+                      {{membre.prenom}} {{membre.nom}}
+                    </option>
+                  </select>
+                </td>
+                <td *ngIf="parachute.id == sauteur.numeroParachute && parachute.centre == false" [style.background-color]="parachute.dispo | parachutisteValide"> <!--Gerer le plieur-->
+                  Parachute perso
+                </td>
+              </ng-container>
+
+              <ng-container *ngFor="let parachute of srvParachute.parachutes">
+                <td *ngIf="parachute.id == sauteur.numeroParachute">
+                  <button (click)="cloturerVolSauteur(sauteur, parachute)">Valider</button>
+                </td>
+              </ng-container>
+
+            </tr>
+          </ng-container>
         </tbody>
     </table>
-    
 
-   
+    <button (click)="clotureVol()">Cloturer le vol</button>
+
+
   </div>
 </div>
-
-  <div *ngIf="srvVol.vol.etatVol=='INCIDENT'">
-    <!--tableau-->
-    <!--rendre avion indisponible-->
-  </div>

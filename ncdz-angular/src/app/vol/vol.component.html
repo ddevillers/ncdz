@@ -33,7 +33,7 @@
     <span *ngIf="!this.srvAvion.avions[0].etat"><img id="avionLogo" style="filter: drop-shadow(0 0 0.2rem #b00000);" (click)="changePage('saut')" src="../../assets/img/plane-logo.png"/></span>
     <span><img class="arrow" (click)="changeAvion(1)" src="../../assets/img/arrowright.png"/></span>
     <div id="nomAvion">[&nbsp;{{this.srvAvion.avions[0].nom.toUpperCase()}}&nbsp;]</div>
-    
+
     <div id="detailAvion" *ngIf="first">
       <p><span>Nom: </span>{{this.srvAvion.avions[0].nom.toUpperCase()}}</p>
       <p><span>Capacité: </span>{{this.srvAvion.avions[0].capacite}}</p>
@@ -49,7 +49,7 @@
       <p><span>Vols en attente: </span>???</p>
     </div>
   </div>
-  
+
   <div id="saut" *ngIf="pageVol == 'saut'">
     <div id="carac">
       <div id="titre"><h1>{{this.avion.nom}}</h1></div>

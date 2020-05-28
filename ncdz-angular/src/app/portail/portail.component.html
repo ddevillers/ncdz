@@ -5,7 +5,7 @@
 	<div id="ligneBandeau"></div>
 
 	<div class="container-fluid" id="portailFond">
-		
+
 		<br><br>
 		<div class="row">
 			<div class="col-4"></div>
@@ -21,7 +21,7 @@
 					<div class="col-1"></div>
 					<div class="col-2 sousTitresPortail">Type de saut</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-1"></div>
 					<select class="form-control col-2 champ" id="typeSaut" [(ngModel)]="fileAttente.typeSaut" name="ts">
@@ -35,7 +35,7 @@
 					<div class="col-1"></div>
 					<div class="col-2 sousTitresPortail">Hauteur souhaitée (m)</div>
 				</div>
-			
+
 				<div class="row">
 					<div class="col-1"></div>
 					<select class="form-control col-2 champ" id="hauteur" [(ngModel)]="fileAttente.hauteurSouhaitee" name="hs">
@@ -57,9 +57,9 @@
 
 				<div class="row">
 					<div class="col-1"></div>
-					
+
 					<input type="text" class="form-control col-2 champ" placeholder="recherche membre" [(ngModel)]="filterMembre" name="fm"/>
-					
+
 					<div class="col-2">
 						<select class="form-control champ" [(ngModel)]="membre" name="m">
 							<option *ngFor="let membre of membresFiltered()" [ngValue]="membre">{{membre.prenom}} {{membre.nom}}</option>
@@ -67,7 +67,7 @@
 					</div>
 
 					<input type="number" class="form-control col-2 champ" placeholder="recherche parachute" [(ngModel)]="filterNumPara" name="fnp"/>
-					
+
 					<div class="col-2">
 						<select  class="form-control champ" [(ngModel)]="membre.parachute" name="p">
 							<option>Parachute personnel</option>
@@ -103,7 +103,7 @@
 		</div>
 		<br>
 		<div id="ligneListeVols"></div>
-		
+
 		<div class="sousContainer" *ngIf="volsVisible">
 			<br>
 			<br>
@@ -148,7 +148,7 @@
 		</div>
 		<br>
 		<div id="ligneListeVols"></div>
-		
+
 		<div class="sousContainer" *ngIf="sautsVisible">
 			<br>
 			<br>
@@ -185,7 +185,7 @@
 		</div>
 		<br>
 		<div id="ligneListeVols"></div>
-		
+
 		<div class="sousContainer" *ngIf="videosVisible">
 			<br>
 			<br>

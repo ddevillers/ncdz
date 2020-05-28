@@ -12,13 +12,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.swing.text.View;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.enumerator.HauteurSaut;
 import fr.formation.enumerator.Niveau;
+import fr.formation.projection.Views;
 
 @Entity
 @Table(name = "membre")
@@ -47,21 +50,37 @@ public class Membre {
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSouhaitee;
 	
-	@JoinColumn(name = "parachute")
-	@OneToOne
-	private Parachute parachute;
+	@Column(name = "numero_parachute")
+	private int numeroParachute;
 	
 	@ManyToMany(mappedBy ="sauteurs")
 	private List<Saut> sauts;
 	
 	public Membre() {}
 	
-	public Membre(String nom, String prenom, LocalDate dateLicence, long numeroLicence, Niveau niveau) {
+	public Membre(String nom, String prenom, LocalDate dateLicence, long numeroLicence, Niveau niveau, int parachute) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateLicence = dateLicence;
 		this.numeroLicence = numeroLicence;
 		this.niveau = niveau;
+		this.numeroParachute = parachute;
+	}
+
+	public HauteurSaut getHauteurSouhaitee() {
+		return hauteurSouhaitee;
+	}
+
+	public void setHauteurSouhaitee(HauteurSaut hauteurSouhaitee) {
+		this.hauteurSouhaitee = hauteurSouhaitee;
+	}
+
+	public int getNumeroParachute() {
+		return numeroParachute;
+	}
+
+	public void setNumeroParachute(int parachute) {
+		this.numeroParachute = parachute;
 	}
 
 	public String getNom() {

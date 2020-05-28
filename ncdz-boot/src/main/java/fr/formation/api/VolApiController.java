@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import fr.formation.dao.IDAOAvion;
 import fr.formation.dao.IDAOVol;
+import fr.formation.enumerator.EtatVol;
+import fr.formation.model.Avion;
 import fr.formation.model.Vol;
 
 
@@ -22,7 +24,13 @@ import fr.formation.model.Vol;
 @CrossOrigin("*")
 @RequestMapping("/api/vol")
 public class VolApiController {
-	@Autowired IDAOVol daoVol;
+	@Autowired 
+	private IDAOVol daoVol;
+	
+	@Autowired
+	private IDAOAvion daoAvion; 
+	
+	
 	
 	@GetMapping
 	public List<Vol> findAll() {
@@ -52,6 +60,19 @@ public class VolApiController {
 		this.daoVol.save(vol);
 		return vol;
 		
+	}
+	
+	@PutMapping("/cloture/{id}")
+	public Avion clotureVol(@PathVariable int id, @RequestBody Vol vol) {
+		Avion avion = this.daoAvion.findById(vol.getAvion().getId()).orElse(new Avion());
+		if (vol.getEtatVol().equals(EtatVol.TERMINE)) {	
+			avion.setEnVol(false);
+			return this.daoAvion.save(avion);
+		} else {
+			avion.setEnVol(false);
+			avion.setEtat(false);
+			return this.daoAvion.save(avion);
+		}
 	}
 	
 	

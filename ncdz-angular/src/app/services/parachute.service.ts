@@ -10,6 +10,7 @@ export class ParachuteService {
 
   private apiUrl: string = "";
   public parachutes: Array<Parachute> = [];
+  public parachute = new Parachute();
 
   constructor(private appConfig: AppConfigService, private http: HttpClient) {
     this.apiUrl = `${ this.appConfig.url }/parachute`;
@@ -18,6 +19,11 @@ export class ParachuteService {
   public reload() {
     this.http.get<Array<Parachute>>(this.apiUrl, this.appConfig.httpOptions)
         .subscribe(resp => this.parachutes = resp );
+  }
+
+  public loadById(id: number) {
+    this.http.get<Parachute>(`${ this.apiUrl }/${ id }`)
+      .subscribe(resp => this.parachute = resp);
   }
 
   public add(parachute) {
@@ -38,5 +44,10 @@ export class ParachuteService {
               this.parachutes.splice(index, 1);
             }
           });
+  }
+
+  public pliage(id_membre, id_parachute, secHaveBeenUsed) {
+    this.http.post<Parachute>(`${ this.apiUrl }/pliage/${ id_membre }/${ id_parachute }/${ secHaveBeenUsed }`, null, this.appConfig.httpOptions)
+        .subscribe();
   }
 }
