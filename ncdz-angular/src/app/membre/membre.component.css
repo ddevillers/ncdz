@@ -4,16 +4,26 @@
     overflow-y: scroll;
   }
   
-.tableMembre thead,
-  tbody tr {
+.tableMembre thead, tbody tr, tfoot tr {
     display: table;
     width: 100%;
     table-layout: fixed;
   }
 
-.tableMembre thead,
-  tfoot tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-  }
+.tableMembre tbody tr td, tfoot tr th, tfoot tr td {
+  line-height: 1rem;
+  vertical-align: middle;
+}
+
+.tableMembre thead {
+  background-color: lightblue;
+}
+
+.tableMembre tfoot {
+  background-color: lightgrey;
+}
+
+.btn {
+  height: 2rem;
+}
+

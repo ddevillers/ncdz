@@ -100,7 +100,7 @@ export class MembreComponent implements OnInit {
         cpt++;
       }
     }
-    if (cpt == 0) {
+    if (cpt == 0 && this.avion.id != null) {
       this.pilote.avions.push(this.avion);
     }
     this.avion = new Avion();

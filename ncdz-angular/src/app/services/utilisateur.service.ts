@@ -14,7 +14,7 @@ export class UtilisateurService {
   public utilisateur: Utilisateur = new Utilisateur();
 
   constructor(private appConfig: AppConfigService, private http: HttpClient, private router: Router) { 
-    this.apiUrl = `${ this.appConfig.url }/utilisateurs`;
+    this.apiUrl = `${ this.appConfig.url }/utilisateur`;
   }
 
   public reload() {
