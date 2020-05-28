@@ -104,6 +104,13 @@
     z-index: 2;
 }
 
+.formulaireAccueil :hover {
+
+    transition: ease 0.4s;
+    border: 1px solid;
+    border-color: #0051ff;
+}
+
 #btnSeConnecter{
 
     position : absolute; left : 88%; bottom: 63%;
