@@ -25,12 +25,17 @@ export class PortailComponent implements OnInit {
   filterMembre: string;
   filterNumPara: number;
 
+  public idAffichageVol: number;
+  public affichageVol: Boolean = false;
+  public idAffichageSaut: number;
+  public affichageSaut: Boolean = false;
+
   constructor(
     public srvMembre: MembreService,
     public srvVol: VolService,
     public srvParachute: ParachuteService,
     public srvSaut: SautService,
-    public srvFileAttente: FileAttenteService
+    public srvFileAttente: FileAttenteService,
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +43,7 @@ export class PortailComponent implements OnInit {
     this.srvVol.reload();
     this.srvParachute.reload();
     this.srvFileAttente.reload();
+    this.srvSaut.reload();
   }
 
   public membresDispo() {
@@ -88,15 +94,21 @@ export class PortailComponent implements OnInit {
     return can;
   }
 
-  public idAffichage: number;
-  public affichage: string ="N";
-
-  public affichageDetails(vol) {
-    if (this.idAffichage == vol.id && this.affichage == "Y"){
-      this.affichage = "N";
+  public affichageDetailsVol(vol) {
+    if (this.idAffichageVol == vol.id && this.affichageVol){
+      this.affichageVol = false;
     } else {
-      this.idAffichage = vol.id;
-      this.affichage = "Y";
+      this.idAffichageVol = vol.id;
+      this.affichageVol = true;
+    }
+  }
+
+  public affichageDetailsSaut(saut) {
+    if (this.idAffichageSaut == saut.id && this.affichageSaut){
+      this.affichageSaut = false;
+    } else {
+      this.idAffichageSaut = saut.id;
+      this.affichageSaut = true;
     }
   }
 

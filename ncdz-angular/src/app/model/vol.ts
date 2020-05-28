@@ -12,6 +12,7 @@ export class Vol {
         public etatVol?: string,
         public respoVol?: Membre,
         public respoSol?: Membre,
-        public hauteurSautMax?: string
+        public hauteurSautMax?: string,
+        public dateVol?: Date
         ) {}
 }

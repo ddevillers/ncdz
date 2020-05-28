@@ -1,5 +1,6 @@
 package fr.formation.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import fr.formation.enumerator.EtatVol;
 import fr.formation.enumerator.HauteurSaut;
@@ -63,6 +68,11 @@ public class Vol {
 	@Column(name="hauteur_saut_max", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSautMax;
+	
+	@Column(name = "date_vol")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateVol;
 
 	public Vol(Avion avion, Pilote pilote, List<Saut> sauts, EtatVol etatVol, Membre respoVol, Membre respoSol,
 			HauteurSaut hauteurSautMax) {

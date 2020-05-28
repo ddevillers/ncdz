@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -31,7 +32,7 @@ public class Saut {
 	@Enumerated(EnumType.STRING)
 	private HauteurSaut hauteurSaut;
 	
-	@OneToMany
+	@ManyToMany
 	@JoinTable(
 			name = "saut_sauteurs",
 			uniqueConstraints = @UniqueConstraint (columnNames = {"id_saut", "id_sauteur"}),

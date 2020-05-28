@@ -1,6 +1,7 @@
 package fr.formation.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -48,6 +50,9 @@ public class Membre {
 	@JoinColumn(name = "parachute")
 	@OneToOne
 	private Parachute parachute;
+	
+	@ManyToMany(mappedBy ="sauteurs")
+	private List<Saut> sauts;
 	
 	public Membre() {}
 	

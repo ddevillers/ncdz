@@ -1,17 +1,22 @@
+#body {
+    background-color: #9ee1ff;
+    height: auto;
+}
+
 #logo{
 
-    position: absolute; top : 19px; left : 820px;
+    position: relative; top : 1%; left : 40%;
     width: 270px;
     height: 100px;
 }
 
 #bandeauHaut {
-
+    position: relative;
     background-color: #1a1a1a;
     height: 15%;
     background-size: 100% 15%;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #ligneBandeau{
@@ -19,8 +24,8 @@
     position : relative;
     background: linear-gradient(to right, #00053b 10%, #00a9b5 50%, #00053b 90%);
     height : 2px;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #ligneInscription {
@@ -28,8 +33,8 @@
     position: relative; bottom: 10px;
     background: linear-gradient(to right, #9ee1ff 37%, #013cff, #9ee1ff 63%);
     height : 2px;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #ligneListeVols{
@@ -37,13 +42,13 @@
     position: relative; bottom: 10px;
     background: linear-gradient(to right, #9ee1ff 37%, #013cff, #9ee1ff 63%);
     height : 2px;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: 0px;
+    margin-right: 0px;
 
 }
 
 #portailFond {
-
+    position: relative;
     background-color: #9ee1ff;
     height : 100%;
     background-size: 100% 100%;
@@ -69,6 +74,14 @@
 
     border: 1px solid;
     border-color: #0051ff;
+}
+
+.divTable {
+    width: 1000px;
+}
+
+.trTable {
+    width: 1000px;
 }
 
 .table {
