@@ -43,6 +43,11 @@ export class VolService {
         .subscribe(vol => this.vol = vol);
   }
 
+  public update(vol) {
+    this.http.put<Vol>(`${this.apiUrl}/${vol.id}`, vol)
+        .subscribe();
+  }
+
   public clotureVol(vol) {
     this.http.put<Vol>(`${ this.apiUrl }/cloture/${ vol.id }`, vol)
       .subscribe(resp => {

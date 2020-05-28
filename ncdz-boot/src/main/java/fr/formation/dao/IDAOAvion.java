@@ -10,6 +10,6 @@ import fr.formation.model.Avion;
 
 public interface IDAOAvion extends JpaRepository<Avion, Integer> {
 
-	public List<Avion> findByEtat(boolean etat);
+	public List<Avion> findByEnVolAndEtat(boolean enVol, boolean etat);
 
 }

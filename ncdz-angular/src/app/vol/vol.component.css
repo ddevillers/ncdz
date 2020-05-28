@@ -1,9 +1,49 @@
+#pageSecretaireVol
+{
+  user-select: none;
+}
+
 #avions
 {
   margin: auto;
-  margin-top: 25%;
+  margin-top: 20%;
   text-align: center;
-  user-select: none;
+}
+
+#menu
+{
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  margin: 0 5% 0 5%;
+	box-shadow: inset 0px 1px 0px 0px #c8c8c8;
+	background: linear-gradient(to bottom, #1b6dc1 5%, #003eb0 100%);
+	background-color: #1b6dc1;
+	border-radius: 6px;
+	display: inline-block;
+	cursor: pointer;
+	color: #c8c8c8;
+	font-family: Arial;
+	font-size: max(4vw, 12px);
+	padding: 6px 20px;
+	text-decoration: none;
+}
+
+.button:hover {
+	background: linear-gradient(to bottom, #003eb0 5%, #1b6dc1 100%);
+	background-color: #003eb0;
+	color: #c8c8c8;
+	cursor: pointer;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
 }
 
 .arrow
@@ -27,12 +67,17 @@
 
 #avionLogo
 {
-  width: 20%;
+  width: 30%;
 }
 
 #avionLogo:hover
 {
   cursor: pointer;
+}
+
+#nomAvion
+{
+  font-size: 3vw;
 }
 
 #detailAvion
@@ -44,6 +89,7 @@
   padding: 1% 1% 0 1%;
   text-align: left;
   border: 4px solid black;
+  background: white;
 }
 
 #detailAvion p
@@ -66,14 +112,19 @@
 #saut
 {
   position: absolute;
-  right: 0;
+  left: 0;
   width: 100%;
 }
 
 #carac
 {
   margin: 0;
-  width: fit-content;
+  width: 85%;
+}
+
+#carac h1
+{
+  font-size: 1.5vw;
 }
 
 #carac #imgPilote
@@ -92,6 +143,7 @@
   margin-bottom: 2%;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  background: white;
 }
 
 #carac img:hover
@@ -123,7 +175,120 @@
 #carac p
 {
   text-align: center;
-  margin: 5% auto 5% auto;
-  border: 1px solid black;
+  margin: 4% auto 4% auto;
+  padding: 0 1% 0 1%;
+  border: 2px solid black;
   width: fit-content;
+  background: white;
+}
+
+#exitSaut
+{
+  position: absolute;
+  right: 0;
+  top: 13%;
+  width: 3%;
+  z-index: 99;
+}
+
+#exitSaut:hover
+{
+  cursor: pointer;
+}
+
+#popup
+{
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 50;
+}
+
+#popup #form
+{
+  margin: auto;
+  margin-top: 20%;
+  width: 20%;
+  background: none;
+  color: black !important;
+}
+
+#hauteur
+{
+  position: absolute;
+  top: 18%;
+  left: 25%;
+  text-align: center;
+  border: solid 2px black;
+  padding: 1% 2% 1% 2%;
+  background: white;
+}
+
+#hauteur div
+{
+  width: max-content;
+  margin: auto;
+  padding: 10% 20% 10% 20%;
+  border-bottom: solid 1px black;
+  font-size: 1.2vw;
+}
+
+#hauteur div:hover
+{
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+#hauteur #hauteurTitre
+{
+  font-size: 1.5vw;
+  font-weight: bold;
+  border: none;
+}
+
+#volTerminating
+{
+  text-align: center;
+}
+
+.ligne:hover
+{
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+#buttonVol
+{
+  font-size: max(1.5vw, 12px);
+  color: white;
+}
+
+#incident
+{
+  position: relative;
+  top: 20%;
+  margin: 0 5% 0 5%;
+	box-shadow: inset 0px 1px 0px 0px #c8c8c8;
+	background: linear-gradient(to bottom, #c11b1b 5%, #b00000 100%);
+	background-color: #c11b1b;
+	border-radius: 6px;
+	display: inline-block;
+	cursor: pointer;
+	color: white;
+	font-family: Arial;
+	font-size: max(1.5vw, 12px);
+	padding: 6px 20px;
+	text-decoration: none;
+}
+
+#incident:hover {
+	background: linear-gradient(to bottom, #b00000 5%, #c11b1b 100%);
+	background-color: #b00000;
+	color: white;
+	cursor: pointer;
 }

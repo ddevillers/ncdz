@@ -11,10 +11,9 @@ export class NavComponent implements OnInit {
 
   public page: string = "vol";
 
-  constructor(private router: Router, public srvAvion: AvionService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.srvAvion.reload();
   }
 
   change(page){

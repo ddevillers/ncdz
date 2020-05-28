@@ -64,6 +64,6 @@ public class AvionApiController {
 	
 	@GetMapping("/dispo")
 	public List<Avion> findAvionDispo() {
-		return this.daoAvion.findByEtat(true);
+		return this.daoAvion.findByEnVolAndEtat(false, true);
 	}
 }
