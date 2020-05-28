@@ -36,7 +36,7 @@
                 <input type="text" [(ngModel)]="membre.prenom" placeholder="Prénom" />
             </th>
             <td *ngIf="!isEditingMembre">
-                <input type="number" [(ngModel)]="membre.numeroLicence" value="membre.numeroLicence" readonly/>
+                <input type="number" [(ngModel)]="membre.numeroLicence" value="membre.numeroLicence"/>
             </td>
             <td *ngIf="isEditingMembre">
                 {{ membre.numeroLicence }}
