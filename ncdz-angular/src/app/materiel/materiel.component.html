@@ -1,6 +1,5 @@
 <div class="row" id="boutonMenuAvion">
     <button class="btn btn-secondary btn-lg" type="button" data-toggle="collapse" data-target=".menu" aria-expanded="false" aria-controls="menuAvion menuParachute">Avions / Parachutes</button>
-
 </div>
 <div class="row">
     <div class="collapse menu center" id="menuAvion">
@@ -60,7 +59,7 @@
                 <div class="card-header">
                     <h2>Liste des Avions </h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body centerText">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -122,7 +121,8 @@
                     <div class="card-header centerText menuNewParachute">
                         <button class="btn btn-light" type="button" data-toggle="collapse" data-target=".newParachute" aria-expanded="false" aria-controls="formNewParachute boutonNewParachute">
                             <h3 *ngIf="!isEditingParachute" class="card-title">Ajouter un nouveau parachute</h3><i *ngIf="!isEditingParachute" class="large material-icons">add</i>
-                            <h3 *ngIf="isEditingParachute" class="card-title">Modifier un parachute</h3></button>
+                            <h3 *ngIf="isEditingParachute" class="card-title">Modifier un parachute<span>ID : {{ parachute.id }}</span></h3>
+                        </button>
                     </div>
                     <div class="card-body collapse newParachute" id="formNewParachute">
                         <div class="row">
@@ -220,7 +220,7 @@
         <br/>
     
         <div class="row">
-            <div class="card cardParachute center centerText">
+            <div class="card cardParachute center">
                 <div class="card-header row noMargin">
                     <div class="col-8">
                         <h2>Liste des Parachutes </h2>
@@ -229,7 +229,7 @@
                         <input type="test" [(ngModel)]="filterParachute"/>&nbsp;&nbsp;&nbsp;<i class="large material-icons">search</i>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body centerText">
                     <table class="listParachutes table table-striped">
                         <thead>
                             <tr>
@@ -274,8 +274,10 @@
                                         <span *ngIf="this.parachute.dispo == true">Oui</span>
                                         <span *ngIf="this.parachute.dispo == false">Non</span>
                                     <td>
-                                        <button (click)="editerParachute(parachute)" data-toggle="collapse" data-target=".newParachute" aria-controls="formNewParachute boutonNewParachute" class="btn btn-secondary m-1">Editer</button>
-                                        <button (click)="supprimerParachute(parachute)" class="btn btn-secondary m-1">Supprimer</button>
+                                        <div class="bouton">
+                                            <button (click)="editerParachute(parachute)" data-toggle="collapse" data-target=".newParachute" aria-controls="formNewParachute boutonNewParachute" class="btn btn-secondary m-1">Editer</button>
+                                            <button (click)="supprimerParachute(parachute)" class="btn btn-secondary m-1">Supprimer</button>
+                                        </div>
                                     </td>
                                 </tr>
                             </ng-container>

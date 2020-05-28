@@ -18,6 +18,24 @@
     table-layout: fixed;
 }
 
+.listParachutes thead {
+    width: 98.5%;
+}
+
+.listParachutes td:nth-child(1), .listParachutes th:nth-child(1) {
+    width: 5%;
+}
+.listParachutes td:nth-child(2), .listParachutes td:nth-child(3), .listParachutes td:nth-child(4), .listParachutes th:nth-child(2), .listParachutes th:nth-child(3), .listParachutes th:nth-child(4) {
+    width: 18%;
+}
+.listParachutes td:nth-child(5), .listParachutes td:nth-child(6), .listParachutes th:nth-child(5), .listParachutes th:nth-child(6) {
+    width: 10%;
+}
+
+thead {
+    background-color: lightblue;
+  }
+
 .container {
     width: 100%;
     margin: 0 auto;
@@ -28,7 +46,7 @@
 }
 
 .cardParachute {
-    width: 80%;
+    width: 90%;
 }
 
 #menuParachute input[type="number"] {
@@ -52,7 +70,7 @@
     margin-left: 0px;
 }
 
-.collapse {
+.collapse, .collapsing {
     width: 100%;
     max-width: 1200px;
     min-width: 400px;

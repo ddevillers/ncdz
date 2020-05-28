@@ -1,29 +1,42 @@
 .tableMembre tbody {
     display: block;
-    max-height: 250px;
+    height: 400px;
     overflow-y: scroll;
   }
   
-.tableMembre thead, tbody tr, tfoot tr {
+thead, tbody tr, tfoot tr {
     display: table;
     width: 100%;
     table-layout: fixed;
   }
 
-.tableMembre tbody tr td, tfoot tr th, tfoot tr td {
+tbody tr td, tfoot tr th, tfoot tr td {
   line-height: 1rem;
   vertical-align: middle;
 }
 
 .tableMembre thead {
   background-color: lightblue;
+  width:98.5%;
 }
 
-.tableMembre tfoot {
-  background-color: lightgrey;
+.tableMembre td:nth-child(5), .tableMembre th:nth-child(5) {
+  width: 30%;
+}
+.listParachutes td:nth-child(2), .listParachutes td:nth-child(1), .listParachutes th:nth-child(2), .listParachutes th:nth-child(1) {
+  width: 20%;
 }
 
-.btn {
-  height: 2rem;
+.collapse, .collapsing {
+  width: 100%;
+  max-width: 1100px;
+  min-width: 600px;
 }
 
+.center {
+  margin: 0 auto;
+}
+
+.bouton {
+  float: right;
+}
