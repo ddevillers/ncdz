@@ -32,8 +32,8 @@ export class AccueilComponent implements OnInit {
 public onMouseMove(event) {
 
 
-    document.querySelector(".title").style['background-position-x']=event.clientX+520+"px";
-    document.querySelector(".title").style['background-position-y']=event.clientY+200+"px";
+    document.querySelector(".title")['style']['background-position-x']=event.clientX+520+"px";
+    document.querySelector(".title")['style']['background-position-y']=event.clientY+200+"px";
   
 }
 
