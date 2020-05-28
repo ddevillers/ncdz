@@ -55,14 +55,10 @@ public class ParachuteApiController {
 		Parachute parachute = this.daoParachute.findById(id_parachute).orElse(new Parachute());
 		if (secHaveBeenUsed) {
 			parachute.setPlieurVoileSec(this.daoMembre.findById(id_membre).orElse(new Membre()));
-			parachute.setDispo(false);
 			parachute.setDatePliageVoileSec(LocalDate.now());
-		} else {
-			parachute.setPlieurVoilePrin(this.daoMembre.findById(id_membre).orElse(new Membre()));
-			parachute.setDatePliageVoilePrin(LocalDate.now());
-		}
-			parachute.setDispo(true);
-			return this.daoParachute.save(parachute);
+		} 
+		parachute.setDispo(true);
+		return this.daoParachute.save(parachute);
 	}
 
 	@PutMapping("/{id}")

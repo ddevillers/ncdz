@@ -21,7 +21,10 @@
         <tbody>
           <ng-container *ngFor="let saut of srvVol.vol.sauts">
             Saut n°{{ saut.id }}
-            <tr *ngFor="let sauteur of saut.sauteurs">
+            <ng-container *ngFor="let parachute of srvParachute.parachutes">
+              <ng-container *ngFor="let sauteur of saut.sauteurs">
+
+            <tr *ngIf="parachute.id == sauteur.numeroParachute && parachute.dispo == false">
               <td>{{sauteur.numeroLicence}}</td>
 
               <td>{{sauteur.prenom}} {{sauteur.nom}}</td>
@@ -34,28 +37,29 @@
                 <input type="checkbox" (click)="checkbox()" />
               </td>
 
-              <ng-container *ngFor="let parachute of srvParachute.parachutes">
-                <td *ngIf="parachute.id == sauteur.numeroParachute && parachute.centre == true" [style.background-color]="parachute.dispo | parachutisteValide"> <!--Gerer le plieur-->
+
+                <td *ngIf="parachute.centre == true" > <!--Gerer le plieur-->
                   <span *ngIf="secHaveBeenUsed == false">Voile Principale</span>
-                  <span *ngIf="secHaveBeenUsed">Voile Secondaire</span><br/>
-                  <select  [(ngModel)]="membre" required>
+                  <span *ngIf="secHaveBeenUsed">Voile Secours</span><br/>
+                  <select *ngIf="secHaveBeenUsed == false" [(ngModel)]="membre" required>
                     <option *ngFor="let membre of srvMembre.membres" [ngValue]="membre">
                       {{membre.prenom}} {{membre.nom}}
                     </option>
                   </select>
                 </td>
-                <td *ngIf="parachute.id == sauteur.numeroParachute && parachute.centre == false" [style.background-color]="parachute.dispo | parachutisteValide"> <!--Gerer le plieur-->
+
+                <td *ngIf="parachute.centre == false" > <!--Gerer le plieur-->
                   Parachute perso
                 </td>
-              </ng-container>
 
-              <ng-container *ngFor="let parachute of srvParachute.parachutes">
+
                 <td *ngIf="parachute.id == sauteur.numeroParachute">
                   <button (click)="cloturerVolSauteur(sauteur, parachute)">Valider</button>
                 </td>
-              </ng-container>
 
             </tr>
+          </ng-container>
+          </ng-container>
           </ng-container>
         </tbody>
     </table>

@@ -26,7 +26,9 @@ export class ClotureComponent implements OnInit {
     constructor(public srvVol: VolService,
                 public srvMembre: MembreService,
                 public srvParachute: ParachuteService,
-                public srvSaut: SautService) { }
+                public srvSaut: SautService) {
+
+      }
 
     ngOnInit(): void {
       this.srvVol.loadById();
@@ -41,6 +43,8 @@ export class ClotureComponent implements OnInit {
       }
       this.srvParachute.pliage(this.membre.numeroLicence, sauteur.numeroParachute, this.secHaveBeenUsed);
       this.srvParachute.parachute=new Parachute();
+      parachute.dispo = true;
+      this.secHaveBeenUsed = false;
     }
 
 
@@ -60,6 +64,8 @@ export class ClotureComponent implements OnInit {
       } else {
         this.secHaveBeenUsed = true;
       }
+
+
     }
 
     public beerLine(saut: Saut, sauteur: Membre) {
