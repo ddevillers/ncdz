@@ -74,4 +74,18 @@ public class ParachuteApiController {
 			return true;
 		} catch (Exception e) {return false;}
 	}
+	
+	@PutMapping("/etatFalse/{id}")
+	public Parachute etatFalse(@PathVariable int id){
+		Parachute parachute = this.daoParachute.findById(id).orElse(new Parachute());
+		parachute.setDispo(false);
+		return this.daoParachute.save(parachute);
+	}
+	
+	@PutMapping("/etatTrue/{id}")
+	public Parachute etatTrue(@PathVariable int id){
+		Parachute parachute = this.daoParachute.findById(id).orElse(new Parachute());
+		parachute.setDispo(true);
+		return this.daoParachute.save(parachute);
+	}
 }

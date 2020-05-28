@@ -24,6 +24,7 @@ export class ParachuteService {
   public loadById(id: number) {
     this.http.get<Parachute>(`${ this.apiUrl }/${ id }`, this.appConfig.httpOptions)
       .subscribe(resp => this.parachute = resp);
+      
   }
 
   public add(parachute) {
@@ -49,5 +50,15 @@ export class ParachuteService {
   public pliage(id_membre, id_parachute, secHaveBeenUsed) {
     this.http.post<Parachute>(`${ this.apiUrl }/pliage/${ id_membre }/${ id_parachute }/${ secHaveBeenUsed }`, null, this.appConfig.httpOptions)
         .subscribe();
+  }
+
+  public etatFalse(id) {
+    this.http.put<Parachute>(`${ this.apiUrl }/etatFalse/${ id }`, this.appConfig.httpOptions)
+    .subscribe();
+  }
+
+  public etatTrue(id) {
+    this.http.put<Parachute>(`${ this.apiUrl }/etatTrue/${ id }`, this.appConfig.httpOptions)
+    .subscribe();
   }
 }

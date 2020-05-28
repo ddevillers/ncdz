@@ -8,6 +8,7 @@ import { FileAttente } from '../model/file-attente';
 import { SautService } from '../services/saut.service';
 import { Router } from '@angular/router';
 import { Parachute } from '../model/parachute';
+import { Vol } from '../model/vol';
 
 @Component({
   selector: 'app-portail',
@@ -24,8 +25,10 @@ export class PortailComponent implements OnInit {
   public membre: Membre = new Membre();
   public fileAttente: FileAttente = new FileAttente(0,"","SOLO",[]);
 
-  filterMembre: string;
-  filterNumPara: number;
+  public filterMembre: string;
+  public filterNumPara: number;
+  public listParPris: Array<Number>=[];
+  public listMembreFile: Array<Membre>=[];
 
   public inscrVisible: Boolean = true;
   public volsVisible: Boolean = false;
@@ -54,6 +57,7 @@ export class PortailComponent implements OnInit {
     this.srvParachute.reload();
     this.srvFileAttente.reload();
     this.srvSaut.reload();
+    // this.srvParachute.loadById(1);
   }
 
   public lienVideo() {
@@ -64,8 +68,35 @@ export class PortailComponent implements OnInit {
     this.router.navigate(['/accueil'])
   }
 
+  public volFiltered() {
+    let listV: Array<Vol>=this.srvVol.vols.filter(v => v.etatVol == "ATTENTE");
+    return listV;
+  }
+
   public membresDispo() {
-    let mDispo: Array<Membre> = this.srvMembre.membres.filter(m => !this.fileAttente.sauteurs.includes(m));
+    let listMemSaut: Array<Membre>=[];
+    for (let f of this.srvFileAttente.fileAttentes) {
+      for (let s of f.sauteurs) {
+        listMemSaut.push(s);
+      }
+    }
+
+    // for(let m of listMemSaut){console.log(m.prenom+" "+m.nom)}
+    // for(let m of this.srvMembre.membres) {
+    //   if(!listMemSaut.includes(m)){
+    //     console.log(m.prenom+" "+m.nom);
+    //   }
+    //   else {}
+    // }
+
+    let mDispo: Array<Membre> = this.srvMembre.membres.filter(m => !this.fileAttente.sauteurs.includes(m) && !listMemSaut.includes(m) && !this.listMembreFile.includes(m));
+    
+    if(this.fileAttente.typeSaut=="TANDEM") {
+      if(this.fileAttente.sauteurs.length==1 && this.fileAttente.sauteurs[0].niveau!="INSTRUCTEUR") {
+        mDispo = mDispo.filter(m => m.niveau=="INSTRUCTEUR");
+      }
+    }
+
     if(!this.isEditing) {
     return mDispo
     }
@@ -89,7 +120,7 @@ export class PortailComponent implements OnInit {
   }
 
   public parachutesDispo() {
-    return this.srvParachute.parachutes.filter(p => p.dispo);
+    return this.srvParachute.parachutes.filter(p => p.dispo && !this.listParPris.includes(p.id));
   }
 
   public parachuteFiltered() {
@@ -194,25 +225,24 @@ export class PortailComponent implements OnInit {
   }
 
   public ajouterFileAttente() {
-    // alert(this.fileAttente.typeSaut)
     this.srvFileAttente.add(this.fileAttente);
+    for(let s of this.fileAttente.sauteurs) {
+      this.srvParachute.etatFalse(s.numeroParachute);
+      this.listMembreFile.push(s);
+    }
     this.fileAttente = new FileAttente(0,"","",[]);
     this.nbPers=0;
   }
 
-  public parach: Parachute;
   public ajouterSauteur() {
-    this.srvMembre.update(this.membre);
-    this.srvParachute.loadById(this.membre.numeroParachute);
-    let parach = this.srvParachute.parachute;
-    parach.dispo = false;
-    this.srvParachute.update(parach);
+    this.srvMembre.update(this.membre);    
     this.fileAttente.sauteurs.push(this.membre);
-    this.membre = new Membre();
+    this.listParPris.push(this.membre.numeroParachute);
     this.nbPers++;
     this.valider=true;
     this.filterMembre = "";
     this.filterNumPara = 0;
+    this.membre = new Membre();
   }
 
   public editerSauteur(membre) {
@@ -226,11 +256,13 @@ export class PortailComponent implements OnInit {
   public modifierSauteur() {
     this.isEditing=false;
     this.fileAttente.sauteurs.splice(this.indexMod,1,this.membre);
+    this.listParPris.splice(this.indexMod,1,this.membre.numeroParachute);
   }
 
   supprimerSauteur(membre) {
     var index = this.fileAttente.sauteurs.indexOf(membre);
     this.fileAttente.sauteurs.splice(index,1);
+    this.listParPris.splice(index,1);
     this.nbPers--;
   }
 

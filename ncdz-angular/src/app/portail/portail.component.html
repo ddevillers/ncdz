@@ -72,25 +72,43 @@
 						<select  class="form-control champ" [(ngModel)]="membre.numeroParachute" name="p">
 							<option *ngFor="let parachute of parachuteFiltered()" [ngValue]="parachute.id">
 								{{parachute.id}}
+								<span *ngIf="parachute.centre == false"> perso</span>
+								<span *ngIf="parachute.centre == true"> club</span>
 							</option>
 						</select>
 					</div>
 					<div class="col-3">
-						<button *ngIf="peutAjouterSauteur()" class="btn btn-primary col-8 m-1" (click)="ajouterSauteur()">Ajouter</button>
+						<button *ngIf="peutAjouterSauteur() && membre && membre.numeroParachute" class="btn btn-primary col-8 m-1" (click)="ajouterSauteur()">Ajouter</button>
 						<button *ngIf="isEditing" (click)="modifierSauteur()" class="btn btn-primary col-8 m-1">Valider</button>
 					</div>
 				</div>
-				<div class="row"  *ngFor="let sauteur of fileAttente.sauteurs">
-					<div class="col-1"></div>
-					<div class="col-4">{{sauteur.prenom}} {{sauteur.nom}}</div>
-					<div class="col-4">{{sauteur.numeroParachute}}</div>
-					<div class="col-3">
-						<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-light col-4 m-1">Editer</button>
-						<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-dark col-4 m-1">Supprimer</button>
-					</div>
-				</div>
+				<br>
+
 				<div class="row">
-					<button *ngIf="peutSauter()" (click)="ajouterFileAttente()" class="btn btn-primary">Sauter</button>
+					<table  class="table table-striped col-12">
+						<thead>
+							<tr>
+								
+							</tr>
+						</thead>
+						<tbody class="tablMem">
+							<tr *ngFor="let sauteur of fileAttente.sauteurs" class="row">
+								<td class="col-1"></td>
+								<td class="col-4"><span class="tablMem">{{sauteur.prenom}} {{sauteur.nom}}</span></td>
+								<td class="col-4"><span class="tablMem">{{sauteur.numeroParachute}}</span></td>
+								<td class="col-3">
+									<button *ngIf="!isEditing" (click)="editerSauteur(sauteur)" class="btn btn-light col-4 m-1">Editer</button>
+									<button *ngIf="!isEditing" (click)="supprimerSauteur(sauteur)" class="btn btn-dark col-4 m-1">Supprimer</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<br>
+				<div class="row">
+					<div class="col-1"></div>
+					<button *ngIf="peutSauter()" (click)="ajouterFileAttente()" class="btn btn-primary col-3">Sauter</button>
 				</div>
 				<br>
 			</form>
@@ -119,7 +137,7 @@
 							<th>Etat</th>
 						</tr>
 					</thead>
-					<tbody *ngFor="let vol of srvVol.vols">
+					<tbody *ngFor="let vol of volFiltered()">
 						<tr  class="trAff" (click)="affichageDetailsVol(vol)">
 							<td>{{ vol.avion.capacite }}</td>
 							<td>{{ vol.respoVol.prenom }} {{ vol.respoVol.nom }}</td>

@@ -90,10 +90,6 @@
     border-color: #0051ff;
 }
 
-.divTable {
-    width: 1000px;
-}
-
 .trAff {
     cursor: pointer;
 }
@@ -102,3 +98,19 @@
     position: relative;
     text-align: center;
 }
+
+.tablMem {
+    font-size: 1.3vw;
+}
+
+.btnk {
+    font-size: 1vw;
+}
+
+.tablMem tr:nth-child(odd) {
+    background-color: rgba(228, 228, 228, 0.7);
+  }
+  
+.tablMem tr:nth-child(even) {
+    background-color: rgba(197, 197, 197, 0.7);
+  }
