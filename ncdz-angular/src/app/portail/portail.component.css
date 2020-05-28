@@ -4,10 +4,16 @@
 }
 
 #logo{
-
-    position: relative; top : 1%; left : 40%;
+    cursor: pointer;
+    position: relative; top : 1%; left : 43%;
     width: 270px;
     height: 100px;
+    transition: all .3s ease-out;
+}
+
+#logo:hover
+{
+	filter: drop-shadow(0 0 0.1rem #9ee1ff);
 }
 
 #bandeauHaut {
@@ -56,11 +62,18 @@
 }
 
 .titresPortail {
-
+    cursor: pointer;
     font-size: 32px;
     font-weight: 650;
     color: black;
     text-align: center;
+    transition: all .3s ease-out;
+}
+
+.titresPortail:hover
+{
+    filter: drop-shadow(0 0 0.5rem #4091b6);
+    transform: translate(0px, -2px);
 }
 
 .sousTitresPortail {
@@ -80,8 +93,8 @@
     width: 1000px;
 }
 
-.trTable {
-    width: 1000px;
+.trAff {
+    cursor: pointer;
 }
 
 .table {

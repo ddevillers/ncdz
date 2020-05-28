@@ -6,6 +6,7 @@ import { FileAttenteService } from '../services/file-attente.service';
 import { ParachuteService } from '../services/parachute.service';
 import { FileAttente } from '../model/file-attente';
 import { SautService } from '../services/saut.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-portail',
@@ -25,10 +26,16 @@ export class PortailComponent implements OnInit {
   filterMembre: string;
   filterNumPara: number;
 
+  public inscrVisible: Boolean = true;
+  public volsVisible: Boolean = false;
+  public sautsVisible: Boolean = false;
+  public videosVisible: Boolean = false;
   public idAffichageVol: number;
   public affichageVol: Boolean = false;
   public idAffichageSaut: number;
   public affichageSaut: Boolean = false;
+
+  public srcVideo: string;
 
   constructor(
     public srvMembre: MembreService,
@@ -36,6 +43,7 @@ export class PortailComponent implements OnInit {
     public srvParachute: ParachuteService,
     public srvSaut: SautService,
     public srvFileAttente: FileAttenteService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +52,14 @@ export class PortailComponent implements OnInit {
     this.srvParachute.reload();
     this.srvFileAttente.reload();
     this.srvSaut.reload();
+  }
+
+  public lienVideo() {
+    return this.srcVideo;
+  }
+
+  public accueil() {
+    this.router.navigate(['/accueil'])
   }
 
   public membresDispo() {
@@ -63,7 +79,7 @@ export class PortailComponent implements OnInit {
     return this.srvParachute.parachutes.filter(p => p.dispo);
   }
 
-  public numParaFiltered() {
+  public parachuteFiltered() {
     if (this.filterNumPara) {
      return this.parachutesDispo().filter(
        p => String(p.id).includes(String(this.filterNumPara))
@@ -92,6 +108,46 @@ export class PortailComponent implements OnInit {
       else{can=false}
     }
     return can;
+  }
+
+  public afficherIncript() {
+    if (this.inscrVisible){
+      this.inscrVisible = false;
+    } else {
+      this.inscrVisible = true;
+    }
+    if(!this.inscrVisible && !this.sautsVisible && !this.videosVisible)
+    {this.volsVisible = true;}
+  }
+  
+  public afficherVols() {
+    if (this.volsVisible){
+      this.volsVisible = false;
+    } else {
+      this.volsVisible = true;
+    }
+    if(!this.volsVisible && !this.sautsVisible && !this.videosVisible)
+    {this.inscrVisible = true;}
+  }
+  
+  public afficherSauts() {
+    if (this.sautsVisible){
+      this.sautsVisible = false;
+    } else {
+      this.sautsVisible = true;
+    }
+    if(!this.volsVisible && !this.sautsVisible && !this.videosVisible)
+    {this.inscrVisible = true;}
+  }
+
+  public afficherVideos() {
+    if (this.videosVisible){
+      this.videosVisible = false;
+    } else {
+      this.videosVisible = true;
+    }
+    if(!this.volsVisible && !this.sautsVisible && !this.videosVisible)
+    {this.inscrVisible = true;}
   }
 
   public affichageDetailsVol(vol) {
@@ -146,6 +202,7 @@ export class PortailComponent implements OnInit {
   public annulerSauteur() {
 
   }
+  
 
   //test
   // public codeValue: string;
