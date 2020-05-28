@@ -35,7 +35,7 @@ export class VolService {
 
   public loadById() {
     this.http.get<Vol>(`${ this.apiUrl }/1`, this.appConfig.httpOptions)
-      .subscribe(respVol => this.vol = respVol);
+      .subscribe(respVol => this.volTermine = respVol);
   }
 
 

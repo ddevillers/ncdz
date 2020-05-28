@@ -56,7 +56,10 @@ public class ParachuteApiController {
 		if (secHaveBeenUsed) {
 			parachute.setPlieurVoileSec(this.daoMembre.findById(id_membre).orElse(new Membre()));
 			parachute.setDatePliageVoileSec(LocalDate.now());
-		} 
+		} else {
+			parachute.setPlieurVoilePrin(this.daoMembre.findById(id_membre).orElse(new Membre()));
+			parachute.setDatePliageVoilePrin(LocalDate.now());
+		}
 		parachute.setDispo(true);
 		return this.daoParachute.save(parachute);
 	}

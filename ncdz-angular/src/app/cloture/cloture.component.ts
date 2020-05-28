@@ -40,9 +40,10 @@ export class ClotureComponent implements OnInit {
       if (parachute.centre == false){
         this.membre = sauteur;
       }
-      if (this.membre = null){
+      if (this.membre == null){
         this.membre = sauteur;
       }
+
       this.srvParachute.pliage(this.membre.numeroLicence, sauteur.numeroParachute, this.secHaveBeenUsed);
       this.srvParachute.parachute=new Parachute();
       parachute.dispo = true;
