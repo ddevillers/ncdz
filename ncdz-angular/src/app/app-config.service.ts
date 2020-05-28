@@ -8,12 +8,12 @@ import { Utilisateur } from './model/utilisateur';
 export class AppConfigService {
 
   public url: string = "http://localhost:8181/api";
-  public httpOptions: Object = null;
+  public httpOptions: Object = {};
 
   constructor() {
-    let myHeaders: HttpHeaders = new HttpHeaders();
+    /*let myHeaders: HttpHeaders = new HttpHeaders();
     myHeaders = myHeaders.append('Authorization', 'Basic ' + btoa('admin:admin'));
-    this.httpOptions = { headers: myHeaders };
+    this.httpOptions = { headers: myHeaders };*/
   }
 
   public setHeaders(utilisateur: Utilisateur) {
