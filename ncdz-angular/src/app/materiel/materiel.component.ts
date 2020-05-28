@@ -19,7 +19,7 @@ export class MaterielComponent implements OnInit {
   public avion = new Avion();
   public parachute = new Parachute();
 
-  public filterParachute: string;
+  public filterParachute: string = "";
 
   constructor(public srvAvion: AvionService, public srvParachute: ParachuteService) { }
 
@@ -28,6 +28,10 @@ export class MaterielComponent implements OnInit {
     this.srvParachute.reload();
   }
 
+
+
+
+  
   public ajouterAvion() {
     console.log(this.avion);
     this.srvAvion.add(this.avion);
@@ -50,9 +54,22 @@ export class MaterielComponent implements OnInit {
     this.modifierAvion();
   }
 
+  public confirmSupprimerAvion(avion) {
+    avion.isDeleting = true;
+  }
+
   public supprimerAvion(avion) {
     this.srvAvion.delete(avion);
   }
+
+  public annulerSupprimerAvion(avion) {
+    avion.isDeleting = false;
+  }
+
+
+
+
+
 
   public ajouterParachute() {
     if (this.parachute.systemeSecu != "N") {
@@ -82,29 +99,29 @@ export class MaterielComponent implements OnInit {
   }
 
   public parachutesFiltered() {
-    if (this.filterParachute || this.filterParachute === "") {
-      if (this.filterParachute == "dispo") {
-        return this.srvParachute.parachutes.filter(p => p.dispo == true);
+      let filter = this.filterParachute.toUpperCase();
+      if (this.filterParachute != "") {
+        if (filter == "DISPO") {
+          return this.srvParachute.parachutes.filter(p => p.dispo == true);
+        }
+        else if (filter == "INDISPO") {
+          return this.srvParachute.parachutes.filter(p => p.dispo == false);
+        }
+        else if (filter == "CENTRE") {
+          return this.srvParachute.parachutes.filter(p => p.centre == true);
+        }
+        else if (filter == "PERSO") {
+          return this.srvParachute.parachutes.filter(p => p.centre == false);
+        }
+        else {
+          return this.srvParachute.parachutes.filter(p =>
+          p.nomHarnais.toUpperCase().includes(filter) ||
+          p.nomVoilePrin.toUpperCase().includes(filter) ||
+          p.nomVoileSec.toUpperCase().includes(filter) ||
+          p.systemeSecu.toUpperCase().includes(filter) ||
+          p.id.toString().toUpperCase().includes(filter)
+        );}
       }
-      else if (this.filterParachute == "indispo") {
-        return this.srvParachute.parachutes.filter(p => p.dispo == false);
-      }
-      else if (this.filterParachute == "centre") {
-        return this.srvParachute.parachutes.filter(p => p.centre == true);
-      }
-      else if (this.filterParachute == "perso") {
-        return this.srvParachute.parachutes.filter(p => p.centre == false);
-      }
-      else {
-        return this.srvParachute.parachutes.filter(p =>
-        p.nomHarnais.includes(this.filterParachute) ||
-        p.nomVoilePrin.includes(this.filterParachute) ||
-        p.nomVoileSec.includes(this.filterParachute) ||
-        p.systemeSecu.includes(this.filterParachute) ||
-        p.id.toString().includes(this.filterParachute)
-      );}
-    }
-
     return this.srvParachute.parachutes;
   }
 

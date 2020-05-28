@@ -11,7 +11,6 @@ import { MaterielComponent } from './materiel/materiel.component';
 import { VolComponent } from './vol/vol.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { HistoriqueComponent } from './historique/historique.component';
-import { AvionCrudRowComponent } from './materiel/avion-crud-row/avion-crud-row.component';
 import { NavComponent } from './nav/nav.component';
 import { ClotureComponent } from './cloture/cloture.component';
 import { ParachutisteValidePipe } from './pipe/parachutiste-valide.pipe';
@@ -38,7 +37,6 @@ const routes: Routes = [
     MaterielComponent,
     VolComponent,
     AccueilComponent,
-    AvionCrudRowComponent,
     HistoriqueComponent,
     NavComponent,
     ClotureComponent,

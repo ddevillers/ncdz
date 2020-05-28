@@ -9,44 +9,47 @@
 
         <div class="row center">
             <div class="card center">
-                <div class="card-header centerText menuNewAvion">
-                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target=".newAvion" aria-expanded="false" aria-controls="formNewAvion boutonNewAvion">
-                    <h3 class="card-title">Ajouter un nouvel avion</h3><i class="large material-icons">add</i></button>
-                </div>
-                <div class="card-body collapse newAvion" id="formNewAvion">
-                    <div class="form-group row">
-                        <label for="nom" class="col-sm-4 col-form-label">Nom : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nom" [(ngModel)]="avion.nom" />
+                <form>
+                    <div class="card-header centerText menuNewAvion">
+                        <button class="btn btn-light" type="button" data-toggle="collapse" data-target=".newAvion" aria-expanded="false" aria-controls="formNewAvion boutonNewAvion">
+                        <h3 class="card-title">Ajouter un nouvel avion</h3><i class="large material-icons">add</i></button>
+                    </div>
+                    <div class="card-body collapse newAvion" id="formNewAvion">
+                        <div class="form-group row">
+                            <label for="nom" class="col-sm-4 col-form-label">Nom : </label>
+                            <div class="col-sm-8">
+                                <input required type="text" name="nom" class="form-control" id="nom" [(ngModel)]="avion.nom" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="capacite" class="col-sm-8 col-form-label">Capacité (nombre de personnes hors pilote) : </label>
+                            <div class="col-sm-4">
+                                <input required type="number" name="capacite" class="form-control" id="capacite" [(ngModel)]="avion.capacite" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="etat" class="col-sm-4 col-form-label">Etat : </label>
+                            <div class="col-sm-8">
+                                <select required name="etat" [(ngModel)]="avion.etat" class="form-control" id="etat">
+                                    <option disabled selected>Sélectionnez une option</option>
+                                    <option [ngValue]="true">Disponible</option>
+                                    <option [ngValue]="false">Non disponible</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nbreRota" class="col-sm-8 col-form-label">Autonomie (nombre de vols) : </label>
+                            <div class="col-sm-4">
+                                <input required type="number" name="nbreRota" class="form-control" id="nbreRota" [(ngModel)]="avion.nbreRota" />
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="capacite" class="col-sm-8 col-form-label">Capacité (nombre de personnes hors pilote) : </label>
-                        <div class="col-sm-4">
-                            <input type="number" class="form-control" id="capacite" [(ngModel)]="avion.capacite" />
-                        </div>
+                    <div class="card-footer text-right collapse newAvion" id="boutonNewAvion">
+                        <button *ngIf="!isEditingAvion" (click)="ajouterAvion()" data-toggle="collapse" data-target=".newAvion" aria-controls="formNewAvion boutonNewAvion" class="btn btn-secondary m-1">Ajouter</button>
+                        <button *ngIf="isEditingAvion" (click)="modifierAvion()" data-toggle="collapse" data-target=".newAvion" aria-controls="formNewAvion boutonNewAvion" class="btn btn-warning m-1">Confirmer les modifications</button>
+                        <button *ngIf="isEditingAvion" (click)="annulerAvion()" data-toggle="collapse" data-target=".newAvion" aria-controls="formNewAvion boutonNewAvion" class="btn btn-secondary m-1">Annuler</button>
                     </div>
-                    <div class="form-group row">
-                        <label for="etat" class="col-sm-4 col-form-label">Etat : </label>
-                        <div class="col-sm-8">
-                            <select [(ngModel)]="avion.etat" class="form-control" id="etat">
-                                <option [ngValue]="true">Disponible</option>
-                                <option [ngValue]="false">Non disponible</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nbreRota" class="col-sm-8 col-form-label">Autonomie (nombre de vols) : </label>
-                        <div class="col-sm-4">
-                            <input type="number" class="form-control" id="nbreRota" [(ngModel)]="avion.nbreRota" />
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer text-right collapse newAvion" id="boutonNewAvion">
-                    <button *ngIf="!isEditingAvion" (click)="ajouterAvion()" class="btn btn-secondary m-1">Ajouter</button>
-                    <button *ngIf="isEditingAvion" (click)="annulerAvion()" class="btn btn-warning m-1">Annuler</button>
-                    <button *ngIf="isEditingAvion" (click)="modifierAvion()" class="btn btn-warning m-1">Modifier</button>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -71,8 +74,35 @@
                         </thead>
                     
                         <tbody>
-                            <tr avion-crud-row></tr>
-                            <tr *ngFor="let avion of srvAvion.avions" [avion-crud-row]="avion"></tr>
+                            <ng-container *ngFor="let avion of this.srvAvion.avions">
+                                <ng-container *ngIf="!avion.isDeleting">
+                                    <tr>
+                                        <td>{{ avion.id }}</td>
+                                        <td>{{ avion.nom }}</td>
+                                        <td>{{ avion.capacite }}</td>
+                                        <td>
+                                            <span *ngIf="this.avion.etat">Disponible</span>
+                                            <span *ngIf="!this.avion.etat">Non disponible</span>
+                                        </td>
+                                        <td>{{ avion.nbreRota }}</td>
+                                        <td>
+                                            <button (click)="editerAvion(avion)" data-toggle="collapse" data-target=".newAvion" aria-controls="formNewAvion boutonNewAvion" class="btn btn-secondary m-1">Editer</button>
+                                            <button (click)="confirmSupprimerAvion(avion)" class="btn btn-secondary m-1">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                                <ng-container *ngIf="avion.isDeleting">
+                                    <tr>
+                                        <td colspan="5">
+                                            Êtes-vous sûr de vouloir supprimer <b>{{ avion.nom }}</b> ?
+                                        </td>
+                                        <td>
+                                            <button (click)="supprimerAvion(avion)" class="btn btn-warning m-1">OUI</button>
+                                            <button (click)="annulerSupprimerAvion(avion)" class="btn btn-secondary m-1">NON</button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
                         </tbody>
                     </table>
                 </div>
@@ -116,6 +146,7 @@
                         <hr />
                         <div class="row verticalSeparator">
                             <div class="form-group row col border-right">
+                                <h5 class="col-12">Voile principale</h5>
                                 <label for="nomVoilePrin" class="col-sm-4 col-form-label">Nom : </label>
                                 <div class="col-sm-8">
                                     <input required  name="nomVoilePrin" type="text" class="form-control" id="nomVoilePrin" [(ngModel)]="parachute.nomVoilePrin" />
@@ -134,6 +165,7 @@
                                 </div>
                             </div>
                             <div class="form-group col row">
+                                <h5 class="col-12">Voile de secours</h5>
                                 <label for="nomVoileSec" class="col-sm-4 col-form-label">Nom : </label>
                                 <div class="col-sm-8">
                                     <input required name="nomVoileSec" type="text" class="form-control" id="nomVoileSec" [(ngModel)]="parachute.nomVoileSec" />
@@ -177,9 +209,9 @@
                         </div>
                     </div>
                     <div class="card-footer text-right collapse newParachute" id="boutonNewParachute">
-                        <button *ngIf="!isEditingParachute" type="submit" (click)="ajouterParachute()" class="btn btn-secondary m-1">Ajouter</button>
-                        <button *ngIf="isEditingParachute" (click)="modifierParachute()" class="btn btn-warning m-1">Confirmer les modifications</button>
-                        <button *ngIf="isEditingParachute" (click)="annulerParachute()" class="btn btn-secondary m-1">Annuler</button>
+                        <button *ngIf="!isEditingParachute" type="submit" (click)="ajouterParachute()" data-toggle="collapse" data-target=".newParachute" aria-controls="formNewParachute boutonNewParachute" class="btn btn-secondary m-1">Ajouter</button>
+                        <button *ngIf="isEditingParachute" (click)="modifierParachute()" data-toggle="collapse" data-target=".newParachute" aria-controls="formNewParachute boutonNewParachute" class="btn btn-warning m-1">Confirmer les modifications</button>
+                        <button *ngIf="isEditingParachute" (click)="annulerParachute()" data-toggle="collapse" data-target=".newParachute" aria-controls="formNewParachute boutonNewParachute" class="btn btn-secondary m-1">Annuler</button>
                     </div>
                 </form>
             </div>
@@ -188,7 +220,7 @@
         <br/>
     
         <div class="row">
-            <div class="card cardParachute center">
+            <div class="card cardParachute center centerText">
                 <div class="card-header row noMargin">
                     <div class="col-8">
                         <h2>Liste des Parachutes </h2>
@@ -198,7 +230,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="listParachutes table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -210,7 +242,6 @@
                                 <th></th>
                             </tr>
                         </thead>
-                    
                         <tbody>
                             <ng-container *ngFor="let parachute of parachutesFiltered()">
                                 <tr class="pointer">
@@ -243,7 +274,7 @@
                                         <span *ngIf="this.parachute.dispo == true">Oui</span>
                                         <span *ngIf="this.parachute.dispo == false">Non</span>
                                     <td>
-                                        <button (click)="editerParachute(parachute)" class="btn btn-secondary m-1">Editer</button>
+                                        <button (click)="editerParachute(parachute)" data-toggle="collapse" data-target=".newParachute" aria-controls="formNewParachute boutonNewParachute" class="btn btn-secondary m-1">Editer</button>
                                         <button (click)="supprimerParachute(parachute)" class="btn btn-secondary m-1">Supprimer</button>
                                     </td>
                                 </tr>

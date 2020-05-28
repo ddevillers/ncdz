@@ -4,8 +4,9 @@ export class Avion {
                 public nom?: String,
                 public capacite?: number,
                 public etat?: boolean,
+                public nbreRota?: number,
                 public enVol?: boolean,
-                public nbreRota?: number) {
+                public isDeleting?: boolean) {
 
     }
 
