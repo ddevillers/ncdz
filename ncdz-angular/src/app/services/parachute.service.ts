@@ -22,7 +22,7 @@ export class ParachuteService {
   }
 
   public loadById(id: number) {
-    this.http.get<Parachute>(`${ this.apiUrl }/${ id }`)
+    this.http.get<Parachute>(`${ this.apiUrl }/${ id }`, this.appConfig.httpOptions)
       .subscribe(resp => this.parachute = resp);
   }
 

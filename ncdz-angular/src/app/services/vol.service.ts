@@ -24,23 +24,23 @@ export class VolService {
   }
 
   public reload() {
-    this.http.get<Array<Vol>>(this.apiUrl)
+    this.http.get<Array<Vol>>(this.apiUrl, this.appConfig.httpOptions)
       .subscribe(vols => this.vols = vols);
   }
 
   public reloadCount(id) {
-    this.http.get<number>(`${this.apiUrl}/count/${id}`)
+    this.http.get<number>(`${this.apiUrl}/count/${id}`, this.appConfig.httpOptions)
         .subscribe(nbSaut => {this.nbSaut = nbSaut; console.log(nbSaut); this.nbSauts.push(nbSaut)});
   }
 
   public loadById() {
-    this.http.get<Vol>(`${ this.apiUrl }/1`)
+    this.http.get<Vol>(`${ this.apiUrl }/1`, this.appConfig.httpOptions)
       .subscribe(respVol => this.vol = respVol);
   }
 
 
   public getVolByAvion(id){
-    this.http.get<Vol>(`${this.apiUrl}/avion/${id}`)
+    this.http.get<Vol>(`${this.apiUrl}/avion/${id}`, this.appConfig.httpOptions)
         .subscribe(vol => this.vol = vol);
   }
 
@@ -54,7 +54,7 @@ export class VolService {
   }
 
   public clotureVol(vol) {
-    this.http.put<Vol>(`${ this.apiUrl }/cloture/${ vol.id }`, vol)
+    this.http.put<Vol>(`${ this.apiUrl }/cloture/${ vol.id }`, vol, this.appConfig.httpOptions)
       .subscribe(resp => {
         this.router.navigate(['/nav']);
       });

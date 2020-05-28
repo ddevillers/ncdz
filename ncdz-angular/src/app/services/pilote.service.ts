@@ -14,22 +14,22 @@ export class PiloteService {
   constructor(private appConfig: AppConfigService, private http: HttpClient) { }
 
   public reload() {
-    this.http.get<Array<Pilote>>(this.apiUrl)
+    this.http.get<Array<Pilote>>(this.apiUrl, this.appConfig.httpOptions)
       .subscribe(resp => this.pilotes = resp);
   }
 
   public add(pilote: Pilote) {
-    this.http.post<Pilote>(this.apiUrl, pilote)
+    this.http.post<Pilote>(this.apiUrl, pilote, this.appConfig.httpOptions)
       .subscribe(resp => this.pilotes.push(pilote));
   }
 
   public update(pilote: Pilote) {
-    this.http.put<Pilote>(`${this.apiUrl}/${pilote.numeroLicence}`, pilote)
+    this.http.put<Pilote>(`${this.apiUrl}/${pilote.numeroLicence}`, pilote, this.appConfig.httpOptions)
       .subscribe();
   }
 
   public delete(pilote: Pilote) {
-    this.http.delete<Boolean>(`${this.apiUrl}/${pilote.numeroLicence}`)
+    this.http.delete<Boolean>(`${this.apiUrl}/${pilote.numeroLicence}`, this.appConfig.httpOptions)
       .subscribe(resp => {
         if (resp) {
           this.pilotes.splice(this.pilotes.indexOf(pilote), 1);

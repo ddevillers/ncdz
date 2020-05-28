@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AvionService } from '../services/avion.service';
+import { UtilisateurService } from '../services/utilisateur.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ export class NavComponent implements OnInit {
 
   public page: string = "vol";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public srvUtilisateur: UtilisateurService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +24,7 @@ export class NavComponent implements OnInit {
   }
 
   deco(){
-    this.router.navigate([ '/accueil' ]);
+    this.srvUtilisateur.deconnexion();
   }
 
 }

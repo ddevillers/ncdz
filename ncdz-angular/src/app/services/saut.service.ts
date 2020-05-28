@@ -18,18 +18,18 @@ export class SautService {
     }
 
   public reloadCount(id){
-    this.http.get<number>(`${this.apiUrl}/count/${id}`)
+    this.http.get<number>(`${this.apiUrl}/count/${id}`, this.appConfig.httpOptions)
         .subscribe(nbPara => this.nbPara = this.nbPara);
   }
 
   public reload() {
-    this.http.get<Array<Saut>>(this.apiUrl)
+    this.http.get<Array<Saut>>(this.apiUrl, this.appConfig.httpOptions)
       .subscribe(sauts => this.sauts = sauts);
   }
 
 
   public addBeerLine(saut, sauteur) {
-    this.http.post<Saut>(`${this.apiUrl}/add-beer-line/${ saut.id }/${ sauteur.numeroLicence }`, null)
+    this.http.post<Saut>(`${this.apiUrl}/add-beer-line/${ saut.id }/${ sauteur.numeroLicence }`, null, this.appConfig.httpOptions)
       .subscribe();
   }
 }

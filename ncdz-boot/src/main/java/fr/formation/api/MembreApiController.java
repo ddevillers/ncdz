@@ -48,7 +48,7 @@ public class MembreApiController {
 	}
 	
 	@PutMapping("/{numeroLicence}")
-	public Membre update(@PathVariable int numeroLicence, @RequestBody Membre membre) {
+	public Membre update(@PathVariable long numeroLicence, @RequestBody Membre membre) {
 		membre.setNumeroLicence(numeroLicence);
 		return this.daoMembre.save(membre);
 	}

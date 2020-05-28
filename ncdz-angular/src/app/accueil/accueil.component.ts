@@ -19,8 +19,8 @@ export class AccueilComponent implements OnInit {
   }
 
   public seConnecter() {
-    this.appConfig.setHeaders(this.utilisateur.login, this.utilisateur.password)
     this.srvUtilisateur.connexion(this.utilisateur);
+    this.utilisateur = new Utilisateur();
   }
 
   public sauter() {

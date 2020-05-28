@@ -2,8 +2,10 @@
   <ul>
     <li id="vol" class="active-nav"><p (click)="change('vol')">VOLS & SAUTS</p></li>
     <li id="membre"><p (click)="change('membre')">MEMBRES</p></li>
-    <li id="materiel"><p (click)="change('materiel')">MATÉRIELS</p></li>
-    <li id="historique"><p (click)="change('historique')">HISTORIQUE</p></li>
+    <ng-container *ngIf="srvUtilisateur.current.type == 'admin'">
+      <li id="materiel"><p (click)="change('materiel')">MATÉRIELS</p></li>
+      <li id="historique"><p (click)="change('historique')">HISTORIQUE</p></li>
+    </ng-container>
   </ul>
   <img src="../../assets/img/logo.png" />
   <div id="divRight">

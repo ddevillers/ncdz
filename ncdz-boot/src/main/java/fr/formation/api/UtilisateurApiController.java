@@ -3,6 +3,7 @@ package fr.formation.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.formation.dao.IDAOUtilisateur;
+import fr.formation.exception.UtilisateurNotFoundException;
 import fr.formation.model.Utilisateur;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/utilisateur")
 public class UtilisateurApiController {
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private IDAOUtilisateur daoUtilisateur;
@@ -36,11 +41,22 @@ public class UtilisateurApiController {
 				.orElse(new Utilisateur());
 	}
 
-	@PostMapping
+	@PostMapping //("/subscribe")
 	public Utilisateur add(@RequestBody Utilisateur utilisateur) {
 
 		this.daoUtilisateur.save(utilisateur);
 		return utilisateur;
+	}
+	
+	@PostMapping("/login")
+	public Utilisateur login(@RequestBody Utilisateur utilisateur) {
+		Utilisateur dbUtilisateur = this.daoUtilisateur.findByLogin(utilisateur.getLogin());
+
+		if (!passwordEncoder.matches(utilisateur.getPassword(), dbUtilisateur.getPassword())) {
+			throw new UtilisateurNotFoundException();
+		}
+
+		return dbUtilisateur;
 	}
 
 	@PutMapping("/{id}")
