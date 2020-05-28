@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AccueilComponent implements OnInit {
 
+  public mouseMouvement=false;
+  
   utilisateur = new Utilisateur();
 
   constructor(private srvUtilisateur: UtilisateurService, private appConfig: AppConfigService, private router: Router) { }
@@ -26,6 +28,14 @@ export class AccueilComponent implements OnInit {
   public sauter() {
     this.router.navigate(['/portail'])
   }
+ 
+public onMouseMove(event) {
+
+
+    document.querySelector(".title").style['background-position-x']=event.clientX+520+"px";
+    document.querySelector(".title").style['background-position-y']=event.clientY+200+"px";
+  
+}
 
 
 }
