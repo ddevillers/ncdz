@@ -16,7 +16,7 @@
 
     <tbody *ngFor="let vol of srvVol.vols">
         <tr class="ligne" (click)="affichageDetails(vol)">
-          <th scope="row">{{ vol.id }}</th>
+          <th scope="row">{{ vol.dateVol }}</th>
           <td>{{ vol.avion.nom }}</td>
           <td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
           <td>{{ vol.sauts.length }}</td>

@@ -83,7 +83,13 @@ public class FileAttente {
 		this.sauteurs = sauteurs;
 	}
 
+	public TypeSaut getTypeSaut() {
+		return typeSaut;
+	}
 	
+	public void setTypeSaut(TypeSaut typeSaut) {
+		this.typeSaut = typeSaut;
+	}
 	
 	
 	

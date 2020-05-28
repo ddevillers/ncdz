@@ -6,6 +6,7 @@ import { Avion } from '../model/avion';
 import { PiloteService } from '../services/pilote.service';
 import { Pilote } from '../model/pilote';
 import { Vol } from '../model/vol';
+import { FileAttenteService } from '../services/file-attente.service';
 
 @Component({
   selector: 'app-vol',
@@ -25,12 +26,14 @@ export class VolComponent implements OnInit {
 
   constructor(public appComp : AppComponent, public srvVol: VolService,
     public srvAvion: AvionService,
-    public srvPilote: PiloteService) {}
+    public srvPilote: PiloteService,
+    public srvFileAttente: FileAttenteService) {}
 
   ngOnInit(): void {
     this.srvVol.reload();
     this.srvAvion.reloadAvionDispo();
     this.srvPilote.reload();
+    this.srvFileAttente.reload();
   }
 
   public pilotesFiltered() {
