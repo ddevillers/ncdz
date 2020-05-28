@@ -47,6 +47,11 @@ export class VolService {
       });
   }
 
+  public add(vol) {
+    this.http.post<Vol>(this.apiUrl, vol, this.appConfig.httpOptions)
+        .subscribe(resp => this.vols.push(resp));
+  }
+
 
   public getVolByAvion(id){
     this.http.get<Vol>(`${this.apiUrl}/avion/${id}`, this.appConfig.httpOptions)
@@ -54,7 +59,7 @@ export class VolService {
   }
 
   public update(vol) {
-    this.http.put<Vol>(`${this.apiUrl}/${vol.id}`, vol)
+    this.http.put<Vol>(`${this.apiUrl}/${vol.id}`, vol, this.appConfig.httpOptions)
         .subscribe(resp => {
           resp.sauts.forEach(saut => {
             saut.sauteurs.forEach(sauteur => {sauteur.voileSecUsed=false;
@@ -62,8 +67,6 @@ export class VolService {
           });
           
           this.volTermine = resp;
-          console.log(resp);
-          console.log(this.volTermine);
         });
   }
 

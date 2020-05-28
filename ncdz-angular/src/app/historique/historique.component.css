@@ -1,3 +1,9 @@
+#histo table
+{
+  background: white;
+  margin: auto;
+}
+
 .ligne:hover {
   background-color: #90c4d5;
   cursor: pointer;

@@ -222,7 +222,7 @@
 {
   position: absolute;
   top: 18%;
-  left: 25%;
+  right: 10%;
   text-align: center;
   border: solid 2px black;
   padding: 1% 2% 1% 2%;
@@ -254,6 +254,9 @@
 #volTerminating
 {
   text-align: center;
+  background: white;
+  padding: 1% 2% 0 2%;
+  border: solid 2px black;
 }
 
 .ligne:hover
@@ -266,6 +269,7 @@
 {
   font-size: max(1.5vw, 12px);
   color: white;
+  margin-bottom: 2%;
 }
 
 #incident
@@ -286,9 +290,38 @@
 	text-decoration: none;
 }
 
-#incident:hover {
+#incident:hover
+{
 	background: linear-gradient(to bottom, #b00000 5%, #c11b1b 100%);
 	background-color: #b00000;
 	color: white;
 	cursor: pointer;
+}
+
+#listeAttente
+{
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  top: 18%;
+  left: 25%;
+  background: white;
+  padding: 1% 2% 0 2%;
+  border: solid 2px black;
+}
+
+#valider
+{
+  margin-top: 5%;
+  margin-bottom: 2%;
+  font-size: max(2vw, 12px);
+  color: white;
+}
+
+#error
+{
+  color: red;
+  font-size: 1.2vw;
+  font-weight: bold;
+  margin-top: 2%;
 }

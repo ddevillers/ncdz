@@ -16,7 +16,7 @@ import { ClotureComponent } from './cloture/cloture.component';
 import { ParachutisteValidePipe } from './pipe/parachutiste-valide.pipe';
 import { UtilisateurService } from './services/utilisateur.service';
 
-/*const routes: Routes = [
+const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'portail', component: PortailComponent },
   { path: 'membre', component: MembreComponent, canActivate: [UtilisateurService] },
@@ -27,20 +27,20 @@ import { UtilisateurService } from './services/utilisateur.service';
   { path: 'historique', component: HistoriqueComponent, canActivate: [UtilisateurService] },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', component: AccueilComponent }
-];*/
-
-const routes: Routes = [
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'portail', component: PortailComponent },
-  { path: 'membre', component: MembreComponent },
-  { path: 'materiel', component: MaterielComponent },
-  { path: 'vol', component: VolComponent },
-  { path: 'nav', component: NavComponent },
-  { path: 'cloture', component: ClotureComponent },
-  { path: 'historique', component: HistoriqueComponent },
-  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
-  { path: '**', component: AccueilComponent }
 ];
+
+// const routes: Routes = [
+//   { path: 'accueil', component: AccueilComponent },
+//   { path: 'portail', component: PortailComponent },
+//   { path: 'membre', component: MembreComponent },
+//   { path: 'materiel', component: MaterielComponent },
+//   { path: 'vol', component: VolComponent },
+//   { path: 'nav', component: NavComponent },
+//   { path: 'cloture', component: ClotureComponent },
+//   { path: 'historique', component: HistoriqueComponent },
+//   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+//   { path: '**', component: AccueilComponent }
+// ];
 
 @NgModule({
   declarations: [

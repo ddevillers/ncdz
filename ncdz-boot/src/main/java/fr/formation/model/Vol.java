@@ -3,10 +3,12 @@ package fr.formation.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +46,7 @@ public class Vol {
 	@JoinColumn(name = "id_pilote")
 	private Pilote pilote;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "vol_sauts",
 			uniqueConstraints = @UniqueConstraint (columnNames = {"id_vol", "id_saut"}),
@@ -203,6 +205,30 @@ public class Vol {
 
 	public void setHauteurSautMax(HauteurSaut hauteurSautMax) {
 		this.hauteurSautMax = hauteurSautMax;
+	}
+
+
+
+
+	public LocalDate getDateVol() {
+		return dateVol;
+	}
+
+
+
+
+	public void setDateVol(LocalDate dateVol) {
+		this.dateVol = dateVol;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Vol [id=" + id + ", avion=" + avion + ", pilote=" + pilote + ", sauts=" + sauts + ", etatVol=" + etatVol
+				+ ", respoVol=" + respoVol + ", respoSol=" + respoSol + ", hauteurSautMax=" + hauteurSautMax
+				+ ", dateVol=" + dateVol + "]";
 	}
 
 

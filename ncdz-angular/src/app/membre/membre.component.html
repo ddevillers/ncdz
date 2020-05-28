@@ -1,10 +1,10 @@
 <div class="row" id="boutonMenuMembres">
-    <button class="btn btn-secondary btn-lg" type="button" data-toggle="collapse" data-target=".menu" aria-expanded="false" aria-controls="menuParachutistes menuPilotes">Parachutistes / Pilotes</button>
+    <button class="btn btn-secondary btn-lg" (click)="scrollBottom()" type="button" data-toggle="collapse" data-target=".menu" aria-expanded="false" aria-controls="menuParachutistes menuPilotes">Parachutistes / Pilotes</button>
 </div>
 
 <!--------PARACHUTISTE (Membre)-------->
 
-<div class="row">
+<div id="scroll" class="row">
     <div class="collapse show menu center" id="menuParachutistes">
 
         <br/>

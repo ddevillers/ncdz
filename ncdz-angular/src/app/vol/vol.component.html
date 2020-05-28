@@ -37,19 +37,19 @@
           </tr>
       </tbody>
     </table>
-    <div id="buttonVol" (click)="changeEtatVol(true)" class="button" *ngIf="vol">
+    <div id="buttonVol" (click)="changeEtatVol(true)" class="button" *ngIf="showButton">
       <ng-container *ngIf="vol.etatVol == 'ATTENTE'">ATTENTE ► PREPARATION</ng-container>
       <ng-container *ngIf="vol.etatVol == 'PREPARATION'">PREPARATION ► EMBARQUEMENT</ng-container>
       <ng-container *ngIf="vol.etatVol == 'EMBARQUEMENT'">EMBARQUEMENT ► VOL</ng-container>
       <ng-container *ngIf="vol.etatVol == 'VOL'">VOL ► TERMINER</ng-container>
     </div>
-    <a id="incident" *ngIf="vol" class="button" (click)="changeEtatVol(false)">INCIDENT</a>
+    <a id="incident" *ngIf="showButton" class="button" (click)="changeEtatVol(false)">INCIDENT</a>
   </div>
 
   <div id="avions" *ngIf="pageVol == 'avions'">
     <span><img class="arrow" (click)="changeAvion(-1)" src="../../assets/img/arrowleft.png"/></span>
     <span id="spanLogo" *ngIf="this.srvAvion.avions[0].etat"><img id="avionLogo" style="filter: drop-shadow(0 0 0.2rem #00b000);" (click)="changePage('saut')" src="../../assets/img/plane-logo.png"/></span>
-    <span id="spanLogo" *ngIf="!this.srvAvion.avions[0].etat"><img id="avionLogo" style="filter: drop-shadow(0 0 0.2rem #b00000);" (click)="changePage('saut')" src="../../assets/img/plane-logo.png"/></span>
+    <span id="spanLogo" *ngIf="!this.srvAvion.avions[0].etat"><img id="avionLogo" style="filter: drop-shadow(0 0 0.2rem #b00000);" src="../../assets/img/plane-logo.png"/></span>
     <span><img class="arrow" (click)="changeAvion(1)" src="../../assets/img/arrowright.png"/></span>
     <div id="nomAvion">[&nbsp;{{this.srvAvion.avions[0].nom.toUpperCase()}}&nbsp;]</div>
 
@@ -77,44 +77,68 @@
       <div id="titre"><h1>{{this.avion.nom}}</h1></div>
       <div id="pilote">
         <img id="imgPilote" (click)="modif('pilote')" src="../../assets/img/pilote.png"/>
-        <p>{{this.srvVol.vol.pilote.prenom.substring(0, 1)}}.{{this.srvVol.vol.pilote.nom}} [{{this.srvVol.vol.pilote.numeroLicence}}]</p>
+        <p><ng-container *ngIf="vol.pilote">{{this.vol.pilote.prenom.substring(0, 1)}}.{{this.vol.pilote.nom}} [{{this.vol.pilote.numeroLicence}}]</ng-container></p>
       </div>
       <div id="manager1">
         <img class="imgManager1" (click)="modif('managerVol')" src="../../assets/img/managerVol.png"/>
-        <p>{{this.srvVol.vol.respoVol.prenom.substring(0, 1)}}.{{this.srvVol.vol.respoVol.nom}} [{{this.srvVol.vol.respoVol.numeroLicence}}]</p>
+        <p><ng-container *ngIf="vol.respoVol">{{this.vol.respoVol.prenom.substring(0, 1)}}.{{this.vol.respoVol.nom}} [{{this.vol.respoVol.numeroLicence}}]</ng-container></p>
       </div>
       <div id="manager2">
         <img class="imgManager2" (click)="modif('managerSol')" src="../../assets/img/managerSol.png"/>
-        <p>{{this.srvVol.vol.respoSol.prenom.substring(0, 1)}}.{{this.srvVol.vol.respoSol.nom}} [{{this.srvVol.vol.respoSol.numeroLicence}}]</p>
+        <p><ng-container *ngIf="vol.respoSol">{{this.vol.respoSol.prenom.substring(0, 1)}}.{{this.vol.respoSol.nom}} [{{this.vol.respoSol.numeroLicence}}]</ng-container></p>
       </div>
     </div>
     <div id="hauteur">
       <h1 id="hauteurTitre">HAUTEUR MAX (m)</h1>
-      <div id="H6000" *ngIf="srvVol.vol.hauteurSautMax == 'H6000'" style="color: white; background: #1b6dc1;">6000</div><div id="H6000" *ngIf="srvVol.vol.hauteurSautMax != 'H6000'">6000</div>
-      <div id="H4000" *ngIf="srvVol.vol.hauteurSautMax == 'H4000'" style="color: white; background: #1b6dc1;">4000</div><div id="H4000" *ngIf="srvVol.vol.hauteurSautMax != 'H4000'">4000</div>
-      <div id="H2000" *ngIf="srvVol.vol.hauteurSautMax == 'H2000'" style="color: white; background: #1b6dc1;">2000</div><div id="H2000" *ngIf="srvVol.vol.hauteurSautMax != 'H2000'">2000</div>
-      <div id="H1600" *ngIf="srvVol.vol.hauteurSautMax == 'H1600'" style="color: white; background: #1b6dc1;">1600</div><div id="H1600" *ngIf="srvVol.vol.hauteurSautMax != 'H1600'">1600</div>
-      <div id="H1200" *ngIf="srvVol.vol.hauteurSautMax == 'H1200'" style="color: white; background: #1b6dc1;">1200</div><div id="H1200" *ngIf="srvVol.vol.hauteurSautMax != 'H1200'">1200</div>
+      <div id="H6000" *ngIf="vol.hauteurSautMax == 'H6000'" style="color: white; background: #1b6dc1;">6000</div><div id="H6000" *ngIf="vol.hauteurSautMax != 'H6000'">6000</div>
+      <div id="H4000" *ngIf="vol.hauteurSautMax == 'H4000'" style="color: white; background: #1b6dc1;">4000</div><div id="H4000" *ngIf="vol.hauteurSautMax != 'H4000'">4000</div>
+      <div id="H2000" *ngIf="vol.hauteurSautMax == 'H2000'" style="color: white; background: #1b6dc1;">2000</div><div id="H2000" *ngIf="vol.hauteurSautMax != 'H2000'">2000</div>
+      <div id="H1600" *ngIf="vol.hauteurSautMax == 'H1600'" style="color: white; background: #1b6dc1;">1600</div><div id="H1600" *ngIf="vol.hauteurSautMax != 'H1600'">1600</div>
+      <div id="H1200" *ngIf="vol.hauteurSautMax == 'H1200'" style="color: white; background: #1b6dc1;">1200</div><div id="H1200" *ngIf="vol.hauteurSautMax != 'H1200'">1200</div>
+    </div>
+    <div id="listeAttente">
+      <h1>CAPACITÉ : {{nbrePara}} / {{avion.capacite}}</h1>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>N°</th>
+            <th>Hauteur souhaitée (m)</th>
+            <th>Type de saut</th>
+            <th>Nbre de parachutistes</th>
+          </tr>
+        </thead>
+  
+        <tbody *ngFor="let file of srvFile.fileAttentes">
+            <tr class="ligne" (click)="addSaut(file)" id="{{ 'file' + file.id }}">
+              <th>{{ file.id }}</th>
+              <td>{{ file.hauteurSouhaitee.substring(1) }}</td>
+              <td>{{ file.typeSaut }}</td>
+              <td>{{ file.sauteurs.length }}</td>
+            </tr>
+        </tbody>
+      </table>
+      <a id="valider" *ngIf="fileAttente.length != 0 && vol.pilote && vol.hauteurSautMax && vol.respoSol && vol.respoVol" class="button" (click)="valider()">Valider</a>
+      <p id="error" *ngIf="error">Capacité maximale de l'avion atteinte !</p>
     </div>
   </div>
 
   <div id="popup" *ngIf="popup" (click)="hide($event)">
     <div id="form" *ngIf="popupMembre == 'pilote'">
-      <select class="form-control" (change)="hideChange()" [(ngModel)]="srvVol.vol.pilote">
+      <select class="form-control" (change)="hideChange()" [(ngModel)]="vol.pilote">
         <option value="" disabled selected>Selectionner un pilote</option>
         <option *ngFor="let pilote of pilotes" [ngValue]="pilote">{{pilote.prenom.substring(0, 1)}}.{{pilote.nom}} - {{pilote.numeroLicence}}</option>
       </select>
     </div>
     <div id="form" *ngIf="popupMembre == 'managerVol'">
-      <select class="form-control" (change)="hideChange()" [(ngModel)]="srvVol.vol.respoVol">
+      <select class="form-control" (change)="hideChange()" [(ngModel)]="vol.respoVol">
         <option value="" disabled selected>Selectionner un responsable-Vol</option>
-        <option *ngFor="let respoVol of membres" [ngValue]="respoVol">{{respoVol.prenom.substring(0, 1)}}.{{respoVol.nom}} - <i>{{respoVol.numeroLicence}}</i></option>
+        <option *ngFor="let respoVol of managerVol" [ngValue]="respoVol">{{respoVol.prenom.substring(0, 1)}}.{{respoVol.nom}} - <i>{{respoVol.numeroLicence}}</i></option>
       </select>
     </div>
     <div id="form" *ngIf="popupMembre == 'managerSol'">
-      <select class="form-control" (change)="hideChange()" [(ngModel)]="srvVol.vol.respoSol">
+      <select class="form-control" (change)="hideChange()" [(ngModel)]="vol.respoSol">
         <option value="" disabled selected>Selectionner un responsable-Sol</option>
-        <option *ngFor="let respoSol of membres" [ngValue]="respoSol">{{respoSol.prenom.substring(0, 1)}}.{{respoSol.nom}} - {{respoSol.numeroLicence}}</option>
+        <option *ngFor="let respoSol of managerSol" [ngValue]="respoSol">{{respoSol.prenom.substring(0, 1)}}.{{respoSol.nom}} - {{respoSol.numeroLicence}}</option>
       </select>
     </div>
   </div>

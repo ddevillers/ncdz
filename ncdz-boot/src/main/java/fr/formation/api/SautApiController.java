@@ -47,6 +47,7 @@ public class SautApiController {
 	@PostMapping
 	public Saut add(@RequestBody Saut saut) {
 		this.daoSaut.save(saut);
+		System.out.println(saut);
 		return saut;
 	}
 	

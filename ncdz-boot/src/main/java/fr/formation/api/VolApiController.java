@@ -1,5 +1,6 @@
 package fr.formation.api;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +57,10 @@ public class VolApiController {
 	
 	@PostMapping
 	public Vol add (@RequestBody Vol vol) {
-
+		vol.setDateVol(LocalDate.now());
+		System.out.println(vol);
 		this.daoVol.save(vol);
 		return vol;
-		
 	}
 	
 	@PutMapping("/cloture/{id}")

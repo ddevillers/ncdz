@@ -109,4 +109,9 @@ export class MembreComponent implements OnInit {
   public supprimerAvion(avion: Avion) {
     this.pilote.avions.splice(this.pilote.avions.indexOf(avion), 1);
   }
+
+  public scrollBottom(){
+    let el = document.querySelector('#scroll');
+    el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
 }
