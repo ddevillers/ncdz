@@ -17,7 +17,6 @@ export class ClotureComponent implements OnInit {
 
   public membre: Membre=new Membre();
   public parachute: Parachute=new Parachute();
-  public vol: Vol= new Vol();
   isOutZone=false;
   secHaveBeenUsed: boolean= false;
   jumped= false;
@@ -31,7 +30,7 @@ export class ClotureComponent implements OnInit {
       }
 
     ngOnInit(): void {
-      this.srvVol.loadById();
+      //this.srvVol.loadById();
       this.srvMembre.reload();
       this.srvParachute.reload();
     }
@@ -39,6 +38,9 @@ export class ClotureComponent implements OnInit {
 
     public cloturerVolSauteur(sauteur: Membre, parachute) {
       if (parachute.centre == false){
+        this.membre = sauteur;
+      }
+      if (this.membre = null){
         this.membre = sauteur;
       }
       this.srvParachute.pliage(this.membre.numeroLicence, sauteur.numeroParachute, this.secHaveBeenUsed);
@@ -73,7 +75,7 @@ export class ClotureComponent implements OnInit {
     }
 
     public clotureVol(){
-      this.srvVol.clotureVol(this.srvVol.vol);
+      this.srvVol.clotureVol(this.srvVol.volTermine);
     }
 
 

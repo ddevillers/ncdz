@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
   <h1>Informations du vol à cloturer </h1>
-  <div *ngIf="srvVol.vol.etatVol == 'TERMINE'">
+  <div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -19,7 +19,7 @@
         </thead>
 
         <tbody>
-          <ng-container *ngFor="let saut of srvVol.vol.sauts">
+          <ng-container *ngFor="let saut of srvVol.volTermine.sauts">
             Saut n°{{ saut.id }}
             <ng-container *ngFor="let parachute of srvParachute.parachutes">
               <ng-container *ngFor="let sauteur of saut.sauteurs">
@@ -41,7 +41,7 @@
                 <td *ngIf="parachute.centre == true" > <!--Gerer le plieur-->
                   <span *ngIf="secHaveBeenUsed == false">Voile Principale</span>
                   <span *ngIf="secHaveBeenUsed">Voile Secours</span><br/>
-                  <select *ngIf="secHaveBeenUsed == false" [(ngModel)]="membre" required>
+                  <select required *ngIf="secHaveBeenUsed == false" [(ngModel)]="membre" required>
                     <option *ngFor="let membre of srvMembre.membres" [ngValue]="membre">
                       {{membre.prenom}} {{membre.nom}}
                     </option>

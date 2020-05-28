@@ -14,6 +14,7 @@ export class VolService {
   public vol: Vol = new Vol();
   public nbSaut: number = null;
   public nbSauts: Array<number> = [];
+  public volTermine: Vol = new Vol();
 
   constructor(private appConfig: AppConfigService,
               private http: HttpClient,
@@ -45,7 +46,11 @@ export class VolService {
 
   public update(vol) {
     this.http.put<Vol>(`${this.apiUrl}/${vol.id}`, vol)
-        .subscribe();
+        .subscribe(resp => {
+          this.volTermine = resp;
+          console.log(resp);
+          console.log(this.volTermine);
+        });
   }
 
   public clotureVol(vol) {
