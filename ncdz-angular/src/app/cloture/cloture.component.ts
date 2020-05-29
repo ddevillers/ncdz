@@ -53,7 +53,7 @@ export class ClotureComponent implements OnInit {
         sauteur.beerLine = false;
       }
     }
-    }
+    
 
 
     public cloturerIncident() {
@@ -75,8 +75,8 @@ export class ClotureComponent implements OnInit {
     }
 
     public beerLine(saut: Saut, sauteur: Membre) {
-      
-      
+
+
       this.srvSaut.addBeerLine(saut, sauteur);
     }
 
