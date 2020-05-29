@@ -47,6 +47,9 @@ export class ClotureComponent implements OnInit {
       if (this.membre == null){
         this.membre = sauteur;
       }
+      if (!parachute.plieurVoilePrin){
+        parachute.plieurVoilePrin = sauteur;
+      }
       this.srvParachute.pliage(parachute.plieurVoilePrin.numeroLicence, sauteur.numeroParachute, this.secHaveBeenUsed);
       this.srvParachute.parachute=new Parachute();
       parachute.dispo = true;
@@ -65,7 +68,7 @@ export class ClotureComponent implements OnInit {
       }
 
     }
-    
+
 
 
     public cloturerIncident() {
