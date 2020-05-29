@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Utilisateur } from '../model/utilisateur';
 import { UtilisateurService } from '../services/utilisateur.service';
 import { AppConfigService } from '../app-config.service';
@@ -18,6 +18,12 @@ export class AccueilComponent implements OnInit {
   constructor(private srvUtilisateur: UtilisateurService, private appConfig: AppConfigService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener ('document: keydown', ['$event']) onKeyDown(e: KeyboardEvent){
+    if (e.key == "Enter"){
+      this.seConnecter();
+    }
   }
 
   public seConnecter() {

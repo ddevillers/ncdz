@@ -284,6 +284,9 @@ export class VolComponent implements OnInit {
     this.avion.enVol = true;
     this.srvAvion.update(this.avion);
     this.srvVol.add(this.vol);
-    window.location.reload();
+    // window.location.reload();
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/nav']);
+    }); 
   }
 }

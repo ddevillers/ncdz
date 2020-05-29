@@ -132,13 +132,13 @@
     <div id="form" *ngIf="popupMembre == 'managerVol'">
       <select class="form-control" (change)="hideChange()" [(ngModel)]="vol.respoVol">
         <option value="" disabled selected>Selectionner un responsable-Vol</option>
-        <option *ngFor="let respoVol of managerVol" [ngValue]="respoVol">{{respoVol.prenom.substring(0, 1)}}.{{respoVol.nom}} - <i>{{respoVol.numeroLicence}}</i></option>
+        <option *ngFor="let respoVol of managerVol" [ngValue]="respoVol" [style.color] = "respoVol.niveau == 'INSTRUCTEUR' ? 'white' : 'black'" [style.background] = "respoVol.niveau == 'INSTRUCTEUR' ? 'green' : 'none'">{{respoVol.prenom.substring(0, 1)}}.{{respoVol.nom}} - <i>{{respoVol.numeroLicence}}</i></option>
       </select>
     </div>
     <div id="form" *ngIf="popupMembre == 'managerSol'">
       <select class="form-control" (change)="hideChange()" [(ngModel)]="vol.respoSol">
         <option value="" disabled selected>Selectionner un responsable-Sol</option>
-        <option *ngFor="let respoSol of managerSol" [ngValue]="respoSol">{{respoSol.prenom.substring(0, 1)}}.{{respoSol.nom}} - {{respoSol.numeroLicence}}</option>
+        <option *ngFor="let respoSol of managerSol" [ngValue]="respoSol" [style.color] = "respoSol.niveau == 'INSTRUCTEUR' ? 'white' : 'black'" [style.background] = "respoSol.niveau == 'INSTRUCTEUR' ? 'green' : 'none'">{{respoSol.prenom.substring(0, 1)}}.{{respoSol.nom}} - {{respoSol.numeroLicence}}</option>
       </select>
     </div>
   </div>

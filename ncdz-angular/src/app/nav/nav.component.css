@@ -18,6 +18,11 @@ nav img
   width: 16%;
 }
 
+nav img:hover
+{
+  cursor: pointer;
+}
+
 nav ul
 {
   padding: 0;

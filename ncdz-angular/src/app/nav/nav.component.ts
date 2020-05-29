@@ -27,4 +27,9 @@ export class NavComponent implements OnInit {
     this.srvUtilisateur.deconnexion();
   }
 
+  public reload(){
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/nav']);
+    });
+  }
 }

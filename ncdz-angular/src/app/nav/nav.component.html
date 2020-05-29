@@ -7,9 +7,9 @@
       <li id="historique"><p (click)="change('historique')">HISTORIQUE</p></li>
     </ng-container>
   </ul>
-  <img src="../../assets/img/logo.png" />
+  <img (click)="reload()" src="../../assets/img/logo.png" />
   <div id="divRight">
-    <span id="user">Utilisateur</span>
+    <span id="user">{{srvUtilisateur.current.login.toUpperCase()}}</span>
     <span id="button" (click)="deco()">Se déconnecter</span>
   </div>
 </nav>
