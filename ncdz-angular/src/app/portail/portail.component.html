@@ -26,7 +26,7 @@
 					<div class="col-1"></div>
 					<select class="form-control col-2 champ" id="typeSaut" [(ngModel)]="fileAttente.typeSaut" name="ts">
 						<option value="SOLO" *ngIf="nbPers<2" selected>Solo</option>
-						<option value="GROUPE">Groupe</option>
+						<option value="GROUPE" *ngIf="fileAttente.typeSaut=='GROUPE' || nbPers==0">Groupe</option>
 						<option value="TANDEM" *ngIf="nbPers<2">Tandem</option>
 					</select>
 				</div>
@@ -146,7 +146,7 @@
 							<td>{{ vol.hauteurSautMax }}</td>
 							<td>{{ vol.etatVol }}</td>
 						</tr>
-						<tr>
+						<tr (click)="affichageDetailsVol(vol)">
 							<td colspan="5" *ngIf="idAffichageVol == vol.id && affichageVol">
 								<p><b>Liste des parachutistes:</b>
 									<span *ngFor="let saut of vol.sauts">
@@ -228,7 +228,7 @@
 			
 			<div class="video" *ngIf="lecteurVisible">
 				<iframe width="896" height="504" 
-				src="https://www.youtube-nocookie.com/embed/3vSv8-5sF4A?version=3&enablejsapi=1&html5=1&volume=0&hd=1&wmode=opaque&showinfo=0&rel=0;;origin=https://www.parachutisme.nc;&controls=0&playsinline=1" 
+				src="https://www.youtube-nocookie.com/embed/3vSv8-5sF4A?version=3&enablejsapi=1&html5=1&volume=0&hd=1&wmode=opaque&showinfo=0&rel=0;;origin=https://www.parachutisme.nc;&controls=1&playsinline=1" 
 				frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
 			<div class="video" *ngIf="false">

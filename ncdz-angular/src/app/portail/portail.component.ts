@@ -97,6 +97,10 @@ export class PortailComponent implements OnInit {
       }
     }
 
+    if(this.fileAttente.typeSaut=="GROUPE") {
+      mDispo = mDispo.filter(m => m.niveau=="INSTRUCTEUR" || m.niveau=="CONFIRME");
+    }
+
     if(!this.isEditing) {
     return mDispo
     }
