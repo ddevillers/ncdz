@@ -37,7 +37,7 @@ export class ClotureComponent implements OnInit {
     }
 
 
-    public cloturerVolSauteur(sauteur: Membre, parachute,saut) {
+    public cloturerVolSauteur(sauteur: Membre, parachute, saut) {
       if (parachute.centre == false){
         this.membre = sauteur;
       }
@@ -49,8 +49,9 @@ export class ClotureComponent implements OnInit {
       parachute.dispo = true;
       this.secHaveBeenUsed = false;
       if (sauteur.beerLine) {
-      this.srvSaut.addBeerLine(saut, sauteur);
-      sauteur.beerLine=false;
+        this.srvSaut.addBeerLine(saut, sauteur);
+        sauteur.beerLine = false;
+      }
     }
     }
 

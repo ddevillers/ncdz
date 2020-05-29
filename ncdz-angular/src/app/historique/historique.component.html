@@ -6,17 +6,30 @@
         <th scope="col">Avion</th>
         <th scope="col">Pilote</th>
         <th scope="col">Nombre sauts</th>
+        <th scope="col">Incident</th>
       </tr>
     </thead>
 
     <tbody *ngFor="let vol of srvVol.vols">
-        <tr class="ligne" (click)="affichageDetails(vol)">
+        <tr *ngIf="vol.etatVol == 'TERMINE'" class="ligne" (click)="affichageDetails(vol)">
           <th scope="row">{{ vol.dateVol }}</th>
           <td>{{ vol.avion.nom }}</td>
           <td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
           <td>{{ vol.sauts.length }}</td>
+          <td>
+          </td>
         </tr>
-
+        <tr *ngIf="vol.etatVol == 'INCIDENT'" class="ligne incident" (click)="affichageDetails(vol)">
+          <th scope="row">{{ vol.dateVol }}</th>
+          <td>{{ vol.avion.nom }}</td>
+          <td>{{ vol.pilote.prenom }} {{ vol.pilote.nom }}</td>
+          <td>{{ vol.sauts.length }}</td>
+          <td *ngIf="vol.etatVol == 'INCIDENT'">
+            <div class="center">
+              <i class="material-icons">error_outline</i>
+            </div>
+          </td>
+        </tr>
         <tr>
           <td colspan="5" *ngIf="idAffichage == vol.id && affichage == 'Y'">
             <div class="categorie">Pilote</div>

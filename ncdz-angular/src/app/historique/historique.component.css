@@ -29,3 +29,11 @@
 .italique {
   font-style: italic;
 }
+
+.incident {
+  background-color: #dec87e;
+}
+
+.center {
+  text-align: center;
+}
