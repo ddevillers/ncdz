@@ -25,9 +25,9 @@
 				<div class="row">
 					<div class="col-1"></div>
 					<select class="form-control col-2 champ" id="typeSaut" [(ngModel)]="fileAttente.typeSaut" name="ts">
-						<option value="SOLO" *ngIf="nbPers<2" selected>Solo</option>
+						<option value="SOLO" *ngIf="fileAttente.typeSaut=='SOLO' || nbPers<2" selected>Solo</option>
 						<option value="GROUPE" *ngIf="fileAttente.typeSaut=='GROUPE' || nbPers==0">Groupe</option>
-						<option value="TANDEM" *ngIf="nbPers<2">Tandem</option>
+						<option value="TANDEM" *ngIf="fileAttente.typeSaut=='TANDEM' || nbPers<2">Tandem</option>
 					</select>
 				</div>
 				<br>
