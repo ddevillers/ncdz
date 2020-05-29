@@ -64,7 +64,7 @@
         </tbody>
     </table>
 
-    <button (click)="clotureVol()">Cloturer le vol</button>
+    <button *ngIf="tousCloture==true" (click)="clotureVol()">Cloturer le vol</button>
 
 
   </div>

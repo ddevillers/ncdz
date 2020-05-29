@@ -19,6 +19,9 @@ export class ClotureComponent implements OnInit {
   public parachute: Parachute=new Parachute();
   isOutZone=false;
   secHaveBeenUsed: boolean= false;
+  nbSauteurCloture:number=0;
+  nbTotal:number;
+  tousCloture: boolean=false;
   jumped= false;
 
 
@@ -52,6 +55,15 @@ export class ClotureComponent implements OnInit {
         this.srvSaut.addBeerLine(saut, sauteur);
         sauteur.beerLine = false;
       }
+      this.nbSauteurCloture=this.nbSauteurCloture+1;
+      this.nbTotal=0;
+      this.srvVol.volTermine.sauts.forEach(saut => {this.nbTotal=this.nbTotal+saut.sauteurs.length;
+        
+      });
+      if (this.nbSauteurCloture==this.nbTotal) {
+        this.tousCloture=true;
+      }
+
     }
     
 
