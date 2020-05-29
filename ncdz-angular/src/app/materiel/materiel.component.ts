@@ -3,6 +3,7 @@ import { Avion } from '../model/avion';
 import { Parachute } from '../model/parachute';
 import { AvionService } from '../services/avion.service';
 import { ParachuteService } from '../services/parachute.service';
+import { MembreService } from '../services/membre.service';
 
 @Component({
   selector: 'app-materiel',
@@ -21,11 +22,12 @@ export class MaterielComponent implements OnInit {
 
   public filterParachute: string = "";
 
-  constructor(public srvAvion: AvionService, public srvParachute: ParachuteService) { }
+  constructor(public srvAvion: AvionService, public srvParachute: ParachuteService, public srvMembre: MembreService) { }
 
   ngOnInit() {
     this.srvAvion.reload();
     this.srvParachute.reload();
+    this.srvMembre.reload();
   }
 
 

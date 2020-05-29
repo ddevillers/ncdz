@@ -159,9 +159,11 @@
                                 <div class="col-sm-6">
                                     <input required name="datePliageVoilePrin" type="date" size="30" class="form-control" id="datePliageVoilePrin" [(ngModel)]="parachute.datePliageVoilePrin" />
                                 </div>
-                                <label for="plieurVoilePrin" class="col-sm-6 col-form-label">Plieur (N° de licence) : </label>
+                                <label for="plieurVoilePrin" class="col-sm-6 col-form-label">Plieur : </label>
                                 <div class="col-sm-6">
-                                    <input name="plieurVoilePrin" type="number" class="form-control" id="plieurVoilePrin" [(ngModel)]="parachute.plieurVoilePrin" />
+                                    <select name="plieurVoilePrin" class="form-control" id="plieurVoilePrin" [(ngModel)]="parachute.plieurVoilePrin">
+                                        <option *ngFor="let plieur of this.srvMembre.membres" [ngValue]="plieur">{{ plieur.nom }} {{ plieur.prenom }}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group col row">
@@ -178,9 +180,11 @@
                                 <div class="col-sm-6">
                                     <input required name="datePliageVoileSec" type="date" size="30" class="form-control" id="datePliageVoileSec" [(ngModel)]="parachute.datePliageVoileSec" />
                                 </div>
-                                <label for="plieurVoileSec" class="col-sm-6 col-form-label">Plieur (N° de licence) : </label>
+                                <label for="plieurVoileSec" class="col-sm-6 col-form-label">Plieur : </label>
                                 <div class="col-sm-6">
-                                    <input name="plieurVoileSec" type="number" class="form-control" id="plieurVoileSec" [(ngModel)]="parachute.plieurVoileSec" />
+                                    <select name="plieurVoileSec" class="form-control" id="plieurVoileSec" [(ngModel)]="parachute.plieurVoileSec">
+                                        <option *ngFor="let plieur of this.srvMembre.membres" [ngValue]="plieur">{{ plieur.nom }} {{ plieur.prenom }}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
